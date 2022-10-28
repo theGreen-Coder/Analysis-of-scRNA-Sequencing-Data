@@ -22,6 +22,5 @@ def findCellType(listGenes):
                 i+=1
         results.loc[row] = [filename.replace('.tsv', ''), i , avgDiff]
         row +=1
-
-    results = results.sort_values(['Total Found Genes', 'Total Average Difference Genes'], ascending = [False, False])
+    print(results)
     return results

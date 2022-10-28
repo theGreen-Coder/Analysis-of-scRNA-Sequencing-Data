@@ -5,9 +5,11 @@ import scanpy as sc
 import numpy as np
 import sys
 import loadScanpy as loadScanpy
+import classifyClusters as classify
 import os
 from matplotlib import pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
+import seaborn as sns
 
 
 ####################################################################################################
@@ -63,9 +65,6 @@ adata.var_names_make_unique()
 
 geneMarkers = pd.read_csv('./dataSaveOriginal/cellTypeMarkers.csv')
 geneNames = geneMarkers["gene"].tolist()
-print(adata.obs)
-print(adata.var)
-print(adata.var["features"].tolist())
 
 ####################################################################################################
 # QC Calculations 
@@ -92,7 +91,7 @@ print(bcolors.FAIL + "Applying Quality Control Filters..." + bcolors.ENDC)
 if "-filter" in sysArgs:
     print("Filtering Damaged Cells")
     adata = adata[adata.obs.n_genes_by_counts > 1000, :]
-    adata = adata[adata.obs.pct_counts_mt < 5, :]
+    adata = adata[adata.obs.pct_counts_mt < 10, :]
 else:
     print("Not Filtering Damaged Cells")
 
@@ -185,12 +184,56 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
 
     # sc.tl.rank_genes_groups(adata, 'leiden', method='wilcoxon')
     # sc.pl.rank_genes_groups(adata, n_genes=25, sharey=False, show=showPlots)
-
     # sc.tl.rank_genes_groups(adata, 'leiden', method='logreg')
     # sc.pl.rank_genes_groups(adata, n_genes=25, sharey=False, show=showPlots)
-    topGenesPerCluster = pd.DataFrame(adata.uns['rank_genes_groups']['names']).head(50)
-    print(topGenesPerCluster)
 
+    getColumns = classify.findCellType(["VIM"])
+    dfObj = pd.DataFrame(columns = getColumns["Cell Type"].to_list())
+
+    topGenesPerCluster = pd.DataFrame(adata.uns['rank_genes_groups']['names']).head(50)
+    newClusterNames = []
+    rowDataset = 0
+    for column in topGenesPerCluster:
+        genesList = topGenesPerCluster[column].to_list()
+        genesResult = classify.findCellType(genesList)
+        
+        dfObj.loc[rowDataset] = genesResult["Total Found Genes"].to_list()
+        rowDataset +=1
+
+        genesResult = genesResult.sort_values(['Total Found Genes', 'Total Average Difference Genes'], ascending = [False, False])
+        isInList = True
+        i = 0
+        while isInList:
+            if genesResult.iloc[i,0] in newClusterNames:
+                i += 1
+            else:
+                newClusterNames.append(genesResult.iloc[i,0])
+                isInList = False
+                print("Cluster : "+genesResult.iloc[i,0])
+        
+        # isInList = True
+        # i = 0
+        # while isInList:
+        #     if genesResult.iloc[0,0] in newClusterNames:
+        #         i += 1
+        #         genesResult.iloc[0,0] += str(i) 
+        #     else:
+        #         newClusterNames.append(genesResult.iloc[0,0])
+        #         isInList = False
+        #         print("Cluster : "+genesResult.iloc[0,0])
+        
+    adata.rename_categories('leiden', newClusterNames)
+    sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
+
+    
 
     for fig in range(figureNum+1,  plt.gcf().number+1):
         pdf.savefig(figure=fig, bbox_inches='tight')
+
+
+N=200
+THE_FIGURE = plt.figure(figsize=(8.27, 6), dpi=300)
+ax = plt.subplot(1, 1, 1)
+sns.heatmap(dfObj, annot=True)
+THE_FIGURE.savefig('image.pdf', bbox_inches='tight', pad_inches=0.1)
+
