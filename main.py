@@ -19,7 +19,8 @@ np.set_printoptions(threshold=sys.maxsize)
 pd.options.display.max_columns = sys.maxsize
 sc.settings.verbosity = 3  # verbosity: errors (0), warnings (1), info (2), hints (3)
 
-results_file = './dataSave/savedData.h5ad'
+inputData = "./output/savedData.h5ad" # ./dataSaveOriginal/rawDataset5000.h5ad
+results_file = './output/savedData.h5ad'
 outputDirectory = "./outputPDFs/"
 
 # Arguments Settings
@@ -63,9 +64,29 @@ else:
     adata = sc.read("./dataSaveOriginal/rawDataset5000.h5ad")
 adata.var_names_make_unique()
 
-print(adata.obs)
+print(adata)
+
 geneMarkers = pd.read_csv('./dataSaveOriginal/cellTypeMarkers.csv')
 geneNames = geneMarkers["gene"].tolist()
+
+adataCON_DS2U =  adata[adata.obs["sample"] == "CON_DS2U"]
+adataCON_H9 =  adata[adata.obs["sample"] == "CON_H9"]
+adataCON_IMR =  adata[adata.obs["sample"] == "CON_IMR"]
+adataCON_ihtc =  adata[adata.obs["sample"] == "CON_ihtc"]
+
+adataDS_2DS3 =  adata[adata.obs["sample"] == "DS_2DS3"]
+adataDS_DS1 =  adata[adata.obs["sample"] == "DS_DS1"]
+adataDS_DSP =  adata[adata.obs["sample"] == "DS_DSP"]
+
+adata = adataCON_DS2U.concatenate(adataCON_H9)
+adata = adata.concatenate(adataCON_IMR)
+adata = adata.concatenate(adataDS_2DS3)
+adata = adata.concatenate(adataDS_DSP)
+
+print(adata)
+adata.write(results_file)
+
+# CON_DS2U CON_H9 CON_IMR CON_ihtc DS_2DS3 DS_DS1 DS_DSP
 
 ####################################################################################################
 # QC Calculations 
@@ -127,14 +148,15 @@ sc.pp.scale(adata, max_value=10)
 sc.tl.pca(adata, svd_solver='arpack')
 sc.pp.neighbors(adata, n_neighbors=10, n_pcs=40)
 sc.tl.umap(adata)
-sc.tl.leiden(adata, resolution=0.4)
+sc.tl.leiden(adata, resolution=0.25)
+adata.write(results_file)
 
 ####################################################################################################
 # Integration
 ####################################################################################################
 print(bcolors.FAIL + "Integrating Datasets..." + bcolors.ENDC)
-if "-noIntegration" not in sysArgs:
-    print("Performing Integration...")
+if "-noIntegration" not in sysArgs and "-ingestIntegration" not in sysArgs:
+    print("Performing BBKNN Integration...")
     with PdfPages(outputDirectory+'Integration Plots '+arg+'.pdf') as pdf:
         dummyPlot = plt.plot([1, 2])
         figureNum = plt.gcf().number
@@ -143,6 +165,54 @@ if "-noIntegration" not in sysArgs:
         sc.external.pp.bbknn(adata, batch_key='sample')
         sc.tl.umap(adata)
         sc.pl.umap(adata, color=['sample', "group"], show=showPlots)
+
+        for fig in range(figureNum+1,  plt.gcf().number+1):
+            pdf.savefig(figure=fig, bbox_inches='tight')
+elif "-ingestIntegration" in sysArgs:
+    print("Performing Ingest Integration...")
+    with PdfPages(outputDirectory+'Integration Plots '+arg+'.pdf') as pdf:
+        dummyPlot = plt.plot([1, 2])
+        figureNum = plt.gcf().number
+
+        adataCON_DS2U =  adata[adata.obs["sample"] == "CON_DS2U"]
+        print(adataCON_DS2U)
+        adataCON_H9 =  adata[adata.obs["sample"] == "CON_H9"]
+        print(adataCON_H9)
+        adataCON_IMR =  adata[adata.obs["sample"] == "CON_IMR"]
+        print(adataCON_IMR)
+        adataDS_2DS3 =  adata[adata.obs["sample"] == "DS_2DS3"]
+        print(adataDS_2DS3)
+        adataDS_DSP =  adata[adata.obs["sample"] == "DS_DSP"]
+        print(adataDS_DSP)
+
+        sc.pl.umap(adata, color=['sample', "group"], show=showPlots)
+        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_DS2U", show=showPlots)
+        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_H9", show=showPlots)
+        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_IMR", show=showPlots)
+        sc.pl.umap(adata, color='sample', na_color="white",groups="DS_2DS3", show=showPlots)
+        sc.pl.umap(adata, color='sample', na_color="white",groups="DS_DSP", show=showPlots)
+
+        sc.tl.pca(adataCON_IMR, svd_solver='arpack')
+        sc.pp.neighbors(adataCON_IMR, n_neighbors=10, n_pcs=40)
+
+        sc.tl.ingest(adataCON_DS2U, adataCON_IMR, obs="leiden")
+        sc.tl.ingest(adataCON_H9, adataCON_IMR, obs="leiden")
+        sc.tl.ingest(adataDS_2DS3, adataCON_IMR, obs="leiden")
+        sc.tl.ingest(adataDS_DSP, adataCON_IMR, obs="leiden")
+
+        adata = adataCON_IMR.concatenate(adataCON_H9)
+        adata = adata.concatenate(adataCON_DS2U)
+        adata = adata.concatenate(adataDS_2DS3)
+        adata = adata.concatenate(adataDS_DSP)
+
+        sc.pl.umap(adata, color=['sample', "group"], show=showPlots)
+        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_DS2U", show=showPlots)
+        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_H9", show=showPlots)
+        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_IMR", show=showPlots)
+        sc.pl.umap(adata, color='sample', na_color="white",groups="DS_2DS3", show=showPlots)
+        sc.pl.umap(adata, color='sample', na_color="white",groups="DS_DSP", show=showPlots)
+        sc.tl.pca(adata, svd_solver='arpack')
+        sc.pp.neighbors(adata, n_neighbors=10, n_pcs=40)
 
         for fig in range(figureNum+1,  plt.gcf().number+1):
             pdf.savefig(figure=fig, bbox_inches='tight')
@@ -170,9 +240,7 @@ with PdfPages(outputDirectory+'Clustering Plots '+arg+'.pdf') as pdf:
     sc.pl.umap(adata, color='sample', na_color="white",groups="CON_DS2U", show=showPlots)
     sc.pl.umap(adata, color='sample', na_color="white",groups="CON_H9", show=showPlots)
     sc.pl.umap(adata, color='sample', na_color="white",groups="CON_IMR", show=showPlots)
-    sc.pl.umap(adata, color='sample', na_color="white",groups="CON_ihtc", show=showPlots)
     sc.pl.umap(adata, color='sample', na_color="white",groups="DS_2DS3", show=showPlots)
-    sc.pl.umap(adata, color='sample', na_color="white",groups="DS_DS1", show=showPlots)
     sc.pl.umap(adata, color='sample', na_color="white",groups="DS_DSP", show=showPlots)
     sc.pl.umap(adata, color=geneNames, show=showPlots)
     sc.pl.umap(adata, color=["DLX2", "SOX2"], show=showPlots)
@@ -239,9 +307,11 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
         #         newClusterNames.append(genesResult.iloc[0,0])
         #         isInList = False
         #         print("Cluster : "+genesResult.iloc[0,0])
-        
+    
+    sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
     adata.rename_categories('leiden', newClusterNames)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
+    sc.pl.dotplot(adata, geneNames, groupby='leiden', show=showPlots)
 
     
 

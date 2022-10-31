@@ -27,9 +27,6 @@ def findCellType(listGenes):
             j+=1
         if(i!=0.0): 
             averageRow = float(totalRow/i)
-            print(totalRow)
-            print(i)
-            print(averageRow)
             score = float((i)/averageRow)
         else: 
             averageRow = 0
@@ -41,6 +38,6 @@ def findCellType(listGenes):
 
 
 
-genesResult = findCellType(genes)
-genesResult = genesResult.sort_values(['Score Number', 'Total Found Genes'], ascending = [False, False])
-print(genesResult)
+# genesResult = findCellType(genes)
+# genesResult = genesResult.sort_values(['Score Number', 'Total Found Genes'], ascending = [False, False])
+# print(genesResult)
