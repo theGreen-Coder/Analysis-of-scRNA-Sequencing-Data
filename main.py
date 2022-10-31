@@ -63,6 +63,7 @@ else:
     adata = sc.read("./dataSaveOriginal/rawDataset5000.h5ad")
 adata.var_names_make_unique()
 
+print(adata.obs)
 geneMarkers = pd.read_csv('./dataSaveOriginal/cellTypeMarkers.csv')
 geneNames = geneMarkers["gene"].tolist()
 
@@ -128,6 +129,23 @@ sc.pp.neighbors(adata, n_neighbors=10, n_pcs=40)
 sc.tl.umap(adata)
 sc.tl.leiden(adata, resolution=0.4)
 
+####################################################################################################
+# Integration
+####################################################################################################
+print(bcolors.FAIL + "Integrating Datasets..." + bcolors.ENDC)
+if "-noIntegration" not in sysArgs:
+    print("Performing Integration...")
+    with PdfPages(outputDirectory+'Integration Plots '+arg+'.pdf') as pdf:
+        dummyPlot = plt.plot([1, 2])
+        figureNum = plt.gcf().number
+
+        sc.pl.umap(adata, color=['sample', "group"], show=showPlots)
+        sc.external.pp.bbknn(adata, batch_key='sample')
+        sc.tl.umap(adata)
+        sc.pl.umap(adata, color=['sample', "group"], show=showPlots)
+
+        for fig in range(figureNum+1,  plt.gcf().number+1):
+            pdf.savefig(figure=fig, bbox_inches='tight')
 ####################################################################################################
 # Clustering Plots
 ####################################################################################################
@@ -200,7 +218,7 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
         dfObj.loc[rowDataset] = genesResult["Total Found Genes"].to_list()
         rowDataset +=1
 
-        genesResult = genesResult.sort_values(['Total Found Genes', 'Total Average Difference Genes'], ascending = [False, False])
+        genesResult = genesResult.sort_values(['Total Found Genes', 'Score Number'], ascending = [False, False])
         isInList = True
         i = 0
         while isInList:
@@ -231,9 +249,8 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
         pdf.savefig(figure=fig, bbox_inches='tight')
 
 
-N=200
-THE_FIGURE = plt.figure(figsize=(8.27, 6), dpi=300)
+THE_FIGURE = plt.figure(figsize=(10, 10), dpi=500)
 ax = plt.subplot(1, 1, 1)
-sns.heatmap(dfObj, annot=True)
+sns.heatmap(dfObj, annot=False)
 THE_FIGURE.savefig('image.pdf', bbox_inches='tight', pad_inches=0.1)
 
