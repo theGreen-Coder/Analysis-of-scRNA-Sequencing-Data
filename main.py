@@ -63,6 +63,7 @@ if "-loadGenomics" in sysArgs:
 else:
     adata = sc.read("./dataSaveOriginal/rawDataset5000.h5ad")
 adata.var_names_make_unique()
+adata.X = adata.X.astype('float64')
 
 print(adata)
 
@@ -80,11 +81,13 @@ adataDS_DSP =  adata[adata.obs["sample"] == "DS_DSP"]
 
 adata = adataCON_DS2U.concatenate(adataCON_H9)
 adata = adata.concatenate(adataCON_IMR)
+# adata = adata.concatenate(adataCON_ihtc)
 adata = adata.concatenate(adataDS_2DS3)
 adata = adata.concatenate(adataDS_DSP)
+# adata = adata.concatenate(adataDS_DS1)
 
-print(adata)
-adata.write(results_file)
+# print(adata)
+# adata.write(results_file)
 
 # CON_DS2U CON_H9 CON_IMR CON_ihtc DS_2DS3 DS_DS1 DS_DSP
 
@@ -148,8 +151,8 @@ sc.pp.scale(adata, max_value=10)
 sc.tl.pca(adata, svd_solver='arpack')
 sc.pp.neighbors(adata, n_neighbors=10, n_pcs=40)
 sc.tl.umap(adata)
-sc.tl.leiden(adata, resolution=0.25)
-adata.write(results_file)
+sc.tl.leiden(adata, resolution=0.5)
+# adata.write(results_file)
 
 ####################################################################################################
 # Integration
@@ -266,54 +269,56 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
     figureNum = plt.gcf().number
 
     sc.tl.rank_genes_groups(adata, 'leiden', method='t-test')
-    sc.pl.rank_genes_groups(adata, n_genes=50, sharey=False, show=showPlots)
+    sc.pl.rank_genes_groups(adata, n_genes=100, sharey=False, show=showPlots)
 
     # sc.tl.rank_genes_groups(adata, 'leiden', method='wilcoxon')
     # sc.pl.rank_genes_groups(adata, n_genes=25, sharey=False, show=showPlots)
     # sc.tl.rank_genes_groups(adata, 'leiden', method='logreg')
     # sc.pl.rank_genes_groups(adata, n_genes=25, sharey=False, show=showPlots)
 
-    getColumns = classify.findCellType(["VIM"])
+    getColumns = classify.findCellTypeIndividualCellTypes(["VIM"])
     dfObj = pd.DataFrame(columns = getColumns["Cell Type"].to_list())
 
-    topGenesPerCluster = pd.DataFrame(adata.uns['rank_genes_groups']['names']).head(50)
+    topGenesPerCluster = pd.DataFrame(adata.uns['rank_genes_groups']['names']).head(100)
     newClusterNames = []
-    rowDataset = 0
+    newGroupClusters1 = []
+    newGroupClusters2 = []
     for column in topGenesPerCluster:
         genesList = topGenesPerCluster[column].to_list()
-        genesResult = classify.findCellType(genesList)
-        
-        dfObj.loc[rowDataset] = genesResult["Total Found Genes"].to_list()
-        rowDataset +=1
+        genesResult = classify.findCellTypeIndividualCellTypes(genesList)
+        groupResult = classify.findCellTypesGroup(genesResult)
+        genesResult = genesResult.sort_values(['Total Found Genes'], ascending = [False])
+        newClusterNames.append(genesResult['Cell Type'].iloc[0])
+        print(genesResult)
 
-        genesResult = genesResult.sort_values(['Total Found Genes', 'Score Number'], ascending = [False, False])
-        isInList = True
-        i = 0
-        while isInList:
-            if genesResult.iloc[i,0] in newClusterNames:
-                i += 1
-            else:
-                newClusterNames.append(genesResult.iloc[i,0])
-                isInList = False
-                print("Cluster : "+genesResult.iloc[i,0])
+        groupResult = groupResult.sort_values(['Score'], ascending = [False])
+        newGroupClusters1.append(groupResult['Cell Type'].iloc[0])
+        print(groupResult)
         
-        # isInList = True
-        # i = 0
-        # while isInList:
-        #     if genesResult.iloc[0,0] in newClusterNames:
-        #         i += 1
-        #         genesResult.iloc[0,0] += str(i) 
-        #     else:
-        #         newClusterNames.append(genesResult.iloc[0,0])
-        #         isInList = False
-        #         print("Cluster : "+genesResult.iloc[0,0])
+        groupResult = groupResult.sort_values(['Sum'], ascending = [False])
+        newGroupClusters2.append(groupResult['Cell Type'].iloc[0])
+        print(groupResult)
+        
     
+    sc.pl.dotplot(adata, geneNames, groupby='leiden', show=showPlots)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
+
+    newClusterNames = classify.renameList(newClusterNames)
+    newGroupClusters1 = classify.renameList(newGroupClusters1)
+    newGroupClusters2 = classify.renameList(newGroupClusters2)
+
+    print(newClusterNames)
+    print(newGroupClusters1)
+    print(newGroupClusters2)
+
     adata.rename_categories('leiden', newClusterNames)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
-    sc.pl.dotplot(adata, geneNames, groupby='leiden', show=showPlots)
 
-    
+    adata.rename_categories('leiden', newGroupClusters1)
+    sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
+
+    adata.rename_categories('leiden', newGroupClusters2)
+    sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
 
     for fig in range(figureNum+1,  plt.gcf().number+1):
         pdf.savefig(figure=fig, bbox_inches='tight')
@@ -324,3 +329,4 @@ ax = plt.subplot(1, 1, 1)
 sns.heatmap(dfObj, annot=False)
 THE_FIGURE.savefig('image.pdf', bbox_inches='tight', pad_inches=0.1)
 
+adata.write(results_file)
