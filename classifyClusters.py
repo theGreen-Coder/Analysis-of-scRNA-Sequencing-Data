@@ -28,7 +28,7 @@ def renameList(listEx):
     return renamedList
 
 def findCellTypeIndividualCellTypes(listGenes):
-    results = pd.DataFrame(data={'Cell Type': [], 'Total Found Genes': [], 'Total Average Difference Genes': [], 'Row Number': [], 'Average Row Number': [], 'Score Number': [], 'Genes Found': []})
+    results = pd.DataFrame(data={'Cell Type': [], 'Scoring': [], 'Total Average Difference Genes': [], 'Row Number': [], 'Average Row Number': [], 'Score Number': [], 'Genes Found': []})
     row = 0
     for filename in os.listdir("./clusterGeneNames/files/"):
         df = pd.read_csv('./clusterGeneNames/files/'+filename, sep='\t', header=0)
@@ -65,22 +65,22 @@ def findCellTypesGroup(pdData):
             indexValue = results.loc[results['Cell Type'] == groupID].index.values[0]
 
             sumValue = results.loc[results['Cell Type'] == groupID]["Sum"].values
-            totalValue = sumValue + row["Total Found Genes"]
+            totalValue = sumValue + row["Scoring"]
 
             numValue = results.loc[results['Cell Type'] == groupID]["Num"].values
             results.at[indexValue, "Sum"] = totalValue
             results.at[indexValue, "Num"] = numValue+1
             results.at[indexValue, "Score"] = totalValue/float(numValue+1)
         else:
-            results.loc[len(results.index)] = [groupID, row["Total Found Genes"], 1, row["Total Found Genes"]]
+            results.loc[len(results.index)] = [groupID, row["Scoring"], 1, row["Scoring"]]
     results = results.sort_values(['Sum'], ascending = [False])
     return results
         
 
 # genesResult = findCellTypeIndividualCellTypes(genes)
-# genesResult = genesResult.sort_values(['Total Found Genes'], ascending = [False])
+# genesResult = genesResult.sort_values(['Scoring'], ascending = [False])
 # print(genesResult)
-# print(genesResult['Total Found Genes'].iloc[0])
+# print(genesResult['Scoring'].iloc[0])
 # groupResult = findCellTypesGroup(genesResult)
 # print(groupResult)
 # print(groupResult['Sum'].iloc[0])

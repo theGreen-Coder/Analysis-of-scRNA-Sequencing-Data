@@ -129,8 +129,11 @@ with PdfPages(outputDirectory+'Quality Control Plots '+arg+'.pdf') as pdf:
     figureNum = plt.gcf().number
 
     violinPlots = sc.pl.violin(adata,['nCount_RNA', 'nFeature_RNA', 'pct_counts_mt', "percentageTop50"], groupby="sample", jitter=0.4, multi_panel=True, show=showPlots)
+    plt.suptitle("Violin Plots QC Metrics", y=1, fontsize=25)
     scatterPlots = sc.pl.scatter(adata, x='pct_counts_mt', y='percentageTop50', show=showPlots)
+    plt.suptitle("% MT vs % Top 50 Genes", y=1, fontsize=25)
     scatterPlots = sc.pl.scatter(adata, x='total_counts', y='n_genes_by_counts', show=showPlots)
+    plt.suptitle("Total Counts vs Nº of Genes by Count", y=1, fontsize=25)
 
     for fig in range(figureNum+1,  plt.gcf().number+1):
         pdf.savefig(figure=fig, bbox_inches='tight')
@@ -165,9 +168,14 @@ if "-noIntegration" not in sysArgs and "-ingestIntegration" not in sysArgs:
         figureNum = plt.gcf().number
 
         sc.pl.umap(adata, color=['sample', "group"], show=showPlots)
+        plt.suptitle("Non-Integrated Dataset UMAP", y=1, fontsize=25)
         sc.external.pp.bbknn(adata, batch_key='sample')
         sc.tl.umap(adata)
-        sc.pl.umap(adata, color=['sample', "group"], show=showPlots)
+        plt.suptitle("Integrated Dataset UMAP", y=1, fontsize=25)
+        sc.pl.umap(adata, color='sample', show=showPlots)
+        plt.suptitle("Integrated Dataset by Sample", y=1, fontsize=25)
+        sc.pl.umap(adata, color='group', show=showPlots)
+        plt.suptitle("Integrated Dataset by Group", y=1, fontsize=25)
 
         for fig in range(figureNum+1,  plt.gcf().number+1):
             pdf.savefig(figure=fig, bbox_inches='tight')
@@ -228,31 +236,53 @@ with PdfPages(outputDirectory+'Clustering Plots '+arg+'.pdf') as pdf:
     figureNum = plt.gcf().number
 
     sc.pl.pca(adata, show=showPlots)
+    plt.suptitle("PC1 & PC2", y=1, fontsize=25)
     sc.pl.pca_loadings(adata, show=showPlots)
+    plt.suptitle("PCA Loadings", y=1, fontsize=25)
     sc.pl.pca_variance_ratio(adata, show=showPlots)
+    plt.suptitle("PCA Variance Ratio", y=1, fontsize=25)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
+    plt.suptitle("Leiden Clusters", y=1, fontsize=25)
     sc.pl.umap(adata, color='sample', show=showPlots)
+    plt.suptitle("UMAP by Sample", y=1, fontsize=25)
     sc.pl.umap(adata, color='group', groups="DS", show=showPlots)
+    plt.suptitle("UMAP of DS", y=1, fontsize=25)
     sc.pl.umap(adata, color='group', show=showPlots)
-    sc.pl.umap(adata, color='n_genes_by_counts', show=showPlots)
-    sc.pl.umap(adata, color='pct_counts_mt', show=showPlots)
+    plt.suptitle("UMAP by Group", y=1, fontsize=25)
+    sc.pl.umap(adata, color='n_genes_by_counts', cmap=sns.blend_palette(["lightgray", "green"], as_cmap=True), show=showPlots)
+    plt.suptitle("Nº of Genes by Count", y=1, fontsize=25)
+    sc.pl.umap(adata, color='pct_counts_mt', cmap=sns.blend_palette(["lightgray", "green"], as_cmap=True), show=showPlots)
+    plt.suptitle("% MT Count", y=1, fontsize=25)
     sc.pl.pca(adata, color='sample', components='1,2', show=showPlots)
+    plt.suptitle("PCA Components by Sample", y=1, fontsize=25)
     sc.pl.pca(adata, color='group', components='1,2', show=showPlots)
+    plt.suptitle("PCA Components by Group", y=1, fontsize=25)
     sc.pl.pca(adata, color='sample', components='3,4', show=showPlots)
+    plt.suptitle("PCA Components by Sample", y=1, fontsize=25)
     sc.pl.pca(adata, color='group', components='3,4', show=showPlots)
+    plt.suptitle("PCA Components by Group", y=1, fontsize=25)
     sc.pl.umap(adata, color='sample', na_color="white",groups="CON_DS2U", show=showPlots)
+    plt.suptitle("UMAP for CON_DS2U", y=1, fontsize=25)
     sc.pl.umap(adata, color='sample', na_color="white",groups="CON_H9", show=showPlots)
+    plt.suptitle("UMAP for CON_H9", y=1, fontsize=25)
     sc.pl.umap(adata, color='sample', na_color="white",groups="CON_IMR", show=showPlots)
+    plt.suptitle("UMAP for CON_IMR", y=1, fontsize=25)
     sc.pl.umap(adata, color='sample', na_color="white",groups="DS_2DS3", show=showPlots)
+    plt.suptitle("UMAP for DS_2DS3", y=1, fontsize=25)
     sc.pl.umap(adata, color='sample', na_color="white",groups="DS_DSP", show=showPlots)
-    sc.pl.umap(adata, color=geneNames, show=showPlots)
-    sc.pl.umap(adata, color=["DLX2", "SOX2"], show=showPlots)
-    sc.pl.umap(adata, color=["MKI67", "EOMES", "DLX2", "GLI3", "NEUROD6", "AQP4", "MEF2C"], title=["Marker Gene Expression"], show=showPlots) #Marker Gene Expression
-    sc.pl.umap(adata, color=["PGK1", "ALDOA", "ARCN1", "GORASP2"], title=["Gene Stress Markers"], show=showPlots) #Marker Stress Genes
-    sc.pl.umap(adata, color=["APP", "DYRK1A"], groups="CON", show=showPlots)
-    sc.pl.umap(adata, groups="DS", color=["APP", "DYRK1A"],  show=showPlots)
-    sc.pl.umap(adata, groups="CON", color=["APP", "DYRK1A"], show=showPlots)
+    plt.suptitle("UMAP for DS_DSP", y=1, fontsize=25)
+    sc.pl.umap(adata, color=geneNames, cmap=sns.blend_palette(["lightgray", "green"], as_cmap=True), show=showPlots)
+    plt.suptitle("UMAP for Marker Genes", y=1, fontsize=25)
+    sc.pl.umap(adata, color=["DLX2", "SOX2"], cmap=sns.blend_palette(["lightgray", "green"], as_cmap=True), palette="tab20", show=showPlots)
+    plt.suptitle("UMAP for Marker Genes", y=1, fontsize=25)
+    sc.pl.umap(adata, color=["MKI67", "EOMES", "DLX2", "GLI3", "NEUROD6", "AQP4", "MEF2C"], cmap=sns.blend_palette(["lightgray", "green"], as_cmap=True), show=showPlots) #Marker Gene Expression
+    plt.suptitle("Marker Gene Expression", y=1, fontsize=25)
+    sc.pl.umap(adata, color=["PGK1", "ALDOA", "ARCN1", "GORASP2"], cmap=sns.blend_palette(["lightgray", "green"], as_cmap=True), show=showPlots) #Marker Stress Genes
+    plt.suptitle("Gene Stress Markers", y=1, fontsize=25)
+    sc.pl.umap(adata, color=["APP", "DYRK1A"], cmap=sns.blend_palette(["lightgray", "green"], as_cmap=True), groups="CON", show=showPlots)
+    plt.suptitle("Overexpressed Chr21 Genes", y=1, fontsize=25)
     sc.pl.dotplot(adata, geneNames, groupby='leiden', show=showPlots)
+    plt.suptitle("Dot Plot for Marker Genes", y=1, fontsize=25)
 
     for fig in range(figureNum+1,  plt.gcf().number+1):
         pdf.savefig(figure=fig, bbox_inches='tight')
@@ -269,7 +299,15 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
     figureNum = plt.gcf().number
 
     sc.tl.rank_genes_groups(adata, 'leiden', method='t-test')
-    sc.pl.rank_genes_groups(adata, n_genes=100, sharey=False, show=showPlots)
+    sc.pl.rank_genes_groups(adata, n_genes=50, sharey=False, show=showPlots)
+
+    result = adata.uns['rank_genes_groups']
+    groups = result['names'].dtype.names
+    dfScores = pd.DataFrame(
+        {group + '_' + key[:1]: result[key][group]
+        for group in groups for key in ['names', 'scores']}).head(5)
+    
+    print(dfScores)
 
     # sc.tl.rank_genes_groups(adata, 'leiden', method='wilcoxon')
     # sc.pl.rank_genes_groups(adata, n_genes=25, sharey=False, show=showPlots)
@@ -279,15 +317,19 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
     getColumns = classify.findCellTypeIndividualCellTypes(["VIM"])
     dfObj = pd.DataFrame(columns = getColumns["Cell Type"].to_list())
 
-    topGenesPerCluster = pd.DataFrame(adata.uns['rank_genes_groups']['names']).head(100)
+    topGenesPerCluster = pd.DataFrame(adata.uns['rank_genes_groups']['names']).head(50)
     newClusterNames = []
     newGroupClusters1 = []
     newGroupClusters2 = []
     for column in topGenesPerCluster:
         genesList = topGenesPerCluster[column].to_list()
+
+        sc.pl.umap(adata, color=genesList[0:8], cmap=sns.blend_palette(["lightgray", "green"], as_cmap=True), show=showPlots)
+        plt.suptitle("Highly Expressed For Cluster "+str(column), y=1, fontsize=25)
+
         genesResult = classify.findCellTypeIndividualCellTypes(genesList)
         groupResult = classify.findCellTypesGroup(genesResult)
-        genesResult = genesResult.sort_values(['Total Found Genes'], ascending = [False])
+        genesResult = genesResult.sort_values(['Scoring'], ascending = [False])
         newClusterNames.append(genesResult['Cell Type'].iloc[0])
         print(genesResult)
 
@@ -301,7 +343,9 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
         
     
     sc.pl.dotplot(adata, geneNames, groupby='leiden', show=showPlots)
+    plt.suptitle("Dot Plot for Marker Genes"+str(column), y=1, fontsize=25)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
+    plt.suptitle("UMAP for Leiden"+str(column), y=1, fontsize=25)
 
     newClusterNames = classify.renameList(newClusterNames)
     newGroupClusters1 = classify.renameList(newGroupClusters1)
@@ -313,12 +357,15 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
 
     adata.rename_categories('leiden', newClusterNames)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
+    plt.suptitle("UMAP by Total Genes Found", y=1, fontsize=25)
 
     adata.rename_categories('leiden', newGroupClusters1)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
+    plt.suptitle("UMAP by Group Score ", y=1, fontsize=25)
 
     adata.rename_categories('leiden', newGroupClusters2)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
+    plt.suptitle("UMAP by Group Sum", y=1, fontsize=25)
 
     for fig in range(figureNum+1,  plt.gcf().number+1):
         pdf.savefig(figure=fig, bbox_inches='tight')
