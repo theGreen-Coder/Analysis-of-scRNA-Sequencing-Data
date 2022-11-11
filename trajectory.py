@@ -4,7 +4,7 @@ import pandas as pd
 import scanpy as sc
 import numpy as np
 import sys
-import loadScanpy as loadScanpy
+import tests.loadScanpy as loadScanpy
 import classifyClusters as classify
 import os
 from matplotlib import pyplot as plt
