@@ -5,7 +5,7 @@ import scanpy as sc
 import numpy as np
 import sys
 import tests.loadScanpy as loadScanpy
-import classifyClusters as classify
+import modules.classifyClusters.classifyClusters as classify
 import os
 from matplotlib import pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
@@ -75,6 +75,11 @@ geneNames = geneMarkers["gene"].tolist()
 ####################################################################################################
 sc.tl.umap(adata)
 sc.pl.umap(adata, color='leiden', legend_loc='on data')
+
+sc.tl.dpt(adata)
+sc.pl.umap(adata, color='leiden', legend_loc='on data')
+sc.pl.umap(adata, color='dpt_pseudotime')
+
 
 sc.tl.paga(adata, groups='leiden')
 sc.pl.paga(adata, threshold=0.03, show=True)

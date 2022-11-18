@@ -1,0 +1,70 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: miniconda build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+    env:
+      SETUPTOOLS_USE_DISTUTILS: stdlib
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: test-environment
+          python-version: ${{ matrix.python-version }}
+          channels: bioconda,default,anaconda,r,conda-forge
+          allow-softlinks: true
+          channel-priority: 'flexible'
+          show-channel-urls: true
+          use-only-tar-bz2: true
+          auto-update-conda: true
+
+      - name: setup conda
+        run: |
+          conda config --set always_yes yes --set changeps1 no
+          conda info -a
+          conda list
+          conda config --show-sources
+          conda config --show
+
+
+
+      - name: Install dependencies
+        run: |
+          conda install mamba
+          mamba install pandas tzlocal rpy2 biopython ReportLab pytest-cov codecov  bioconductor-deseq2 gfortran_linux-64
+          cp $CONDA_PREFIX/lib/python${{ matrix.python-version }}/_sysconfigdata_x86_64_conda*.py $CONDA_PREFIX/lib/python${{ matrix.python-version }}/_sysconfigdata_x86_64_conda_cos7_linux_gnu.py
+          pip install .
+      
+      - name: hack for missing sysconfigdata
+        if: ${{ matrix.npm }} == 3.6
+        run: cp $CONDA_PREFIX/lib/python${{ matrix.python-version }}/_sysconfigdata_x86_64_conda*.py $CONDA_PREFIX/lib/python${{ matrix.python-version }}/_sysconfigdata_x86_64_conda_linux_gnu.py
+
+      - name: install R packages
+        run: |
+          Rscript setup.R
+
+      - name: Test with pytest
+        run: |
+          coverage run -m pytest
+
+      - name: codecov
+        run: |
+          bash <(curl -s https://codecov.io/bash)
+

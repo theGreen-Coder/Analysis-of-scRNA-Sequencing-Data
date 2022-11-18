@@ -1,0 +1,873 @@
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Traceback (most recent call last):
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 1, in <module>
+    import anndata
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/__init__.py", line 7, in <module>
+    from ._core.anndata import AnnData
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/anndata.py", line 27, in <module>
+    from .raw import Raw
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/raw.py", line 11, in <module>
+    from .aligned_mapping import AxisArrays, AxisArraysView
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/aligned_mapping.py", line 11, in <module>
+    from ..utils import deprecated, ensure_df_homogeneous
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/utils.py", line 11, in <module>
+    from ._core.sparse_dataset import SparseDataset
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/sparse_dataset.py", line 23, in <module>
+    from ..compat import _read_attr
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/compat/__init__.py", line 55, in <module>
+    from dask.array import Array as DaskArray
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/__init__.py", line 2, in <module>
+    from dask.array import backends, fft, lib, linalg, ma, overlap, random
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/backends.py", line 18, in <module>
+    from dask.array.percentile import _percentile
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/percentile.py", line 9, in <module>
+    from dask.array.core import Array
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py", line 3244
+    print(dtype.itemsize)
+TabError: inconsistent use of tabs and spaces in indentation
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Traceback (most recent call last):
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 1, in <module>
+    import anndata
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/__init__.py", line 7, in <module>
+    from ._core.anndata import AnnData
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/anndata.py", line 27, in <module>
+    from .raw import Raw
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/raw.py", line 11, in <module>
+    from .aligned_mapping import AxisArrays, AxisArraysView
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/aligned_mapping.py", line 11, in <module>
+    from ..utils import deprecated, ensure_df_homogeneous
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/utils.py", line 11, in <module>
+    from ._core.sparse_dataset import SparseDataset
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/sparse_dataset.py", line 23, in <module>
+    from ..compat import _read_attr
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/compat/__init__.py", line 55, in <module>
+    from dask.array import Array as DaskArray
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/__init__.py", line 2, in <module>
+    from dask.array import backends, fft, lib, linalg, ma, overlap, random
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/backends.py", line 18, in <module>
+    from dask.array.percentile import _percentile
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/percentile.py", line 9, in <module>
+    from dask.array.core import Array
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py", line 3243
+    size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+TabError: inconsistent use of tabs and spaces in indentation
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Traceback (most recent call last):
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 1, in <module>
+    import anndata
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/__init__.py", line 7, in <module>
+    from ._core.anndata import AnnData
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/anndata.py", line 27, in <module>
+    from .raw import Raw
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/raw.py", line 11, in <module>
+    from .aligned_mapping import AxisArrays, AxisArraysView
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/aligned_mapping.py", line 11, in <module>
+    from ..utils import deprecated, ensure_df_homogeneous
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/utils.py", line 11, in <module>
+    from ._core.sparse_dataset import SparseDataset
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/sparse_dataset.py", line 23, in <module>
+    from ..compat import _read_attr
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/compat/__init__.py", line 55, in <module>
+    from dask.array import Array as DaskArray
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/__init__.py", line 2, in <module>
+    from dask.array import backends, fft, lib, linalg, ma, overlap, random
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/backends.py", line 18, in <module>
+    from dask.array.percentile import _percentile
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/percentile.py", line 9, in <module>
+    from dask.array.core import Array
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py", line 3243
+    size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+TabError: inconsistent use of tabs and spaces in indentation
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Traceback (most recent call last):
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 1, in <module>
+    import anndata
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/__init__.py", line 7, in <module>
+    from ._core.anndata import AnnData
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/anndata.py", line 27, in <module>
+    from .raw import Raw
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/raw.py", line 11, in <module>
+    from .aligned_mapping import AxisArrays, AxisArraysView
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/aligned_mapping.py", line 11, in <module>
+    from ..utils import deprecated, ensure_df_homogeneous
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/utils.py", line 11, in <module>
+    from ._core.sparse_dataset import SparseDataset
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/sparse_dataset.py", line 23, in <module>
+    from ..compat import _read_attr
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/compat/__init__.py", line 55, in <module>
+    from dask.array import Array as DaskArray
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/__init__.py", line 2, in <module>
+    from dask.array import backends, fft, lib, linalg, ma, overlap, random
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/backends.py", line 18, in <module>
+    from dask.array.percentile import _percentile
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/percentile.py", line 9, in <module>
+    from dask.array.core import Array
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py", line 3243
+    size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+TabError: inconsistent use of tabs and spaces in indentation
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ conda remove --force dask
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.14.0
+  latest version: 22.9.0
+
+Please update conda by running
+
+    $ conda update -n base -c conda-forge conda
+
+
+
+PackagesNotFoundError: The following packages are missing from the target environment:
+  - dask
+
+
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ pip3 uninstall dask
+Found existing installation: dask 2022.10.2
+Uninstalling dask-2022.10.2:
+  Would remove:
+    /opt/homebrew/Caskroom/miniforge/base/envs/diffenv/bin/dask
+    /opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask-2022.10.2.dist-info/*
+    /opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/*
+Proceed (Y/n)? y
+  Successfully uninstalled dask-2022.10.2
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Traceback (most recent call last):
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 10, in <module>
+    import diffxpy.api as de
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/diffxpy/api/__init__.py", line 4, in <module>
+    from . import test
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/diffxpy/api/test.py", line 1, in <module>
+    from diffxpy.testing import lrt, wald, wald_repeated, t_test, rank_test, two_sample, pairwise, \
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/diffxpy/testing/__init__.py", line 1, in <module>
+    from .tests import lrt, wald, wald_repeated, t_test, rank_test, two_sample, pairwise, \
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/diffxpy/testing/tests.py", line 6, in <module>
+    import batchglm.api as glm
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/api/__init__.py", line 2, in <module>
+    from . import models
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/api/models/__init__.py", line 1, in <module>
+    from . import numpy
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/api/models/numpy/__init__.py", line 1, in <module>
+    from . import glm_nb
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/api/models/numpy/glm_nb.py", line 1, in <module>
+    from batchglm.models.glm_nb import InputDataGLM, Model, Simulator
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/glm_nb/__init__.py", line 1, in <module>
+    from .model import Model
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/glm_nb/model.py", line 8, in <module>
+    from .external import _ModelGLM
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/glm_nb/external.py", line 1, in <module>
+    from batchglm.models.base_glm import _EstimatorGLM
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/base_glm/__init__.py", line 1, in <module>
+    from .estimator import _EstimatorGLM
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/base_glm/estimator.py", line 9, in <module>
+    from .external import _EstimatorBase
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/base_glm/external.py", line 1, in <module>
+    from batchglm.models.base import _EstimatorBase
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/base/__init__.py", line 1, in <module>
+    from .input import InputDataBase, InputDataBase
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/base/input.py", line 1, in <module>
+    import dask.array
+ModuleNotFoundError: No module named 'dask'
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ pip3 install -Iv dask==2022.2.0
+Using pip 22.3.1 from /opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/pip (python 3.10)
+Collecting dask==2022.2.0
+  Using cached dask-2022.2.0-py3-none-any.whl (1.1 MB)
+Collecting packaging>=20.0
+  Using cached packaging-21.3-py3-none-any.whl (40 kB)
+Collecting pyyaml>=5.3.1
+  Using cached PyYAML-6.0-cp310-cp310-macosx_11_0_arm64.whl (173 kB)
+Collecting toolz>=0.8.2
+  Using cached toolz-0.12.0-py3-none-any.whl (55 kB)
+Collecting partd>=0.3.10
+  Using cached partd-1.3.0-py3-none-any.whl (18 kB)
+Collecting cloudpickle>=1.1.1
+  Using cached cloudpickle-2.2.0-py3-none-any.whl (25 kB)
+Collecting fsspec>=0.6.0
+  Using cached fsspec-2022.11.0-py3-none-any.whl (139 kB)
+Collecting pyparsing!=3.0.5,>=2.0.2
+  Using cached pyparsing-3.0.9-py3-none-any.whl (98 kB)
+Collecting locket
+  Using cached locket-1.0.0-py2.py3-none-any.whl (4.4 kB)
+Installing collected packages: toolz, pyyaml, pyparsing, locket, fsspec, cloudpickle, partd, packaging, dask
+Successfully installed cloudpickle-2.2.0 dask-2022.2.0 fsspec-2022.11.0 locket-1.0.0 packaging-21.3 partd-1.3.0 pyparsing-3.0.9 pyyaml-6.0 toolz-0.12.0
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+                            orig.ident  nCount_RNA  nFeature_RNA  ... clust_recl integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286  ...         c6                      1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849  ...         c2                     15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729  ...         c9                      7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107  ...         c7                     10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018  ...         c6                      1       NEU_inh
+...                                ...         ...           ...  ...        ...                    ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447  ...        c24                     19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240  ...         c7                     10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506  ...        c15                     11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577  ...        c15                     11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597  ...         c3                      9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+                            orig.ident  nCount_RNA  nFeature_RNA  ... clust_recl integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286  ...         c6                      1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849  ...         c2                     15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729  ...         c9                      7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107  ...         c7                     10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018  ...         c6                      1       NEU_inh
+...                                ...         ...           ...  ...        ...                    ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447  ...        c24                     19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240  ...         c7                     10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506  ...        c15                     11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577  ...        c15                     11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597  ...         c3                      9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+Data!
+/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py:26: FutureWarning: X.dtype being converted to np.float32 from float64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
+  data = anndata.AnnData(
+Highly Variable Genes!
+Wald Test!
+training location model: False
+training scale model: True
+iter   0: ll=2100928.526515
+iter   1: ll=2100928.526515, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   2: ll=2085172.546447, converged: 0.00% (loc: 0.00%, scale update: True), in 4.44sec
+iter   3: ll=2085172.546447, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   4: ll=2085172.546447, converged: 100.00% (loc: 100.00%, scale update: True), in 3.99sec
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py:3062: RuntimeWarning: divide by zero encountered in true_divide
+  size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+                            orig.ident  nCount_RNA  nFeature_RNA  ... clust_recl integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286  ...         c6                      1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849  ...         c2                     15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729  ...         c9                      7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107  ...         c7                     10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018  ...         c6                      1       NEU_inh
+...                                ...         ...           ...  ...        ...                    ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447  ...        c24                     19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240  ...         c7                     10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506  ...        c15                     11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577  ...        c15                     11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597  ...         c3                      9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+                            orig.ident  nCount_RNA  nFeature_RNA  ... clust_recl integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286  ...         c6                      1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849  ...         c2                     15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729  ...         c9                      7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107  ...         c7                     10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018  ...         c6                      1       NEU_inh
+...                                ...         ...           ...  ...        ...                    ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447  ...        c24                     19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240  ...         c7                     10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506  ...        c15                     11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577  ...        c15                     11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597  ...         c3                      9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+Data!
+/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py:26: FutureWarning: X.dtype being converted to np.float32 from float64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
+  data = anndata.AnnData(
+Highly Variable Genes!
+Wald Test!
+training location model: False
+training scale model: True
+iter   0: ll=2100928.526515
+iter   1: ll=2100928.526515, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   2: ll=2085172.546447, converged: 0.00% (loc: 0.00%, scale update: True), in 6.17sec
+iter   3: ll=2085172.546447, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   4: ll=2085172.546447, converged: 100.00% (loc: 100.00%, scale update: True), in 6.59sec
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py:3062: RuntimeWarning: divide by zero encountered in true_divide
+  size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+                            orig.ident  nCount_RNA  nFeature_RNA  ... clust_recl integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286  ...         c6                      1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849  ...         c2                     15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729  ...         c9                      7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107  ...         c7                     10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018  ...         c6                      1       NEU_inh
+...                                ...         ...           ...  ...        ...                    ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447  ...        c24                     19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240  ...         c7                     10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506  ...        c15                     11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577  ...        c15                     11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597  ...         c3                      9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+                            orig.ident  nCount_RNA  nFeature_RNA  ... clust_recl integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286  ...         c6                      1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849  ...         c2                     15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729  ...         c9                      7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107  ...         c7                     10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018  ...         c6                      1       NEU_inh
+...                                ...         ...           ...  ...        ...                    ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447  ...        c24                     19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240  ...         c7                     10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506  ...        c15                     11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577  ...        c15                     11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597  ...         c3                      9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+Data!
+/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py:26: FutureWarning: X.dtype being converted to np.float32 from float64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
+  data = anndata.AnnData(
+Highly Variable Genes!
+Wald Test!
+training location model: False
+training scale model: True
+iter   0: ll=2100928.526515
+iter   1: ll=2100928.526515, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   2: ll=2085172.546447, converged: 0.00% (loc: 0.00%, scale update: True), in 4.18sec
+iter   3: ll=2085172.546447, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   4: ll=2085172.546447, converged: 100.00% (loc: 100.00%, scale update: True), in 3.94sec
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py:3062: RuntimeWarning: divide by zero encountered in true_divide
+  size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+[9.80346687e-02 1.51247774e-13 0.00000000e+00 5.81101292e-04
+ 1.10025289e-03 1.36208310e-04 7.25922981e-05 2.46681666e-07
+ 8.98304630e-12 1.54260673e-08]
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+                            orig.ident  nCount_RNA  nFeature_RNA group    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286    DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849   CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729    DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107   CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018    DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...   ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447    DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240   CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506   CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577   CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597   CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+                            orig.ident  nCount_RNA  nFeature_RNA condition    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286        DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849       CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729        DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107       CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018        DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...       ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447        DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240       CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506       CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577       CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597       CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+Data!
+/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py:26: FutureWarning: X.dtype being converted to np.float32 from float64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
+  data = anndata.AnnData(
+Highly Variable Genes!
+Wald Test!
+training location model: False
+training scale model: True
+iter   0: ll=26409389.946653
+iter   1: ll=26409389.946653, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   2: ll=26280016.144310, converged: 0.13% (loc: 0.13%, scale update: True), in 49.87sec
+iter   3: ll=26280016.144310, converged: 0.13% (loc: 100.00%, scale update: False), in 0.00sec
+iter   4: ll=26278059.186727, converged: 99.87% (loc: 99.87%, scale update: True), in 51.85sec
+iter   5: ll=26278059.186727, converged: 99.87% (loc: 100.00%, scale update: False), in 0.00sec
+iter   6: ll=26277563.234490, converged: 99.99% (loc: 99.99%, scale update: True), in 8.45sec
+iter   7: ll=26277563.234490, converged: 99.99% (loc: 100.00%, scale update: False), in 0.00sec
+iter   8: ll=26277563.234490, converged: 100.00% (loc: 100.00%, scale update: True), in 0.12sec
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py:3062: RuntimeWarning: divide by zero encountered in true_divide
+  size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+[7.15363035e-01 1.89942588e-01 1.51735342e-06 2.45316005e-01
+ 1.33905146e-05 6.37737250e-01 3.61516855e-01 6.90835186e-01
+ 1.63633373e-06 3.15620459e-02]
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+                            orig.ident  nCount_RNA  nFeature_RNA group    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286    DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849   CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729    DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107   CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018    DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...   ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447    DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240   CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506   CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577   CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597   CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+                            orig.ident  nCount_RNA  nFeature_RNA condition    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286        DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849       CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729        DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107       CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018        DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...       ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447        DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240       CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506       CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577       CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597       CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+Data!
+/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py:26: FutureWarning: X.dtype being converted to np.float32 from float64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
+  data = anndata.AnnData(
+Highly Variable Genes!
+Wald Test!
+training location model: False
+training scale model: True
+iter   0: ll=26409389.946653
+iter   1: ll=26409389.946653, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   2: ll=26280016.144310, converged: 0.13% (loc: 0.13%, scale update: True), in 50.18sec
+iter   3: ll=26280016.144310, converged: 0.13% (loc: 100.00%, scale update: False), in 0.00sec
+iter   4: ll=26278059.186727, converged: 99.87% (loc: 99.87%, scale update: True), in 46.94sec
+iter   5: ll=26278059.186727, converged: 99.87% (loc: 100.00%, scale update: False), in 0.00sec
+iter   6: ll=26277563.234490, converged: 99.99% (loc: 99.99%, scale update: True), in 9.43sec
+iter   7: ll=26277563.234490, converged: 99.99% (loc: 100.00%, scale update: False), in 0.00sec
+iter   8: ll=26277563.234490, converged: 100.00% (loc: 100.00%, scale update: True), in 0.11sec
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py:3062: RuntimeWarning: divide by zero encountered in true_divide
+  size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+[7.15363035e-01 1.89942588e-01 1.51735342e-06 2.45316005e-01
+ 1.33905146e-05 6.37737250e-01 3.61516855e-01 6.90835186e-01
+ 1.63633373e-06 3.15620459e-02]
+         gene          pval      qval    log2fc    mean  zero_mean          grad  coef_mle   coef_sd            ll
+0   LINC01409  5.943236e-01  0.715363  0.045946  0.1514      False  3.417301e-09  0.045946  0.086270  -2218.315267
+1  AL645608.2  9.996678e-02  0.189943  0.230569  0.0442      False  4.875561e-10  0.230569  0.140162   -912.909472
+2      SAMD11  1.773786e-07  0.000002  1.119209  0.0342      False  4.997493e-09  1.119209  0.214342   -659.019034
+3        HES4  1.390940e-01  0.245316 -0.066930  2.4576      False  9.896263e-09 -0.066930  0.045248 -10024.166222
+4       ISG15  1.865299e-06  0.000013  0.389442  0.2040      False  5.051727e-10  0.389442  0.081687  -2650.861638
+5      TTLL10  5.042588e-01  0.637737  0.349746  0.0040      False  5.004750e-11  0.349746  0.523726   -121.702134
+6   LINC01786  2.325638e-01  0.361517  0.204645  0.0288      False  2.667049e-12  0.204645  0.171426   -655.747274
+7       ACAP3  5.660013e-01  0.690835 -0.031644  0.3662      False  1.299971e-09 -0.031644  0.055134  -3970.626295
+8       MXRA8  1.930874e-07  0.000002  1.443803  0.0186      False  8.335390e-10  1.443803  0.277341   -423.854813
+9      ATAD3C  1.130868e-02  0.031562  0.721595  0.0122      False  7.230258e-12  0.721595  0.284876   -321.087174
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+                            orig.ident  nCount_RNA  nFeature_RNA group    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286    DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849   CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729    DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107   CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018    DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...   ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447    DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240   CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506   CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577   CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597   CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+                            orig.ident  nCount_RNA  nFeature_RNA condition    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286        DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849       CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729        DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107       CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018        DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...       ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447        DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240       CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506       CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577       CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597       CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+Data!
+/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py:26: FutureWarning: X.dtype being converted to np.float32 from float64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
+  data = anndata.AnnData(
+Highly Variable Genes!
+Wald Test!
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/base_glm/utils.py:110: PerformanceWarning: Slicing is producing a large chunk. To accept the large
+chunk and silence this warning, set the option
+    >>> with dask.config.set(**{'array.slicing.split_large_chunks': False}):
+    ...     array[indexer]
+
+To avoid creating the large chunks, set the option
+    >>> with dask.config.set(**{'array.slicing.split_large_chunks': True}):
+    ...     array[indexer]
+  np.mean(x[np.where(grouping == g)[0], :], axis=0)
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/base_glm/utils.py:110: PerformanceWarning: Slicing is producing a large chunk. To accept the large
+chunk and silence this warning, set the option
+    >>> with dask.config.set(**{'array.slicing.split_large_chunks': False}):
+    ...     array[indexer]
+
+To avoid creating the large chunks, set the option
+    >>> with dask.config.set(**{'array.slicing.split_large_chunks': True}):
+    ...     array[indexer]
+  np.mean(x[np.where(grouping == g)[0], :], axis=0)
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/base_glm/utils.py:158: PerformanceWarning: Slicing is producing a large chunk. To accept the large
+chunk and silence this warning, set the option
+    >>> with dask.config.set(**{'array.slicing.split_large_chunks': False}):
+    ...     array[indexer]
+
+To avoid creating the large chunks, set the option
+    >>> with dask.config.set(**{'array.slicing.split_large_chunks': True}):
+    ...     array[indexer]
+  np.mean(x[np.where(grouping == g)[0], :], axis=0)
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/batchglm/models/base_glm/utils.py:171: PerformanceWarning: Slicing is producing a large chunk. To accept the large
+chunk and silence this warning, set the option
+    >>> with dask.config.set(**{'array.slicing.split_large_chunks': False}):
+    ...     array[indexer]
+
+To avoid creating the large chunks, set the option
+    >>> with dask.config.set(**{'array.slicing.split_large_chunks': True}):
+    ...     array[indexer]
+  expect_xsq = np.vstack([np.mean(np.square(x[np.where(grouping == g)[0], :]), axis=0)
+training location model: False
+training scale model: True
+iter   0: ll=81001067.054543
+iter   1: ll=81001067.054543, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   2: ll=57594901.093421, converged: 18.88% (loc: 18.88%, scale update: True), in 184.06sec
+iter   3: ll=57594901.093421, converged: 18.88% (loc: 100.00%, scale update: False), in 0.00sec
+iter   4: ll=57359392.025219, converged: 86.37% (loc: 86.37%, scale update: True), in 109.78sec
+iter   5: ll=57359392.025219, converged: 86.37% (loc: 100.00%, scale update: False), in 0.00sec
+iter   6: ll=57326384.518071, converged: 94.97% (loc: 94.97%, scale update: True), in 53.75sec
+iter   7: ll=57326384.518071, converged: 94.97% (loc: 100.00%, scale update: False), in 0.00sec
+iter   8: ll=57320027.167126, converged: 99.11% (loc: 99.11%, scale update: True), in 53.31sec
+iter   9: ll=57320027.167126, converged: 99.11% (loc: 100.00%, scale update: False), in 0.00sec
+iter  10: ll=57318814.047686, converged: 99.82% (loc: 99.82%, scale update: True), in 51.32sec
+iter  11: ll=57318814.047686, converged: 99.82% (loc: 100.00%, scale update: False), in 0.00sec
+iter  12: ll=57318743.720915, converged: 99.98% (loc: 99.98%, scale update: True), in 47.78sec
+iter  13: ll=57318743.720915, converged: 99.98% (loc: 100.00%, scale update: False), in 0.00sec
+iter  14: ll=57318724.209422, converged: 99.99% (loc: 99.99%, scale update: True), in 32.70sec
+iter  15: ll=57318724.209422, converged: 99.99% (loc: 100.00%, scale update: False), in 0.00sec
+iter  16: ll=57318724.209422, converged: 100.00% (loc: 100.00%, scale update: True), in 0.16sec
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py:3062: RuntimeWarning: divide by zero encountered in true_divide
+  size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+Killed: 9
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+                            orig.ident  nCount_RNA  nFeature_RNA group    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286    DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849   CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729    DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107   CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018    DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...   ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447    DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240   CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506   CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577   CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597   CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+                            orig.ident  nCount_RNA  nFeature_RNA condition    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286        DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849       CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729        DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107       CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018        DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...       ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447        DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240       CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506       CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577       CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597       CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+Data!
+/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py:26: FutureWarning: X.dtype being converted to np.float32 from float64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
+  data = anndata.AnnData(
+Highly Variable Genes!
+Wald Test!
+training location model: False
+training scale model: True
+iter   0: ll=26409389.946653
+iter   1: ll=26409389.946653, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   2: ll=26280016.144310, converged: 0.13% (loc: 0.13%, scale update: True), in 30.03sec
+iter   3: ll=26280016.144310, converged: 0.13% (loc: 100.00%, scale update: False), in 0.00sec
+iter   4: ll=26278059.186727, converged: 99.87% (loc: 99.87%, scale update: True), in 30.89sec
+iter   5: ll=26278059.186727, converged: 99.87% (loc: 100.00%, scale update: False), in 0.00sec
+iter   6: ll=26277563.234490, converged: 99.99% (loc: 99.99%, scale update: True), in 6.58sec
+iter   7: ll=26277563.234490, converged: 99.99% (loc: 100.00%, scale update: False), in 0.00sec
+iter   8: ll=26277563.234490, converged: 100.00% (loc: 100.00%, scale update: True), in 0.06sec
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py:3062: RuntimeWarning: divide by zero encountered in true_divide
+  size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+[7.15363035e-01 1.89942588e-01 1.51735342e-06 2.45316005e-01
+ 1.33905146e-05 6.37737250e-01 3.61516855e-01 6.90835186e-01
+ 1.63633373e-06 3.15620459e-02]
+         gene          pval      qval    log2fc    mean  zero_mean          grad  coef_mle   coef_sd            ll
+0   LINC01409  5.943236e-01  0.715363  0.045946  0.1514      False  3.417301e-09  0.045946  0.086270  -2218.315267
+1  AL645608.2  9.996678e-02  0.189943  0.230569  0.0442      False  4.875561e-10  0.230569  0.140162   -912.909472
+2      SAMD11  1.773786e-07  0.000002  1.119209  0.0342      False  4.997493e-09  1.119209  0.214342   -659.019034
+3        HES4  1.390940e-01  0.245316 -0.066930  2.4576      False  9.896263e-09 -0.066930  0.045248 -10024.166222
+4       ISG15  1.865299e-06  0.000013  0.389442  0.2040      False  5.051727e-10  0.389442  0.081687  -2650.861638
+5      TTLL10  5.042588e-01  0.637737  0.349746  0.0040      False  5.004750e-11  0.349746  0.523726   -121.702134
+6   LINC01786  2.325638e-01  0.361517  0.204645  0.0288      False  2.667049e-12  0.204645  0.171426   -655.747274
+7       ACAP3  5.660013e-01  0.690835 -0.031644  0.3662      False  1.299971e-09 -0.031644  0.055134  -3970.626295
+8       MXRA8  1.930874e-07  0.000002  1.443803  0.0186      False  8.335390e-10  1.443803  0.277341   -423.854813
+9      ATAD3C  1.130868e-02  0.031562  0.721595  0.0122      False  7.230258e-12  0.721595  0.284876   -321.087174
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+Killed: 9
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ ls
+__pycache__			dataSaveOriginal		diffexpr			diffxpy_test.ipynb		expressiontest.py		output				sanbomics.ipynb			trajectory.py
+classifyClusters.py		deseqExpression.ipynb		diffxpy send.ipynb		diffxpysomething.py		frequency.py			outputPDFs			savedFileRandom.h5ad		zero_division_error.pdf
+clusterGeneNames		deseq_exampleOutside copy.ipynb	diffxpy.ipynb			doublets.py			input Original			requirements.txt		test.py
+condaProgram.py			deseq_exampleOutside.ipynb	diffxpyLogs.csv			expression.py			main.py				run.py				tests
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ conda env export > environment.yml
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+                            orig.ident  nCount_RNA  nFeature_RNA group    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286    DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849   CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729    DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107   CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018    DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...   ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447    DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240   CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506   CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577   CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597   CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+                            orig.ident  nCount_RNA  nFeature_RNA condition    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286        DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849       CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729        DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107       CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018        DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...       ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447        DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240       CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506       CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577       CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597       CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+Data!
+/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py:26: FutureWarning: X.dtype being converted to np.float32 from float64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
+  data = anndata.AnnData(
+Highly Variable Genes!
+Wald Test!
+training location model: False
+training scale model: True
+iter   0: ll=26409389.946653
+iter   1: ll=26409389.946653, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   2: ll=26280016.144310, converged: 0.13% (loc: 0.13%, scale update: True), in 29.43sec
+iter   3: ll=26280016.144310, converged: 0.13% (loc: 100.00%, scale update: False), in 0.00sec
+iter   4: ll=26278059.186727, converged: 99.87% (loc: 99.87%, scale update: True), in 30.09sec
+iter   5: ll=26278059.186727, converged: 99.87% (loc: 100.00%, scale update: False), in 0.00sec
+iter   6: ll=26277563.234490, converged: 99.99% (loc: 99.99%, scale update: True), in 7.01sec
+iter   7: ll=26277563.234490, converged: 99.99% (loc: 100.00%, scale update: False), in 0.00sec
+iter   8: ll=26277563.234490, converged: 100.00% (loc: 100.00%, scale update: True), in 0.07sec
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py:3062: RuntimeWarning: divide by zero encountered in true_divide
+  size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+[7.15363035e-01 1.89942588e-01 1.51735342e-06 2.45316005e-01
+ 1.33905146e-05 6.37737250e-01 3.61516855e-01 6.90835186e-01
+ 1.63633373e-06 3.15620459e-02]
+            gene          pval          qval    log2fc     mean  zero_mean          grad  coef_mle   coef_sd            ll
+0      LINC01409  5.943236e-01  7.153630e-01  0.045946   0.1514      False  3.417301e-09  0.045946  0.086270  -2218.315267
+1     AL645608.2  9.996678e-02  1.899426e-01  0.230569   0.0442      False  4.875561e-10  0.230569  0.140162   -912.909472
+2         SAMD11  1.773786e-07  1.517353e-06  1.119209   0.0342      False  4.997493e-09  1.119209  0.214342   -659.019034
+3           HES4  1.390940e-01  2.453160e-01 -0.066930   2.4576      False  9.896263e-09 -0.066930  0.045248 -10024.166222
+4          ISG15  1.865299e-06  1.339051e-05  0.389442   0.2040      False  5.051727e-10  0.389442  0.081687  -2650.861638
+...          ...           ...           ...       ...      ...        ...           ...       ...       ...           ...
+9995      MT-ND3  3.237097e-01  4.653676e-01 -0.035144  19.2008      False  1.765139e-09 -0.035144  0.035612 -19657.670441
+9996      MT-ND4  7.510348e-05  3.843576e-04  0.123877  34.9718      False  2.576711e-08  0.123877  0.031286 -22792.641325
+9997      MT-ND6  2.989478e-02  7.149330e-02  0.104512   0.7990      False  1.379035e-08  0.104512  0.048130  -6126.619271
+9998      MT-CYB  2.038936e-02  5.209341e-02  0.078146  33.0214      False  1.752283e-09  0.078146  0.033697 -22402.897875
+9999  AC011043.1  4.025003e-12  6.598365e-11 -0.413512   0.3174      False  6.699103e-10 -0.413512  0.059616  -3612.285357
+
+[10000 rows x 10 columns]
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+                            orig.ident  nCount_RNA  nFeature_RNA group    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286    DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849   CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729    DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107   CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018    DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...   ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447    DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240   CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506   CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577   CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597   CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+                            orig.ident  nCount_RNA  nFeature_RNA condition    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286        DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849       CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729        DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107       CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018        DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...       ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447        DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240       CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506       CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577       CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597       CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+Data!
+/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py:26: FutureWarning: X.dtype being converted to np.float32 from float64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
+  data = anndata.AnnData(
+Highly Variable Genes!
+Wald Test!
+training location model: False
+training scale model: True
+iter   0: ll=26409389.946653
+iter   1: ll=26409389.946653, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+iter   2: ll=26280016.144310, converged: 0.13% (loc: 0.13%, scale update: True), in 29.37sec
+iter   3: ll=26280016.144310, converged: 0.13% (loc: 100.00%, scale update: False), in 0.00sec
+iter   4: ll=26278059.186727, converged: 99.87% (loc: 99.87%, scale update: True), in 31.65sec
+iter   5: ll=26278059.186727, converged: 99.87% (loc: 100.00%, scale update: False), in 0.00sec
+iter   6: ll=26277563.234490, converged: 99.99% (loc: 99.99%, scale update: True), in 7.25sec
+iter   7: ll=26277563.234490, converged: 99.99% (loc: 100.00%, scale update: False), in 0.00sec
+iter   8: ll=26277563.234490, converged: 100.00% (loc: 100.00%, scale update: True), in 0.07sec
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/dask/array/core.py:3062: RuntimeWarning: divide by zero encountered in true_divide
+  size = (limit / dtype.itemsize / largest_block) ** (1 / len(autos))
+[7.15363035e-01 1.89942588e-01 1.51735342e-06 2.45316005e-01
+ 1.33905146e-05 6.37737250e-01 3.61516855e-01 6.90835186e-01
+ 1.63633373e-06 3.15620459e-02]
+            gene          pval          qval    log2fc     mean  zero_mean          grad  coef_mle   coef_sd            ll
+0      LINC01409  5.943236e-01  7.153630e-01  0.045946   0.1514      False  3.417301e-09  0.045946  0.086270  -2218.315267
+1     AL645608.2  9.996678e-02  1.899426e-01  0.230569   0.0442      False  4.875561e-10  0.230569  0.140162   -912.909472
+2         SAMD11  1.773786e-07  1.517353e-06  1.119209   0.0342      False  4.997493e-09  1.119209  0.214342   -659.019034
+3           HES4  1.390940e-01  2.453160e-01 -0.066930   2.4576      False  9.896263e-09 -0.066930  0.045248 -10024.166222
+4          ISG15  1.865299e-06  1.339051e-05  0.389442   0.2040      False  5.051727e-10  0.389442  0.081687  -2650.861638
+...          ...           ...           ...       ...      ...        ...           ...       ...       ...           ...
+9995      MT-ND3  3.237097e-01  4.653676e-01 -0.035144  19.2008      False  1.765139e-09 -0.035144  0.035612 -19657.670441
+9996      MT-ND4  7.510348e-05  3.843576e-04  0.123877  34.9718      False  2.576711e-08  0.123877  0.031286 -22792.641325
+9997      MT-ND6  2.989478e-02  7.149330e-02  0.104512   0.7990      False  1.379035e-08  0.104512  0.048130  -6126.619271
+9998      MT-CYB  2.038936e-02  5.209341e-02  0.078146  33.0214      False  1.752283e-09  0.078146  0.033697 -22402.897875
+9999  AC011043.1  4.025003e-12  6.598365e-11 -0.413512   0.3174      False  6.699103e-10 -0.413512  0.059616  -3612.285357
+
+[10000 rows x 10 columns]
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+Traceback (most recent call last):
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 68, in <module>
+    main()
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 20, in main
+    adata.X = csr_matrix(adata.X)
+AttributeError: can't set attribute 'X'
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+                                    orig.ident  nCount_RNA  nFeature_RNA group    sample  percentMito  percent_reads_top50  nCount_SCT  ...  total_counts total_counts_mt  pct_counts_mt total_counts_ribo pct_counts_ribo percentageTop50  n_genes leiden
+CON_DS2U_GCTCAAACAAAGGCGT-1-0-0-0-0        CON      7464.0          3107   CON  CON_DS2U     9.900857            24.919614      8497.0  ...        7464.0           739.0       9.900857             642.0        8.601286       24.919614     3107   IN_1
+CON_DS2U_ACCTACCAGTTCTCTT-1-0-0-0-0        CON     33477.0          7028   CON  CON_DS2U     1.386026            14.397945     10033.0  ...       33477.0           464.0       1.386026            1849.0        5.523195       14.397945     7028    nEN
+CON_DS2U_CGGGCATGTGTTCGAT-1-0-0-0-0        CON      9521.0          3694   CON  CON_DS2U     2.415713            20.071421      9433.0  ...        9521.0           230.0       2.415713            1509.0       15.849176       20.071421     3694    nEN
+CON_DS2U_TAGGTTGAGAGGCTGT-1-0-0-0-0        CON     22362.0          6946   CON  CON_DS2U     3.125838            13.979072      9850.0  ...       22362.0           699.0       3.125838            1971.0        8.814060       13.979072     6946    nEN
+CON_DS2U_TTGGGTAAGGTAGGCT-1-0-0-0-0        CON     14169.0          4701   CON  CON_DS2U     6.676547            27.179053     10130.0  ...       14169.0           946.0       6.676547            3481.0       24.567718       27.179053     4701     RG
+...                                        ...         ...           ...   ...       ...          ...                  ...         ...  ...           ...             ...            ...               ...             ...             ...      ...    ...
+DS_DSP_CTGTAGAGTATTTCGG-1-1                 DS     18838.0          6102    DS    DS_DSP     1.231553            14.125703     10616.0  ...       18838.0           232.0       1.231553             808.0        4.289203       14.125703     6102     IN
+DS_DSP_TCCACCAGTTTCGTTT-1-1                 DS      5116.0          2511    DS    DS_DSP     3.850665            20.113370      8624.0  ...        5116.0           197.0       3.850665             317.0        6.196247       20.113370     2511   IN_1
+DS_DSP_ACTTTCAAGGATATAC-1-1                 DS     16531.0          5551    DS    DS_DSP     3.260541            14.850886     10661.0  ...       16531.0           539.0       3.260541            1754.0       10.610368       14.850886     5551    MGE
+DS_DSP_GCTTTCGAGACCTGGA-1-1                 DS      7163.0          3149    DS    DS_DSP     9.158174            23.914561      8643.0  ...        7163.0           656.0       9.158174             547.0        7.636465       23.914561     3149   IN_1
+DS_DSP_CCGTTCATCGTGGGAA-1-1                 DS     17096.0          5568    DS    DS_DSP     4.942677            18.752925     10631.0  ...       17096.0           845.0       4.942677             849.0        4.966074       18.752925     5568    nEN
+
+[3541 rows x 26 columns]
+                                    orig.ident  nCount_RNA  nFeature_RNA condition    sample  percentMito  percent_reads_top50  nCount_SCT  ...  total_counts total_counts_mt  pct_counts_mt total_counts_ribo pct_counts_ribo percentageTop50  n_genes leiden
+CON_DS2U_GCTCAAACAAAGGCGT-1-0-0-0-0        CON      7464.0          3107       CON  CON_DS2U     9.900857            24.919614      8497.0  ...        7464.0           739.0       9.900857             642.0        8.601286       24.919614     3107   IN_1
+CON_DS2U_ACCTACCAGTTCTCTT-1-0-0-0-0        CON     33477.0          7028       CON  CON_DS2U     1.386026            14.397945     10033.0  ...       33477.0           464.0       1.386026            1849.0        5.523195       14.397945     7028    nEN
+CON_DS2U_CGGGCATGTGTTCGAT-1-0-0-0-0        CON      9521.0          3694       CON  CON_DS2U     2.415713            20.071421      9433.0  ...        9521.0           230.0       2.415713            1509.0       15.849176       20.071421     3694    nEN
+CON_DS2U_TAGGTTGAGAGGCTGT-1-0-0-0-0        CON     22362.0          6946       CON  CON_DS2U     3.125838            13.979072      9850.0  ...       22362.0           699.0       3.125838            1971.0        8.814060       13.979072     6946    nEN
+CON_DS2U_TTGGGTAAGGTAGGCT-1-0-0-0-0        CON     14169.0          4701       CON  CON_DS2U     6.676547            27.179053     10130.0  ...       14169.0           946.0       6.676547            3481.0       24.567718       27.179053     4701     RG
+...                                        ...         ...           ...       ...       ...          ...                  ...         ...  ...           ...             ...            ...               ...             ...             ...      ...    ...
+DS_DSP_CTGTAGAGTATTTCGG-1-1                 DS     18838.0          6102        DS    DS_DSP     1.231553            14.125703     10616.0  ...       18838.0           232.0       1.231553             808.0        4.289203       14.125703     6102     IN
+DS_DSP_TCCACCAGTTTCGTTT-1-1                 DS      5116.0          2511        DS    DS_DSP     3.850665            20.113370      8624.0  ...        5116.0           197.0       3.850665             317.0        6.196247       20.113370     2511   IN_1
+DS_DSP_ACTTTCAAGGATATAC-1-1                 DS     16531.0          5551        DS    DS_DSP     3.260541            14.850886     10661.0  ...       16531.0           539.0       3.260541            1754.0       10.610368       14.850886     5551    MGE
+DS_DSP_GCTTTCGAGACCTGGA-1-1                 DS      7163.0          3149        DS    DS_DSP     9.158174            23.914561      8643.0  ...        7163.0           656.0       9.158174             547.0        7.636465       23.914561     3149   IN_1
+DS_DSP_CCGTTCATCGTGGGAA-1-1                 DS     17096.0          5568        DS    DS_DSP     4.942677            18.752925     10631.0  ...       17096.0           845.0       4.942677             849.0        4.966074       18.752925     5568    nEN
+
+[3541 rows x 26 columns]
+Data!
+Highly Variable Genes!
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/scanpy/preprocessing/_highly_variable_genes.py:62: UserWarning: `flavor='seurat_v3'` expects raw count data, but non-integers were found.
+  warnings.warn(
+/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/scanpy/preprocessing/_highly_variable_genes.py:83: RuntimeWarning: invalid value encountered in log10
+  x = np.log10(mean[not_const])
+Traceback (most recent call last):
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 68, in <module>
+    main()
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 36, in main
+    sc.pp.highly_variable_genes(data, n_top_genes=10000, subset = True, flavor = "seurat_v3", batch_key="sample")
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/scanpy/preprocessing/_highly_variable_genes.py", line 422, in highly_variable_genes
+    return _highly_variable_genes_seurat_v3(
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/scanpy/preprocessing/_highly_variable_genes.py", line 85, in _highly_variable_genes_seurat_v3
+    model.fit()
+  File "_loess.pyx", line 899, in _loess.loess.fit
+ValueError: b'Extrapolation not allowed with blending'
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+Traceback (most recent call last):
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 68, in <module>
+    main()
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 18, in main
+    adata.X = adata.raw.X
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_core/anndata.py", line 692, in X
+    raise ValueError(
+ValueError: Data matrix has wrong shape (3541, 36601), need to be (3541, 7303).
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+Traceback (most recent call last):
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 68, in <module>
+    main()
+  File "/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py", line 15, in main
+    adata = sc.read("./output/rawDataset5000.h5ad") # ./dataSaveOriginal/rawDataset5000.h5ad
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/scanpy/readwrite.py", line 112, in read
+    return _read(
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/scanpy/readwrite.py", line 722, in _read
+    return read_h5ad(filename, backed=backed)
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/anndata/_io/h5ad.py", line 224, in read_h5ad
+    with h5py.File(filename, "r") as f:
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/h5py/_hl/files.py", line 533, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+  File "/opt/homebrew/Caskroom/miniforge/base/envs/diffenv/lib/python3.10/site-packages/h5py/_hl/files.py", line 226, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 106, in h5py.h5f.open
+FileNotFoundError: [Errno 2] Unable to open file (unable to open file: name = 'output/rawDataset5000.h5ad', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+(diffenv) dyn3254-180:Analysis-of-scRNA-Sequencing-Data greencode$ python3 condaProgram.py 
+Reading!
+To Dense!
+                            orig.ident  nCount_RNA  nFeature_RNA group    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286    DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849   CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729    DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107   CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018    DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...   ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447    DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240   CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506   CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577   CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597   CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+                            orig.ident  nCount_RNA  nFeature_RNA condition    sample  percentMito  percent_reads_top50  nCount_SCT  nFeature_SCT SCT_snn_res.0.8  seurat_clusters clust_orig            clust_orig_lab clust_recl  integrated_snn_res.0.8  cluster_type
+DS_DSP_GACCTTCCACAGTACT-1           DS     16399.0          5286        DS    DS_DSP     2.957497            18.427953     10567.0          4975               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+CON_IMR_GTGATGTGTCAACGCC-1         CON      1271.0           849       CON   CON_IMR     6.372935            25.491739      5685.0          1781               2               15          2                 NEU_low_2         c2                      15       NEU_low
+DS_DS1_GTCGCGAAGAGTGTTA-1           DS      5905.0          2729        DS    DS_DS1     8.044030            25.808637      7337.0          2728               9                7          8            NPC_GJA1_ID3_8         c9                       7  NPC_GJA1_ID3
+CON_DS2U_GCTCAAACAAAGGCGT-1        CON      7464.0          3107       CON  CON_DS2U     9.900857            24.919614      8497.0          3105               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+DS_2DS3_TAAGCACCACATTCGA-1          DS     13943.0          5018        DS   DS_2DS3     1.527648            16.043893     10556.0          4999               6                1          1                 NEU_inh_1         c6                       1       NEU_inh
+...                                ...         ...           ...       ...       ...          ...                  ...         ...           ...             ...              ...        ...                       ...        ...                     ...           ...
+DS_DS1_AGGGTGAGTCCGAAAG-1           DS     57452.0          9447        DS    DS_DS1     9.656757            20.410081      8929.0          3987              24               19         13    NEU_exc_TBR1_SLC1A2_13        c24                      19  NEU_exc_TBR1
+CON_IMR_GTGTGGCCAAATTGCC-1         CON      3836.0          2240       CON   CON_IMR     6.803962            23.957247      6151.0          2299               7               10          9     NEU_exc_TBR1_SLC1A2_9         c7                      10  NEU_exc_TBR1
+CON_DS2U_CCTCAACAGCGAAACC-1        CON      6881.0          3506       CON  CON_DS2U     6.888534            20.956256      8134.0          3508              15               11         12                    NPC_12        c15                      11           NPC
+CON_IMR_GTCCTCAAGGTTAAAC-1         CON      4583.0          2577       CON   CON_IMR     0.894611            16.910321      6139.0          2594              15               11         12                    NPC_12        c15                      11           NPC
+CON_DS2U_GACAGCCTCGTTAGTG-1        CON      7909.0          3597       CON  CON_DS2U     3.780503            20.394487      8521.0          3597               3                9          4  NEU_exc_SLC17A7_NEUROD_4         c3                       9  NEU_exc_TBR1
+
+[5000 rows x 16 columns]
+Data!
+/Users/greencode/Desktop/Analysis-of-scRNA-Sequencing-Data/condaProgram.py:29: FutureWarning: X.dtype being converted to np.float32 from float64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
+  data = anndata.AnnData(
+Highly Variable Genes!
+Wald Test!
+training location model: False
+training scale model: True
+iter   0: ll=26409389.946653
+iter   1: ll=26409389.946653, converged: 0.00% (loc: 100.00%, scale update: False), in 0.00sec
+Fitting 10000 dispersion models: (progress not available with multiprocessing)

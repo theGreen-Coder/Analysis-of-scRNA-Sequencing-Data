@@ -5,14 +5,14 @@ import scanpy as sc
 import numpy as np
 import sys
 import tests.loadScanpy as loadScanpy
-import classifyClusters as classify
+import modules.classifyClusters.classifyClusters as classify
 import os
 from scipy.sparse import csr_matrix
 from matplotlib import pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import seaborn as sns
 import diffxpy.api as de
-from diffexpr.diffexpr.py_deseq import py_DESeq2
+from modules.diffexpr.diffexpr.py_deseq import py_DESeq2
 import pandas as pd 
 import numpy as np
 

@@ -5,7 +5,7 @@ import scanpy as sc
 import numpy as np
 import sys
 import tests.loadScanpy as loadScanpy
-import classifyClusters as classify
+import modules.classifyClusters.classifyClusters as classify
 import os
 from matplotlib import pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
