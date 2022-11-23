@@ -33,11 +33,7 @@ Counts
 
 ```{r}
 Counts <- Counts[which(rowSums(Counts) > 50),]
-Counts
-```
-
-```{r}
-Counts <- Counts + 1
+Counts = Counts+1
 Counts
 ```
 
@@ -76,6 +72,38 @@ clusters
 coldata <- data.frame(row.names = colnames(Counts), condition, clusters)
 coldata
 ```
+```{r}
+dds = DESeqDataSetFromMatrix(countData = Counts, colData = coldata, design = ~condition)
+dds = DESeq(dds)
+```
+
+
+```{r}
+ntd = normTransform(dds)
+m1 = assay(ntd)
+m2 = m1 - apply(m1, 1, mean)
+m2
+```
+
+```{r}
+library(pheatmap)
+library(viridis)
+plotNorm = pheatmap::pheatmap(m2, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
+
+save_pheatmap_pdf <- function(x, filename, width=15, height=7) {
+   stopifnot(!missing(x))
+   stopifnot(!missing(filename))
+   pdf(filename, width=width, height=height)
+   grid::grid.newpage()
+   grid::grid.draw(x$gtable)
+   dev.off()
+}
+save_pheatmap_pdf(plotNorm, "./outputPDFs/DiffExpOut/FullDatasetPheatmap.pdf")
+```
+
+
+
+
 
 ```{r}
 fullColData <- coldata
@@ -94,12 +122,17 @@ while(nrow(fullColData) >= 5){
   dds = DESeq(dds)
   res = results(dds, contrast = c("condition", "D", "C"))
   
+  ntd = normTransform(dds)
+  m1 = assay(ntd)
+  m2 = m1 - apply(m1, 1, mean)
+  bulk_data$deseq_log_matrix = m2
+
   sigs = na.omit(res)
   sigs = sigs[sigs$padj < 0.05,]
   
   df = as.data.frame(sigs)
   
-  df.top = df[(df$padj < 0.05) & (df$baseMean > 50) & (abs(df$log2FoldChange) > 2),]
+  df.top = df[(df$padj < 0.05) & (df$baseMean > 50) & (abs(df$log2FoldChange) > 0.3),]
   
   df.top = df.top[order(df.top$log2FoldChange, decreasing = TRUE),]
   
@@ -180,7 +213,7 @@ while(nrow(fullColData) >= 5){
   fullColData = fullColData[-1:-5, ]
   fullCounts = fullCounts[,-1:-5]
   i = i+1
-  remove(list=c("ha", "h1", "h2", "h3", "h", "l2_val", "mean", "col_logFC", "col_AveExpr", "keepRow", "rlog_out", "mat", "base_mean", "mat.scaled", "dds", "res", "sigs", "df", "df.top"))
+  # remove(list=c("ha", "h1", "h2", "h3", "h", "l2_val", "mean", "col_logFC", "col_AveExpr", "keepRow", "rlog_out", "mat", "base_mean", "mat.scaled", "dds", "res", "sigs", "df", "df.top"))
 }
 ```
 
@@ -195,39 +228,12 @@ matScaledFullExport <- matScaledFullExport[,-1]
 matScaledFullExportMatrix <- data.matrix(matScaledFullExport)
 ```
 
-
-
-```{r}
-library(ComplexHeatmap)
-
-h1 <- Heatmap(matScaledFullExportMatrix, cluster_rows = F, column_labels = colnames(matScaledFullExportMatrix), name="Z-score", cluster_columns = F)
-
-pdf(file = "./outputPDFs/DiffExpOut/FullDataset.pdf", width = 100, height = 10)
-h1
-dev.off()
-dev.set(dev.next())
-```
-
-
-
-```{r}
-matScaledFullExport <- read.csv("./outputPDFs/DiffExpOut/matScaledFullDataset.csv")
-rownames(matScaledFullExport) <- matScaledFullExport$X
-matScaledFullExport <- matScaledFullExport[,-1]
-matScaledFullExportMatrix <- data.matrix(matScaledFullExport)
-```
-
 ```{r}
 library(pheatmap)
-pl1 = pheatmap(matScaledFullExportMatrix)
+library(viridis)
+pl1 = pheatmap::pheatmap(matScaledFullExportMatrix, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
 
-pdf(file = "./outputPDFs/DiffExpOut/FullDatasetPheatmapON.pdf", width = 100, height = 10)
-print(pl1)
-dev.off()
-```
-
-```{r}
-save_pheatmap_pdf <- function(x, filename, width=7, height=7) {
+save_pheatmap_pdf <- function(x, filename, width=15, height=7) {
    stopifnot(!missing(x))
    stopifnot(!missing(filename))
    pdf(filename, width=width, height=height)
@@ -235,107 +241,80 @@ save_pheatmap_pdf <- function(x, filename, width=7, height=7) {
    grid::grid.draw(x$gtable)
    dev.off()
 }
-save_pheatmap_pdf(pl1, "test.pdf")
-
-```
-
-
-
-```{r}
-# nonSigs = na.omit(res)
-# df = as.data.frame(nonSigs) # sigs
-# df
-# df.top = NULL
+save_pheatmap_pdf(pl1, "./outputPDFs/DiffExpOut/FullDatasetPheatmap.pdf")
 ```
 
 ```{r}
-# df.top
+library(pheatmap)
+library(viridis)
 ```
 
+# Plot Control
 
 ```{r}
-# df.top = df
-# df.top
-```
-```{r}
-# df.top = df.top[order(df.top$log2FoldChange, decreasing = TRUE),]
-# df.top
-```
-```{r}
-# df.top["symbol"] = row.names(df.top)
-# df.top
+matGroupControl <- read.csv("./output/AvgCountsCONTROL.csv")
+rownames(matGroupControl) <- matGroupControl$X
+matGroupControl <- matGroupControl[,-1]
+matGroupControlMatrix <- data.matrix(matGroupControl)
+
+pl1 = pheatmap::pheatmap(matGroupControlMatrix, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
+
+save_pheatmap_pdf <- function(x, filename, width=10, height=7) {
+   stopifnot(!missing(x))
+   stopifnot(!missing(filename))
+   pdf(filename, width=width, height=height)
+   grid::grid.newpage()
+   grid::grid.draw(x$gtable)
+   dev.off()
+}
+save_pheatmap_pdf(pl1, "./outputPDFs/DiffExpOut/GroupedControlPheatmap.pdf")
 ```
 
-
-```{r}
-# rlog_out <- vst(dds, blind=FALSE) #get normalized count data from dds object
-# mat<-assay(rlog_out)[rownames(df.top), rownames(coldata)] #sig genes x samples
-# colnames(mat) <- rownames(coldata)
-# base_mean <- rowMeans(mat)
-# mat.scaled <- t(apply(mat, 1, scale)) #center and scale each column (Z-score) then transpose
-# colnames(mat.scaled)<-colnames(mat)
-```
-
+# Plot Down
 
 ```{r}
-# num_keep <- nrow(df.top)
-# #1 to num_keep len-num_keep to len
-# rows_keep <- c(seq(1:num_keep), seq((nrow(mat.scaled)-num_keep), nrow(mat.scaled)) )
+matGroupDown <- read.csv("./output/AvgCountsDOWN.csv")
+rownames(matGroupDown) <- matGroupDown$X
+matGroupDown <- matGroupDown[,-1]
+matGroupDownMatrix <- data.matrix(matGroupDown)
+
+pl1 = pheatmap::pheatmap(matGroupDownMatrix, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
+
+save_pheatmap_pdf <- function(x, filename, width=10, height=7) {
+   stopifnot(!missing(x))
+   stopifnot(!missing(filename))
+   pdf(filename, width=width, height=height)
+   grid::grid.newpage()
+   grid::grid.draw(x$gtable)
+   dev.off()
+}
+save_pheatmap_pdf(pl1, "./outputPDFs/DiffExpOut/GroupedDownPheatmap.pdf")
 ```
 
-
+# Plot Vs
 
 ```{r}
-# l2_val <- as.matrix(df.top[rows_keep,]$log2FoldChange) #getting log2 value for each gene we are keeping
-# colnames(l2_val)<-"logFC"
-# mean <- as.matrix(df.top[rows_keep,]$baseMean) #getting mean value for each gene we are keeping
-# colnames(mean)<-"AveExpr"
-```
+matGroupVS <- read.csv("./output/DiffCountsCONvsDS.csv")
+rownames(matGroupVS) <- matGroupVS$X
+matGroupVS <- matGroupVS[,-1]
+matGroupVSMatrix <- data.matrix(matGroupVS)
 
-```{r}
-# library(RColorBrewer)
-# library(circlize)
-```
+pl2 = pheatmap::pheatmap(matGroupVSMatrix, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
 
-
-```{r}
-# #maps values between b/w/r for min and max l2 values
-# col_logFC <- colorRamp2(c(min(l2_val),0, max(l2_val)), c("blue", "white", "red")) 
-# #maps values between b/w/r for min and max l2 values
-# col_logFCM <- colorRamp2(c(min(l2_val),0, max(l2_val)), c("yellow", "black", "purple")) 
-# #maps between 0% quantile, and 75% quantile of mean values --- 0, 25, 50, 75, 100
-# col_AveExpr <- colorRamp2(c(quantile(mean)[1], quantile(mean)[4]), c("white", "red"))
+save_pheatmap_pdf <- function(x, filename, width=10, height=7) {
+   stopifnot(!missing(x))
+   stopifnot(!missing(filename))
+   pdf(filename, width=width, height=height)
+   grid::grid.newpage()
+   grid::grid.draw(x$gtable)
+   dev.off()
+}
+save_pheatmap_pdf(pl2, "./outputPDFs/DiffExpOut/VSPheatmap.pdf")
 ```
 
 
 
-```{r}
-# ha <- HeatmapAnnotation(summary = anno_summary(gp = gpar(fill = 2), height = unit(2, "cm")))
-# h1 <- Heatmap(mat.scaled[rows_keep,], cluster_rows = F, 
-#             column_labels = colnames(mat.scaled), name="Z-score",
-#             cluster_columns = T)
-# h2 <- Heatmap(l2_val, row_labels = df.top$symbol[rows_keep], 
-#             cluster_rows = F, name="logFC", top_annotation = ha, col = col_logFC,
-#             cell_fun = function(j, i, x, y, w, h, col) { # add text to each grid
-#               grid.text(round(l2_val[i, j],2), x, y)
-#             })
-# h3 <- Heatmap(mean, row_labels = df.top$symbol[rows_keep], 
-#             cluster_rows = F, name = "AveExpr", col=col_AveExpr,
-#             cell_fun = function(j, i, x, y, w, h, col) { # add text to each grid
-#               grid.text(round(mean[i, j],2), x, y)
-#             })
-# h<-h1+h2+h3
-# h
-```
 
-
-```{r}
-# pdf(file = "./outputPDFs/heatmapAllClusters.pdf", width = 6.5, height = 10)
-# 
-# print(h)
-# 
-# dev.off()
-```
 
 
 

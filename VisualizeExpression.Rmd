@@ -1,0 +1,61 @@
+---
+title: "Visualize Expression"
+output: html_notebook
+---
+
+```{r}
+DataCounts = read.delim("./output/rawCountsDESeqPerCluster.csv", header = TRUE, row.names = 1, sep = ",")
+DataCounts
+```
+```{r}
+DataCounts = read.delim("./output/rawCountsDESeqPerClusterNormalized.csv", header = TRUE, row.names = 1, sep = ",")
+DataCounts <- DataCounts[which(rowSums(DataCounts) > 50),]
+DataCounts
+```
+
+```{r}
+DataNorm<-data.frame() 
+DataNorm<- as.data.frame(t(apply(DataCounts,1, function(x) (x-mean(x))/mean(x))))
+DataNormMatrix <- data.matrix(DataNorm)
+DataNorm
+```
+```{r}
+min(DataNorm)
+```
+
+```{r}
+
+```
+
+
+```{r}
+library(pheatmap)
+library(viridis)
+
+rg <- max(abs(DataNormMatrix));
+nExp1 = pheatmap::pheatmap(DataNormMatrix, cluster_cols = TRUE, breaks = seq(-1, 5, length.out = 10) ) # , color = viridis_pal(option = "viridis")(250)
+
+save_pheatmap_pdf <- function(x, filename, width=15, height=7) {
+   stopifnot(!missing(x))
+   stopifnot(!missing(filename))
+   pdf(filename, width=width, height=height)
+   grid::grid.newpage()
+   grid::grid.draw(x$gtable)
+   dev.off()
+}
+save_pheatmap_pdf(nExp1, "./outputPDFs/DiffExpOut/ExpressionPheatmap.pdf")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
