@@ -22,7 +22,7 @@ inputData = "./output/savedData.h5ad" # ./dataSaveOriginal/rawDataset5000.h5ad
 results_file = './output/savedData.h5ad'
 outputDirectory = "./outputPDFs/"
 
-adata = sc.read("./dataSaveOriginal/rawDatasetClusters.h5ad")
+adata = sc.read("./output/savedDataClustersFinal.h5ad")
 adata.var_names_make_unique()
 adata.X = adata.X.astype('float64')
 print("Printing Raw Data")
@@ -57,18 +57,18 @@ df = pd.DataFrame(rows, columns=['id'])
 
 for item in listLeiden:
     print("1")
-    df["CON_DS2U"+"."+item] = getColSample("CON_DS2U", item)
+    df[item+".CON_DS2U"] = getColSample("CON_DS2U", item)
     print("2")
-    df["CON_H9"+"."+item] = getColSample("CON_H9", item)
+    df[item+".CON_H9"] = getColSample("CON_H9", item)
     print("3")
-    df["CON_IMR"+"."+item] = getColSample("CON_IMR", item)
+    df[item+".CON_IMR"] = getColSample("CON_IMR", item)
     print("4")
-    df["DS_2DS3"+"."+item] = getColSample("DS_2DS3", item)
+    df[item+".DS_2DS3"] = getColSample("DS_2DS3", item)
     print("5")
-    df["DS_DSP"+"."+item] = getColSample("DS_DSP", item)
+    df[item+".DS_DSP"] = getColSample("DS_DSP", item)
 
 
 df = df.set_index('id')
 print(df)
 
-df.to_csv('./output/rawCountsDESeqPerCluster.csv')
+df.to_csv('./output/rawCountsDESeqPerClusterNew.csv')

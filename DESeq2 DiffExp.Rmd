@@ -23,10 +23,15 @@ ls
 ```
 
 ```{r}
-Counts = read.delim("./output/rawCountsDESeqPerCluster.csv", header = TRUE, row.names = 1, sep = ",")
+Counts = read.delim("./output/rawCountsDESeqPerClusterNew.csv", header = TRUE, row.names = 1, sep = ",")
 ```
 
 ```{r}
+Counts
+```
+```{r}
+newOrder = sort(colnames(Counts))
+Counts <- Counts[, newOrder]
 Counts
 ```
 
@@ -42,7 +47,9 @@ Counts
 
 condition = c()
 for (value in colnames(Counts)) {
-    condition <- append(condition, substr(value,1,1))
+    firstValues = as.vector(strsplit(value, '[.]'))
+    clusterStrings = firstValues[[1]][2]
+    condition <- append(condition, substr(clusterStrings,1,1))
 }
 
 condition = factor(condition)
@@ -57,7 +64,7 @@ clusters = c()
 
 for (value in colnames(Counts)) {
     clusterList = as.vector(strsplit(value, '[.]'))
-    clusterString = clusterList[[1]][2]
+    clusterString = clusterList[[1]][1]
     firstChr = substr(clusterString, 1, 1)
     lastChr = substr(clusterString, nchar(clusterString) - n_last + 1, nchar(clusterString))
     clusterID = paste(firstChr, lastChr, sep="")
@@ -72,38 +79,6 @@ clusters
 coldata <- data.frame(row.names = colnames(Counts), condition, clusters)
 coldata
 ```
-```{r}
-dds = DESeqDataSetFromMatrix(countData = Counts, colData = coldata, design = ~condition)
-dds = DESeq(dds)
-```
-
-
-```{r}
-ntd = normTransform(dds)
-m1 = assay(ntd)
-m2 = m1 - apply(m1, 1, mean)
-m2
-```
-
-```{r}
-library(pheatmap)
-library(viridis)
-plotNorm = pheatmap::pheatmap(m2, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
-
-save_pheatmap_pdf <- function(x, filename, width=15, height=7) {
-   stopifnot(!missing(x))
-   stopifnot(!missing(filename))
-   pdf(filename, width=width, height=height)
-   grid::grid.newpage()
-   grid::grid.draw(x$gtable)
-   dev.off()
-}
-save_pheatmap_pdf(plotNorm, "./outputPDFs/DiffExpOut/FullDatasetPheatmap.pdf")
-```
-
-
-
-
 
 ```{r}
 fullColData <- coldata
@@ -122,17 +97,12 @@ while(nrow(fullColData) >= 5){
   dds = DESeq(dds)
   res = results(dds, contrast = c("condition", "D", "C"))
   
-  ntd = normTransform(dds)
-  m1 = assay(ntd)
-  m2 = m1 - apply(m1, 1, mean)
-  bulk_data$deseq_log_matrix = m2
-
   sigs = na.omit(res)
   sigs = sigs[sigs$padj < 0.05,]
   
   df = as.data.frame(sigs)
   
-  df.top = df[(df$padj < 0.05) & (df$baseMean > 50) & (abs(df$log2FoldChange) > 0.3),]
+  df.top = df[(df$padj < 0.05) & (df$baseMean > 30) & (abs(df$log2FoldChange) > 0.3),]
   
   df.top = df.top[order(df.top$log2FoldChange, decreasing = TRUE),]
   
@@ -178,7 +148,6 @@ while(nrow(fullColData) >= 5){
     #maps between 0% quantile, and 75% quantile of mean values --- 0, 25, 50, 75, 100
     col_AveExpr <- colorRamp2(c(quantile(mean)[1], quantile(mean)[4]), c("white", "red"))
     
-    print(mat.scaled)
     ha <- HeatmapAnnotation(summary = anno_summary(gp = gpar(fill = 2), height = unit(2, "cm")))
     h1 <- Heatmap(mat.scaled[rows_keep,], cluster_rows = F, 
                 column_labels = colnames(mat.scaled), name="Z-score",
@@ -203,7 +172,7 @@ while(nrow(fullColData) >= 5){
     print(h)
     dev.off()
     
-    df.top
+    print(df.top)
     write.csv(df.top,fileOutputCSV)
   }
   else{

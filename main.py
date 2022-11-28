@@ -36,12 +36,7 @@ arg = ""
 for word in sysArgs:
     if word != "main.py" and word != "-showPlots":
         arg = arg + word + " "
-        # if "-" not in word:
-        #     OUTPUT_DIR = outputDirectory+word+"/"
-        #     CHECK_FOLDER = os.path.isdir(OUTPUT_DIR)
-        #     if not CHECK_FOLDER:
-        #         os.makedirs(OUTPUT_DIR)
-        #     outputDirectory = OUTPUT_DIR
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -69,6 +64,7 @@ print(adata)
 geneMarkers = pd.read_csv('./dataSaveOriginal/cellTypeMarkers.csv')
 geneNames = geneMarkers["gene"].tolist()
 
+# Remove Outlier Samples from the Data
 adataCON_DS2U =  adata[adata.obs["sample"] == "CON_DS2U"]
 adataCON_H9 =  adata[adata.obs["sample"] == "CON_H9"]
 adataCON_IMR =  adata[adata.obs["sample"] == "CON_IMR"]
@@ -80,13 +76,8 @@ adataDS_DSP =  adata[adata.obs["sample"] == "DS_DSP"]
 
 adata = adataCON_DS2U.concatenate(adataCON_H9)
 adata = adata.concatenate(adataCON_IMR)
-# adata = adata.concatenate(adataCON_ihtc)
 adata = adata.concatenate(adataDS_2DS3)
 adata = adata.concatenate(adataDS_DSP)
-# adata = adata.concatenate(adataDS_DS1)
-
-# print(adata)
-# adata.write(results_file)
 
 # CON_DS2U CON_H9 CON_IMR CON_ihtc DS_2DS3 DS_DS1 DS_DSP
 
@@ -105,15 +96,15 @@ adata.var['ribo'] = adata.var_names.isin(riboGenes[0].values)
 # Calculate QC Metrics
 sc.pp.calculate_qc_metrics(adata, qc_vars=['mt', "ribo"], percent_top=None, log1p=False, inplace=True)
 
-# Get Top 50 Genes
-percentageList = []
-print("Calculating Percentatge of Top 50 Genes")
-for row in adata.X:
-    firstRow = np.sort(row.toarray()[0])
-    sum50 = firstRow[-50:]
-    percentatge = (sum(sum50)/sum(firstRow))*100
-    percentageList.append(percentatge)
-adata.obs["percentageTop50"] = percentageList
+# # Get Top 50 Genes
+# percentageList = []
+# print("Calculating Percentatge of Top 50 Genes")
+# for row in adata.X:
+#     firstRow = np.sort(row.toarray()[0])
+#     sum50 = firstRow[-50:]
+#     percentatge = (sum(sum50)/sum(firstRow))*100
+#     percentageList.append(percentatge)
+# adata.obs["percentageTop50"] = percentageList
 
 print(adata.obs)
 print(adata.var)
@@ -124,42 +115,40 @@ print(adata.var)
 print(bcolors.FAIL + "Applying Quality Control Filters..." + bcolors.ENDC)
 if "-filter" in sysArgs:
     print("Filtering Damaged Cells")
-    # sc.pp.filter_genes(adata, min_cells=3)
     sc.pp.filter_cells(adata, min_genes=200)
-    upper_lim = np.quantile(adata.obs.n_genes_by_counts.values, .98)
-    adata = adata[adata.obs.n_genes_by_counts < upper_lim]
     adata = adata[adata.obs.pct_counts_mt < 10, :]
-    # adata = adata[adata.obs.n_genes_by_counts > 1000, :]
+    adata = adata[adata.obs.n_genes_by_counts > 1000, :]
 else:
     print("Not Filtering Damaged Cells")
 
 ####################################################################################################
 # QC Plots 
 ####################################################################################################
-print(bcolors.FAIL + "Saving Quality Control Plots..." + bcolors.ENDC)
-with PdfPages(outputDirectory+'Quality Control Plots '+arg+'.pdf') as pdf:
-    dummyPlot = plt.plot([1, 2])
-    figureNum = plt.gcf().number
+# print(bcolors.FAIL + "Saving Quality Control Plots..." + bcolors.ENDC)
+# with PdfPages(outputDirectory+'Quality Control Plots '+arg+'.pdf') as pdf:
+#     # I have too include this dummy plot everytime I want to export something into PDF. 
+#     dummyPlot = plt.plot([1, 2])
+#     figureNum = plt.gcf().number
 
-    violinPlots = sc.pl.violin(adata,['nCount_RNA', 'nFeature_RNA', 'pct_counts_mt', "percentageTop50"], groupby="sample", jitter=0.4, multi_panel=True, show=showPlots)
-    plt.suptitle("Violin Plots QC Metrics", y=1, fontsize=25)
-    sc.pl.violin(adata, ['n_genes_by_counts', 'total_counts', 'pct_counts_mt', 'pct_counts_ribo'], jitter=0.4, multi_panel=True, show=showPlots)
-    plt.suptitle("Violin Plots QC Metrics", y=1, fontsize=25)
-    scatterPlots = sc.pl.scatter(adata, x='pct_counts_mt', y='percentageTop50', show=showPlots)
-    plt.suptitle("% MT vs % Top 50 Genes", y=1, fontsize=25)
-    scatterPlots = sc.pl.scatter(adata, x='total_counts', y='n_genes_by_counts', show=showPlots)
-    plt.suptitle("Total Counts vs Nº of Genes by Count", y=1, fontsize=25)
+#     violinPlots = sc.pl.violin(adata,['nCount_RNA', 'nFeature_RNA', 'pct_counts_mt', "percentageTop50"], groupby="sample", jitter=0.4, multi_panel=True, show=showPlots)
+#     plt.suptitle("Violin Plots QC Metrics", y=1, fontsize=25)
+#     sc.pl.violin(adata, ['n_genes_by_counts', 'total_counts', 'pct_counts_mt', 'pct_counts_ribo'], jitter=0.4, multi_panel=True, show=showPlots)
+#     plt.suptitle("Violin Plots QC Metrics", y=1, fontsize=25)
+#     scatterPlots = sc.pl.scatter(adata, x='pct_counts_mt', y='percentageTop50', show=showPlots)
+#     plt.suptitle("% MT vs % Top 50 Genes", y=1, fontsize=25)
+#     scatterPlots = sc.pl.scatter(adata, x='total_counts', y='n_genes_by_counts', show=showPlots)
+#     plt.suptitle("Total Counts vs Nº of Genes by Count", y=1, fontsize=25)
 
-    for fig in range(figureNum+1,  plt.gcf().number+1):
-        pdf.savefig(figure=fig, bbox_inches='tight')
+#     for fig in range(figureNum+1,  plt.gcf().number+1):
+#         pdf.savefig(figure=fig, bbox_inches='tight')
 
 ####################################################################################################
 # Clustering 
 ####################################################################################################
 print(bcolors.FAIL + "Performing Clustering..." + bcolors.ENDC)
 sc.pp.normalize_total(adata, target_sum=10000)
+print("Log Data")
 sc.pp.log1p(adata)
-adata.raw = adata
 
 sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5)
 adata = adata[:, adata.var.highly_variable]
@@ -169,7 +158,7 @@ sc.pp.scale(adata, max_value=10)
 sc.tl.pca(adata, svd_solver='arpack')
 sc.pp.neighbors(adata, n_neighbors=15, n_pcs=40) # n_neighbors=15 is default
 sc.tl.umap(adata)
-sc.tl.leiden(adata, resolution=0.5)
+sc.tl.leiden(adata, resolution=0.3)
 # adata.write(results_file)
 
 ####################################################################################################
@@ -182,63 +171,18 @@ if "-noIntegration" not in sysArgs and "-ingestIntegration" not in sysArgs:
         dummyPlot = plt.plot([1, 2])
         figureNum = plt.gcf().number
 
+        # Plotting UMAP before integration
         sc.pl.umap(adata, color=['sample', "group"], show=showPlots)
         plt.suptitle("Non-Integrated Dataset UMAP", y=1, fontsize=25)
+        # BBKNN Integration
         sc.external.pp.bbknn(adata, batch_key='sample')
+        # Plotting UMAP after integration
         sc.tl.umap(adata)
         plt.suptitle("Integrated Dataset UMAP", y=1, fontsize=25)
         sc.pl.umap(adata, color='sample', show=showPlots)
         plt.suptitle("Integrated Dataset by Sample", y=1, fontsize=25)
         sc.pl.umap(adata, color='group', show=showPlots)
         plt.suptitle("Integrated Dataset by Group", y=1, fontsize=25)
-
-        for fig in range(figureNum+1,  plt.gcf().number+1):
-            pdf.savefig(figure=fig, bbox_inches='tight')
-elif "-ingestIntegration" in sysArgs:
-    print("Performing Ingest Integration...")
-    with PdfPages(outputDirectory+'Integration Plots '+arg+'.pdf') as pdf:
-        dummyPlot = plt.plot([1, 2])
-        figureNum = plt.gcf().number
-
-        adataCON_DS2U =  adata[adata.obs["sample"] == "CON_DS2U"]
-        print(adataCON_DS2U)
-        adataCON_H9 =  adata[adata.obs["sample"] == "CON_H9"]
-        print(adataCON_H9)
-        adataCON_IMR =  adata[adata.obs["sample"] == "CON_IMR"]
-        print(adataCON_IMR)
-        adataDS_2DS3 =  adata[adata.obs["sample"] == "DS_2DS3"]
-        print(adataDS_2DS3)
-        adataDS_DSP =  adata[adata.obs["sample"] == "DS_DSP"]
-        print(adataDS_DSP)
-
-        sc.pl.umap(adata, color=['sample', "group"], show=showPlots)
-        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_DS2U", show=showPlots)
-        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_H9", show=showPlots)
-        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_IMR", show=showPlots)
-        sc.pl.umap(adata, color='sample', na_color="white",groups="DS_2DS3", show=showPlots)
-        sc.pl.umap(adata, color='sample', na_color="white",groups="DS_DSP", show=showPlots)
-
-        sc.tl.pca(adataCON_IMR, svd_solver='arpack')
-        sc.pp.neighbors(adataCON_IMR, n_neighbors=10, n_pcs=40)
-
-        sc.tl.ingest(adataCON_DS2U, adataCON_IMR, obs="leiden")
-        sc.tl.ingest(adataCON_H9, adataCON_IMR, obs="leiden")
-        sc.tl.ingest(adataDS_2DS3, adataCON_IMR, obs="leiden")
-        sc.tl.ingest(adataDS_DSP, adataCON_IMR, obs="leiden")
-
-        adata = adataCON_IMR.concatenate(adataCON_H9)
-        adata = adata.concatenate(adataCON_DS2U)
-        adata = adata.concatenate(adataDS_2DS3)
-        adata = adata.concatenate(adataDS_DSP)
-
-        sc.pl.umap(adata, color=['sample', "group"], show=showPlots)
-        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_DS2U", show=showPlots)
-        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_H9", show=showPlots)
-        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_IMR", show=showPlots)
-        sc.pl.umap(adata, color='sample', na_color="white",groups="DS_2DS3", show=showPlots)
-        sc.pl.umap(adata, color='sample', na_color="white",groups="DS_DSP", show=showPlots)
-        sc.tl.pca(adata, svd_solver='arpack')
-        sc.pp.neighbors(adata, n_neighbors=10, n_pcs=40)
 
         for fig in range(figureNum+1,  plt.gcf().number+1):
             pdf.savefig(figure=fig, bbox_inches='tight')
@@ -314,14 +258,11 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
     dummyPlot = plt.plot([1, 2])
     figureNum = plt.gcf().number
 
+    # Ranking genes using T-Test (not used for differential expression, only for finding marker genes)
     sc.tl.rank_genes_groups(adata, 'leiden', method='t-test')
     sc.pl.rank_genes_groups(adata, n_genes=50, sharey=False, show=showPlots)
 
-    # sc.tl.rank_genes_groups(adata, 'leiden', method='wilcoxon')
-    # sc.pl.rank_genes_groups(adata, n_genes=25, sharey=False, show=showPlots)
-    # sc.tl.rank_genes_groups(adata, 'leiden', method='logreg')
-    # sc.pl.rank_genes_groups(adata, n_genes=25, sharey=False, show=showPlots)
-
+    # Get Top 50 genes from rank_gene_groups
     topGenesPerCluster = pd.DataFrame(adata.uns['rank_genes_groups']['names']).head(50)
     result = adata.uns['rank_genes_groups']
     groups = result['names'].dtype.names
@@ -331,6 +272,7 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
 
     print("Printing topGenesPerCluster")
     print(topGenesPerCluster)
+    # Creating variables to store the names
     newClusterNames = []
     newGroupClusters1 = []
     newGroupClusters2 = []
@@ -339,6 +281,7 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
     newGroupClusters2Score = []
     counter = 0
     for column in topGenesPerCluster:
+        # For each cluster compare gene expression to reference dataset using different scoring algorithms
         genesList = topScores[str(column)+"_n"].to_list()
         scoreList = topScores[str(column)+"_s"].to_list()
 
@@ -348,14 +291,15 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
         genesResult = classify.findCellTypeIndividualCellTypes(genesList, scoreList)
         groupResult = classify.findCellTypesGroup(genesResult, '% Genes')
         
+        # Algorithm 1
         genesResult = genesResult.sort_values(['% Genes'], ascending = [False])
         newClusterNames.append(genesResult['Cell Type'].iloc[0])
         print(genesResult)
-
+        # Algorithm 2
         groupResult = groupResult.sort_values(['Score'], ascending = [False])
         newGroupClusters1.append(groupResult['Cell Type'].iloc[0])
         print(groupResult)
-        
+        # Algorithm 3
         groupResult = groupResult.sort_values(['Sum'], ascending = [False])
         newGroupClusters2.append(groupResult['Cell Type'].iloc[0])
         print(groupResult)
@@ -371,26 +315,27 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
             dfObj.loc[counter] = groupResult["Score"].to_list()
 
         counter += 1
-        
+        # Algorithm 4
         genesResult = genesResult.sort_values(['Marker Score'], ascending = [False])
         newClusterNamesScore.append(genesResult['Cell Type'].iloc[0])
         print(genesResult)
-
+        # Algorithm 5 - Best Algorithm
         groupResult = groupResult.sort_values(['Score'], ascending = [False])
         newGroupClusters1Score.append(groupResult['Cell Type'].iloc[0])
         print(groupResult)
-        
+        # Algorithm 6
         groupResult = groupResult.sort_values(['Sum'], ascending = [False])
         newGroupClusters2Score.append(groupResult['Cell Type'].iloc[0])
         print(groupResult)
 
         
-    
+    # Generating Dotplot and UMAP
     sc.pl.dotplot(adata, geneNames, groupby='leiden', show=showPlots)
     plt.suptitle("Dot Plot for Marker Genes"+str(column), y=1, fontsize=25)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
     plt.suptitle("UMAP for Leiden"+str(column), y=1, fontsize=25)
 
+    # Renaming the list so there are no clusters with the same name
     newClusterNames = classify.renameList(newClusterNames)
     newGroupClusters1 = classify.renameList(newGroupClusters1)
     newGroupClusters2 = classify.renameList(newGroupClusters2)
@@ -398,6 +343,7 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
     newGroupClusters1Score = classify.renameList(newGroupClusters1Score)
     newGroupClusters2Score = classify.renameList(newGroupClusters2Score)
     
+    # Plotting UMAP for each scoring algorithm
     adata.rename_categories('leiden', newClusterNames)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
     plt.suptitle("UMAP by Total Genes Found", y=1, fontsize=25)
@@ -414,6 +360,7 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
     plt.suptitle("UMAP by Total Genes Found Marker Score", y=1, fontsize=20)
 
+    # Best reliable algorithm so far
     adata.rename_categories('leiden', newGroupClusters1Score)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
     plt.suptitle("UMAP by Group Score Marker Score TRUST", y=1, fontsize=20)
@@ -439,6 +386,7 @@ with PdfPages(outputDirectory+'Differential Expression '+arg+'.pdf') as pdf:
     dummyPlot = plt.plot([1, 2])
     figureNum = plt.gcf().number
 
+    # Differential Expression Using Scanpy's Very Basic Differential Expression Tools
     sc.tl.rank_genes_groups(adata, 'leiden', method='t-test')
     sc.pl.rank_genes_groups_heatmap(adata, groupby="leiden", n_genes=10, show=showPlots)
     sc.pl.rank_genes_groups_heatmap(adata, groupby="group", n_genes=10, show=showPlots)
@@ -457,6 +405,7 @@ with PdfPages(outputDirectory+'Frequency Analysis '+arg+'.pdf') as pdf:
     dummyPlot = plt.plot([1, 2])
     figureNum = plt.gcf().number
 
+    # Calculating the frequency of cells per cluster
     num_tot_cells = adata.obs.groupby(['group']).count()
     num_tot_cells = dict(zip(num_tot_cells.index, num_tot_cells.nFeature_RNA))
 
@@ -480,4 +429,5 @@ with PdfPages(outputDirectory+'Frequency Analysis '+arg+'.pdf') as pdf:
     for fig in range(figureNum+1,  plt.gcf().number+1):
         pdf.savefig(figure=fig, bbox_inches='tight')
 
+# Writing results to output file
 adata.write(results_file)

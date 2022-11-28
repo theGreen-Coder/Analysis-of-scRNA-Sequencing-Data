@@ -73,19 +73,20 @@ geneNames = geneMarkers["gene"].tolist()
 ####################################################################################################
 # Trajectory Analysis 
 ####################################################################################################
-sc.tl.umap(adata)
-sc.pl.umap(adata, color='leiden', legend_loc='on data')
+with PdfPages(outputDirectory+'Trajectory Plots.pdf') as pdf:
+    dummyPlot = plt.plot([1, 2])
+    figureNum = plt.gcf().number
 
-sc.tl.dpt(adata)
-sc.pl.umap(adata, color='leiden', legend_loc='on data')
-sc.pl.umap(adata, color='dpt_pseudotime')
+    sc.tl.umap(adata)
+    sc.pl.umap(adata, color='leiden', legend_loc='on data', show=False)
 
+    sc.tl.paga(adata, groups='leiden')
+    sc.pl.paga(adata, threshold=0.3, show=False)
 
-sc.tl.paga(adata, groups='leiden')
-sc.pl.paga(adata, threshold=0.03, show=True)
+    adata.uns['iroot'] = np.flatnonzero(adata.obs['leiden']  == 'RG')[0]
+    sc.tl.dpt(adata)
 
-sc.tl.umap(adata, init_pos='paga')
-sc.pl.umap(adata, color="leiden", legend_loc='on data')
+    sc.pl.umap(adata, color=['dpt_pseudotime'], show=False)
 
-
-
+    for fig in range(figureNum+1,  plt.gcf().number+1):
+        pdf.savefig(figure=fig, bbox_inches='tight')

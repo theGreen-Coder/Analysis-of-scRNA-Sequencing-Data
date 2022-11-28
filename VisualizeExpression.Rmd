@@ -1,39 +1,102 @@
 ---
-title: "Visualize Expression"
+title: "DESeq2 DiffExp"
 output: html_notebook
 ---
 
 ```{r}
-DataCounts = read.delim("./output/rawCountsDESeqPerCluster.csv", header = TRUE, row.names = 1, sep = ",")
-DataCounts
-```
-```{r}
-DataCounts = read.delim("./output/rawCountsDESeqPerClusterNormalized.csv", header = TRUE, row.names = 1, sep = ",")
-DataCounts <- DataCounts[which(rowSums(DataCounts) > 50),]
-DataCounts
+# if (!require("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# 
+# BiocManager::install("DESeq2", force = TRUE)
 ```
 
 ```{r}
-DataNorm<-data.frame() 
-DataNorm<- as.data.frame(t(apply(DataCounts,1, function(x) (x-mean(x))/mean(x))))
-DataNormMatrix <- data.matrix(DataNorm)
-DataNorm
+library(DESeq2)
+library(ggplot2)
+library(RColorBrewer)
+library(circlize)
+library(ComplexHeatmap)
+```
+
+```{bash}
+ls
+```
+
+```{r}
+Counts = read.delim("./output/rawCountsDESeqPerClusterNew.csv", header = TRUE, row.names = 1, sep = ",")
+```
+
+```{r}
+Counts
 ```
 ```{r}
-min(DataNorm)
+newOrder = sort(colnames(Counts))
+Counts <- Counts[, newOrder]
+Counts
+```
+
+
+```{r}
+Counts <- Counts[which(rowSums(Counts) > 50),]
+Counts = Counts+1
+Counts
 ```
 
 ```{r}
+# condition <- factor(c("C", "C", "C", "D", "D"))
 
+condition = c()
+for (value in colnames(Counts)) {
+    firstValues = as.vector(strsplit(value, '[.]'))
+    clusterStrings = firstValues[[1]][2]
+    condition <- append(condition, substr(clusterStrings,1,1))
+}
+
+condition = factor(condition)
+condition
 ```
 
+```{r}
+# condition <- factor(c("C", "C", "C", "D", "D"))
+
+n_last <- 1  
+clusters = c()
+
+for (value in colnames(Counts)) {
+    clusterList = as.vector(strsplit(value, '[.]'))
+    clusterString = clusterList[[1]][1]
+    firstChr = substr(clusterString, 1, 1)
+    lastChr = substr(clusterString, nchar(clusterString) - n_last + 1, nchar(clusterString))
+    clusterID = paste(firstChr, lastChr, sep="")
+    clusters <- append(clusters, clusterID)
+}
+
+clusters = factor(clusters)
+clusters
+```
+
+```{r}
+coldata <- data.frame(row.names = colnames(Counts), condition, clusters)
+coldata
+```
+
+```{r}
+dds = DESeqDataSetFromMatrix(countData = Counts, colData = coldata, design = ~condition)
+dds = DESeq(dds)
+```
+
+
+```{r}
+ntd = normTransform(dds)
+m1 = assay(ntd)
+m2 = m1 - apply(m1, 1, mean)
+m2
+```
 
 ```{r}
 library(pheatmap)
 library(viridis)
-
-rg <- max(abs(DataNormMatrix));
-nExp1 = pheatmap::pheatmap(DataNormMatrix, cluster_cols = TRUE, breaks = seq(-1, 5, length.out = 10) ) # , color = viridis_pal(option = "viridis")(250)
+plotNorm = pheatmap::pheatmap(m2, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
 
 save_pheatmap_pdf <- function(x, filename, width=15, height=7) {
    stopifnot(!missing(x))
@@ -43,8 +106,71 @@ save_pheatmap_pdf <- function(x, filename, width=15, height=7) {
    grid::grid.draw(x$gtable)
    dev.off()
 }
-save_pheatmap_pdf(nExp1, "./outputPDFs/DiffExpOut/ExpressionPheatmap.pdf")
+save_pheatmap_pdf(plotNorm, "./outputPDFs/DiffExpOut/FullDatasetPheatmapClusterColOFF.pdf")
 ```
+
+```{r}
+write.csv(m2, "./outputPDFs/DiffExpOut/normTransformed.csv")
+```
+
+```{r}
+normGroupControl <- read.csv("./output/NormAvgCountsCONTROL.csv")
+rownames(normGroupControl) <- normGroupControl$X
+normGroupControl <- normGroupControl[,-1]
+normGroupControlMatrix <- data.matrix(normGroupControl)
+
+pl1 = pheatmap::pheatmap(normGroupControlMatrix, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
+
+save_pheatmap_pdf <- function(x, filename, width=10, height=7) {
+   stopifnot(!missing(x))
+   stopifnot(!missing(filename))
+   pdf(filename, width=width, height=height)
+   grid::grid.newpage()
+   grid::grid.draw(x$gtable)
+   dev.off()
+}
+save_pheatmap_pdf(pl1, "./outputPDFs/DiffExpOut/normGroupedControlPheatmap.pdf")
+```
+
+```{r}
+matGroupDown <- read.csv("./output/NormAvgCountsDOWN.csv")
+rownames(matGroupDown) <- matGroupDown$X
+matGroupDown <- matGroupDown[,-1]
+matGroupDownMatrix <- data.matrix(matGroupDown)
+
+pl1 = pheatmap::pheatmap(matGroupDownMatrix, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
+
+save_pheatmap_pdf <- function(x, filename, width=10, height=7) {
+   stopifnot(!missing(x))
+   stopifnot(!missing(filename))
+   pdf(filename, width=width, height=height)
+   grid::grid.newpage()
+   grid::grid.draw(x$gtable)
+   dev.off()
+}
+save_pheatmap_pdf(pl1, "./outputPDFs/DiffExpOut/normGroupedDownPheatmap.pdf")
+```
+
+```{r}
+normGroupVS <- read.csv("./output/NormDiffCountsCONvsDS.csv")
+rownames(normGroupVS) <- normGroupVS$X
+normGroupVS <- normGroupVS[,-1]
+normGroupVSMatrix <- data.matrix(normGroupVS)
+
+pl2 = pheatmap::pheatmap(normGroupVSMatrix, cluster_cols = FALSE, color=colorRampPalette(c("yellow", "black", "magenta"))(50), treeheight_row = 0, annotation_names_row = FALSE)
+
+save_pheatmap_pdf <- function(x, filename, width=10, height=7) {
+   stopifnot(!missing(x))
+   stopifnot(!missing(filename))
+   pdf(filename, width=width, height=height)
+   grid::grid.newpage()
+   grid::grid.draw(x$gtable)
+   dev.off()
+}
+save_pheatmap_pdf(pl2, "./outputPDFs/DiffExpOut/normVSPheatmap.pdf")
+```
+
+
 
 
 

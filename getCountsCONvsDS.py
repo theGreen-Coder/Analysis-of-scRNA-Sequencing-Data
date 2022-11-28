@@ -1,16 +1,18 @@
 import pandas as pd
 import scanpy as sc
 
-data = pd.read_csv("./outputPDFs/DiffExpOut/matScaledFullDataset.csv")
+data = pd.read_csv("./outputPDFs/DiffExpOut/normTransformed.csv")
 data = data.set_index(["Unnamed: 0"])
+
+print(data)
 
 controlData = pd.DataFrame(index=data.index)
 downData = pd.DataFrame(index=data.index)
 
 for column in data:
-    if(column.startswith("CON")):
+    if("CON" in column):
         controlData[column] = data[column]
-    elif(column.startswith("DS")):
+    elif("DS" in column):
         downData[column] = data[column]
 
 print(controlData)
@@ -30,7 +32,7 @@ for column in controlData:
     elif count == 3:
         sampleDF[column] = controlData[column]
         sampleDF['avg'] = sampleDF.mean(axis=1)
-        colName = column.split(".")[1]
+        colName = column.split(".")[0]
         controlAvgData[colName] = sampleDF['avg']
 
         sampleDF = sampleDF.iloc[0:0]
@@ -46,17 +48,17 @@ for column in downData:
     elif count == 2:
         sampleDF[column] = downData[column]
         sampleDF['avg'] = sampleDF.mean(axis=1)
-        colName = column.split(".")[1]
+        colName = column.split(".")[0]
         downAvgData[colName] = sampleDF['avg']
 
         sampleDF = sampleDF.iloc[0:0]
         count=0
 
-# print(controlAvgData) 
-# print(downAvgData)
+print(controlAvgData) 
+print(downAvgData)
 
-controlAvgData.to_csv("./output/AvgCountsCONTROL.csv")
-downAvgData.to_csv("./output/AvgCountsDOWN.csv")
+controlAvgData.to_csv("./output/NormAvgCountsCONTROL.csv")
+downAvgData.to_csv("./output/NormAvgCountsDOWN.csv")
 
 diffAvgData = controlAvgData
 
@@ -74,4 +76,4 @@ for rowIndex, row in controlAvgData.iterrows(): #iterate over rows
             print("WTF just happened?!")
 
 print(diffAvgData)
-diffAvgData.to_csv("./output/DiffCountsCONvsDS.csv")
+diffAvgData.to_csv("./output/NormDiffCountsCONvsDS.csv")

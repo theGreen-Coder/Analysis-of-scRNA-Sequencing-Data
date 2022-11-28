@@ -4,7 +4,7 @@ import pandas as pd
 from matplotlib.pyplot import rc_context
 from goatools.cli.ncbi_gene_results_to_python import ncbi_tsv_to_py
 
-from genes_ncbi_9606_proteincoding import GENEID2NT as GeneID2nt_mus
+from modules.GO.genes_ncbi_9606_proteincoding import GENEID2NT as GeneID2nt_mus
 from goatools.base import download_go_basic_obo
 from goatools.base import download_ncbi_associations
 from goatools.obo_parser import GODag
@@ -24,7 +24,7 @@ def geneOntologyAnalysis(listOfGenes):
     # run one time to initialize
     # obo_fname = download_go_basic_obo()
     fin_gene2go = download_ncbi_associations()
-    obodag = GODag("go-basic.obo")
+    obodag = GODag("./modules/GO/go-basic.obo")
 
     #run one time to initialize
     mapper = {}
