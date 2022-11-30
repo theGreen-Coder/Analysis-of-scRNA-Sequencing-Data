@@ -8,9 +8,11 @@ import seaborn as sns
 import textwrap
 from matplotlib.backends.backend_pdf import PdfPages
 
+inputDirectory = "./outputPDFs/DiffExpOut/Significant Genes/"
+
 # For Loop
 
-fileNamesDirectory = os.listdir("./outputPDFs/DiffExpOut/")
+fileNamesDirectory = os.listdir(inputDirectory)
 fileNames = []
 
 for element in fileNamesDirectory:
@@ -22,7 +24,7 @@ print(fileNames)
 
 for fileName in fileNames:
     fileName = fileName.split(".")[0]
-    DESeq2Results = pd.read_csv("./outputPDFs/DiffExpOut/"+fileName+".csv")
+    DESeq2Results = pd.read_csv(inputDirectory+fileName+".csv")
     DESeq2Results = DESeq2Results.sort_values(['log2FoldChange'], ascending = [False])
 
     positiveGenes = DESeq2Results[DESeq2Results['log2FoldChange'] > 0]
