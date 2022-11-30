@@ -4,7 +4,6 @@ import pandas as pd
 import scanpy as sc
 import numpy as np
 import sys
-import tests.loadScanpy as loadScanpy
 import modules.classifyClusters.classifyClusters as classify
 import os
 from matplotlib import pyplot as plt
@@ -18,8 +17,9 @@ np.set_printoptions(threshold=sys.maxsize)
 pd.options.display.max_columns = sys.maxsize
 sc.settings.verbosity = 3  # verbosity: errors (0), warnings (1), info (2), hints (3)
 
-inputData = "./output/savedData.h5ad" # ./dataSaveOriginal/rawDataset5000.h5ad
+inputData = "./dataSaveOriginal/rawDataset.h5ad" # ./dataSaveOriginal/rawDataset5000.h5ad
 results_file = './output/savedData.h5ad'
+results_file_group = './output/savedDataGrouped.h5ad'
 outputDirectory = "./outputPDFs/"
 
 # Arguments Settings
@@ -52,10 +52,7 @@ class bcolors:
 # Import Data 
 ####################################################################################################
 print(bcolors.FAIL + "Importing Data..." + bcolors.ENDC)
-if "-loadGenomics" in sysArgs:
-    adata = loadScanpy.readData()
-else:
-    adata = sc.read("./dataSaveOriginal/rawDataset.h5ad")
+adata = sc.read("./dataSaveOriginal/rawDataset.h5ad")
 adata.var_names_make_unique()
 adata.X = adata.X.astype('float64')
 
@@ -96,15 +93,15 @@ adata.var['ribo'] = adata.var_names.isin(riboGenes[0].values)
 # Calculate QC Metrics
 sc.pp.calculate_qc_metrics(adata, qc_vars=['mt', "ribo"], percent_top=None, log1p=False, inplace=True)
 
-# # Get Top 50 Genes
-# percentageList = []
-# print("Calculating Percentatge of Top 50 Genes")
-# for row in adata.X:
-#     firstRow = np.sort(row.toarray()[0])
-#     sum50 = firstRow[-50:]
-#     percentatge = (sum(sum50)/sum(firstRow))*100
-#     percentageList.append(percentatge)
-# adata.obs["percentageTop50"] = percentageList
+# Get Top 50 Genes
+percentageList = []
+print("Calculating Percentatge of Top 50 Genes")
+for row in adata.X:
+    firstRow = np.sort(row.toarray()[0])
+    sum50 = firstRow[-50:]
+    percentatge = (sum(sum50)/sum(firstRow))*100
+    percentageList.append(percentatge)
+adata.obs["percentageTop50"] = percentageList
 
 print(adata.obs)
 print(adata.var)
@@ -124,33 +121,33 @@ else:
 ####################################################################################################
 # QC Plots 
 ####################################################################################################
-# print(bcolors.FAIL + "Saving Quality Control Plots..." + bcolors.ENDC)
-# with PdfPages(outputDirectory+'Quality Control Plots '+arg+'.pdf') as pdf:
-#     # I have too include this dummy plot everytime I want to export something into PDF. 
-#     dummyPlot = plt.plot([1, 2])
-#     figureNum = plt.gcf().number
+print(bcolors.FAIL + "Saving Quality Control Plots..." + bcolors.ENDC)
+with PdfPages(outputDirectory+'Quality Control Plots '+arg+'.pdf') as pdf:
+    # I have too include this dummy plot everytime I want to export something into PDF. 
+    dummyPlot = plt.plot([1, 2])
+    figureNum = plt.gcf().number
 
-#     violinPlots = sc.pl.violin(adata,['nCount_RNA', 'nFeature_RNA', 'pct_counts_mt', "percentageTop50"], groupby="sample", jitter=0.4, multi_panel=True, show=showPlots)
-#     plt.suptitle("Violin Plots QC Metrics", y=1, fontsize=25)
-#     sc.pl.violin(adata, ['n_genes_by_counts', 'total_counts', 'pct_counts_mt', 'pct_counts_ribo'], jitter=0.4, multi_panel=True, show=showPlots)
-#     plt.suptitle("Violin Plots QC Metrics", y=1, fontsize=25)
-#     scatterPlots = sc.pl.scatter(adata, x='pct_counts_mt', y='percentageTop50', show=showPlots)
-#     plt.suptitle("% MT vs % Top 50 Genes", y=1, fontsize=25)
-#     scatterPlots = sc.pl.scatter(adata, x='total_counts', y='n_genes_by_counts', show=showPlots)
-#     plt.suptitle("Total Counts vs Nº of Genes by Count", y=1, fontsize=25)
+    violinPlots = sc.pl.violin(adata,['nCount_RNA', 'nFeature_RNA', 'pct_counts_mt', "percentageTop50"], groupby="sample", jitter=0.4, multi_panel=True, show=showPlots)
+    plt.suptitle("Violin Plots QC Metrics", y=1, fontsize=25)
+    sc.pl.violin(adata, ['n_genes_by_counts', 'total_counts', 'pct_counts_mt', 'pct_counts_ribo'], jitter=0.4, multi_panel=True, show=showPlots)
+    plt.suptitle("Violin Plots QC Metrics", y=1, fontsize=25)
+    scatterPlots = sc.pl.scatter(adata, x='pct_counts_mt', y='percentageTop50', show=showPlots)
+    plt.suptitle("% MT vs % Top 50 Genes", y=1, fontsize=25)
+    scatterPlots = sc.pl.scatter(adata, x='total_counts', y='n_genes_by_counts', show=showPlots)
+    plt.suptitle("Total Counts vs Nº of Genes by Count", y=1, fontsize=25)
 
-#     for fig in range(figureNum+1,  plt.gcf().number+1):
-#         pdf.savefig(figure=fig, bbox_inches='tight')
+    for fig in range(figureNum+1,  plt.gcf().number+1):
+        pdf.savefig(figure=fig, bbox_inches='tight')
 
 ####################################################################################################
 # Clustering 
 ####################################################################################################
 print(bcolors.FAIL + "Performing Clustering..." + bcolors.ENDC)
 sc.pp.normalize_total(adata, target_sum=10000)
-print("Log Data")
 sc.pp.log1p(adata)
-
 sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5)
+
+adata.raw = adata
 adata = adata[:, adata.var.highly_variable]
 
 sc.pp.regress_out(adata, ['total_counts', 'pct_counts_mt'])
@@ -330,8 +327,6 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
 
         
     # Generating Dotplot and UMAP
-    sc.pl.dotplot(adata, geneNames, groupby='leiden', show=showPlots)
-    plt.suptitle("Dot Plot for Marker Genes"+str(column), y=1, fontsize=25)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
     plt.suptitle("UMAP for Leiden"+str(column), y=1, fontsize=25)
 
@@ -342,7 +337,7 @@ with PdfPages(outputDirectory+'Marker Genes '+arg+'.pdf') as pdf:
     newClusterNamesScore = classify.renameList(newClusterNamesScore)
     newGroupClusters1Score = classify.renameList(newGroupClusters1Score)
     newGroupClusters2Score = classify.renameList(newGroupClusters2Score)
-    
+
     # Plotting UMAP for each scoring algorithm
     adata.rename_categories('leiden', newClusterNames)
     sc.pl.umap(adata, color='leiden', show=showPlots, legend_loc='on data')
@@ -421,7 +416,48 @@ with PdfPages(outputDirectory+'Frequency Analysis '+arg+'.pdf') as pdf:
     
     plt.figure(figsize = (10,4))
 
-    ax = sns.boxplot(data = cell_type_counts, x = 'leiden', y = 'nCount_RNA', hue = 'group')
+    ax = sns.boxplot(data = cell_type_counts, x = 'leiden', y = 'frequency', hue = 'group')
+
+    plt.xticks(rotation = 35, rotation_mode = 'anchor', ha = 'right')
+
+
+    # Writing results to output file
+    adata.write(results_file)
+
+    ####################################################################################################
+    # Grouped Frequency Analysis 
+    ####################################################################################################
+    leidenNames = list(adata.obs["leiden"])
+    leidenNewNames = []
+
+    for name in leidenNames:
+        if "_" in name:
+            newName = name.split("_")[0]
+            leidenNewNames.append(newName)
+        else:
+            leidenNewNames.append(name)
+    adata.obs["leiden"] = leidenNewNames
+
+    ####################################################################################################
+    # Grouped Frequency Analysis 
+    ####################################################################################################
+    num_tot_cells = adata.obs.groupby(['group']).count()
+    num_tot_cells = dict(zip(num_tot_cells.index, num_tot_cells.nFeature_RNA))
+
+    cell_type_counts = adata.obs.groupby(['group', 'sample','leiden']).count()
+    cell_type_counts = cell_type_counts[cell_type_counts.sum(axis = 1) > 0].reset_index()
+    cell_type_counts = cell_type_counts[cell_type_counts.columns[0:6]]
+
+    cell_type_counts['total_cells'] = cell_type_counts.group.map(num_tot_cells).astype(int)
+
+    cell_type_counts['frequency'] = cell_type_counts.nFeature_RNA / cell_type_counts.total_cells
+
+    cell_type_counts = cell_type_counts.sort_values(by=['leiden'])
+    
+    plt.figure(figsize = (10,4))
+
+    print(cell_type_counts)
+    ax = sns.boxplot(data = cell_type_counts, x = 'leiden', y = 'frequency', hue = 'group')
 
     plt.xticks(rotation = 35, rotation_mode = 'anchor', ha = 'right')
 
@@ -429,5 +465,5 @@ with PdfPages(outputDirectory+'Frequency Analysis '+arg+'.pdf') as pdf:
     for fig in range(figureNum+1,  plt.gcf().number+1):
         pdf.savefig(figure=fig, bbox_inches='tight')
 
-# Writing results to output file
-adata.write(results_file)
+# Writing Grouped results to output file
+adata.write(results_file_group)

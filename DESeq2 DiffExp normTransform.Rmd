@@ -1,6 +1,7 @@
 ---
 title: "DESeq2 DiffExp"
-output: html_notebook
+output:
+html_notebook: default
 ---
 
 ```{r}
@@ -16,6 +17,7 @@ library(ggplot2)
 library(RColorBrewer)
 library(circlize)
 library(ComplexHeatmap)
+options(scipen = 100)
 ```
 
 ```{bash}

@@ -1,6 +1,7 @@
 ---
 title: "DESeq2 DiffExp"
-output: html_notebook
+output:
+html_notebook: default
 ---
 
 ```{r}
@@ -16,6 +17,7 @@ library(ggplot2)
 library(RColorBrewer)
 library(circlize)
 library(ComplexHeatmap)
+options(scipen = 100)
 ```
 
 ```{bash}
@@ -110,7 +112,7 @@ while(nrow(fullColData) >= 5){
   
   rlog_out <- vst(dds, blind=FALSE) #get normalized count data from dds object
   mat<-assay(rlog_out)[rownames(df.top), rownames(coldata)] #sig genes x samples
-  if(nrow(mat) > 0){
+  if(isTRUE(mat) && nrow(mat) > 0){
     colnames(mat) <- rownames(coldata)
     base_mean <- rowMeans(mat)
     mat.scaled <- t(apply(mat, 1, scale)) #center and scale each column (Z-score) then transpose

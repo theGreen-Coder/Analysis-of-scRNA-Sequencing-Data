@@ -1,6 +1,7 @@
 ---
 title: "DESeq2 DiffExp"
-output: html_notebook
+output:
+html_notebook: default
 ---
 
 ```{r}
@@ -10,16 +11,14 @@ output: html_notebook
 # BiocManager::install("DESeq2", force = TRUE)
 ```
 
+
 ```{r}
 library(DESeq2)
 library(ggplot2)
 library(RColorBrewer)
 library(circlize)
 library(ComplexHeatmap)
-```
-
-```{bash}
-ls
+options(scipen = 100)
 ```
 
 ```{r}
@@ -90,98 +89,202 @@ dds = DESeq(dds)
 ntd = normTransform(dds)
 m1 = assay(ntd)
 m2 = m1 - apply(m1, 1, mean)
-m2
 ```
 
-```{r}
-library(pheatmap)
-library(viridis)
-plotNorm = pheatmap::pheatmap(m2, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
 
-save_pheatmap_pdf <- function(x, filename, width=15, height=7) {
-   stopifnot(!missing(x))
-   stopifnot(!missing(filename))
-   pdf(filename, width=width, height=height)
-   grid::grid.newpage()
-   grid::grid.draw(x$gtable)
-   dev.off()
+```{r}
+m2DataFrame <- as.data.frame(m2)
+options(scipen = 100)
+m2DataFrameCON <- data.frame(row.names = rownames(m2DataFrame))
+m2DataFrameDS <- data.frame(row.names = rownames(m2DataFrame))
+for (i in colnames(m2DataFrame)){
+  columnName = colnames(m2DataFrame[i])
+  splitDot = as.vector(strsplit(columnName, '[.]'))[[1]][2]
+  if(substr(splitDot,1,1) == "C"){
+    m2DataFrameCON[columnName] = m2DataFrame[i]
+  }
+  else if (substr(splitDot,1,1) == "D"){
+    m2DataFrameDS[columnName] = m2DataFrame[i]
+  }
 }
-save_pheatmap_pdf(plotNorm, "./outputPDFs/DiffExpOut/FullDatasetPheatmapClusterColOFF.pdf")
-```
+print("New Operation")
+m2DataFrame
 
-```{r}
-write.csv(m2, "./outputPDFs/DiffExpOut/normTransformed.csv")
-```
+m2DataFrameCON
+m2DataFrameDS
+BY <- 3
+m2AvgDataFrameCON = as.data.frame(sapply(1:(ncol(m2DataFrameCON)/BY), function(x) rowMeans(m2DataFrameCON[, ((x * BY) - BY + 1):(x * BY)])))
+BY <- 2
+m2AvgDataFrameDS = as.data.frame(sapply(1:(ncol(m2DataFrameDS)/BY), function(x) rowMeans(m2DataFrameDS[, ((x * BY) - BY + 1):(x * BY)])))
+m2AvgDataDSvsCON = m2AvgDataFrameDS - m2AvgDataFrameCON
 
-```{r}
-normGroupControl <- read.csv("./output/NormAvgCountsCONTROL.csv")
-rownames(normGroupControl) <- normGroupControl$X
-normGroupControl <- normGroupControl[,-1]
-normGroupControlMatrix <- data.matrix(normGroupControl)
-
-pl1 = pheatmap::pheatmap(normGroupControlMatrix, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
-
-save_pheatmap_pdf <- function(x, filename, width=10, height=7) {
-   stopifnot(!missing(x))
-   stopifnot(!missing(filename))
-   pdf(filename, width=width, height=height)
-   grid::grid.newpage()
-   grid::grid.draw(x$gtable)
-   dev.off()
+columnNamesAll = c()
+for (i in colnames(m2DataFrameDS)){
+  splitDot = as.vector(strsplit(i, '[.]'))[[1]][1]
+  if(!(splitDot %in% columnNamesAll)){
+    columnNamesAll = append(columnNamesAll, splitDot)
+  }
 }
-save_pheatmap_pdf(pl1, "./outputPDFs/DiffExpOut/normGroupedControlPheatmap.pdf")
+print(columnNamesAll)
+colnames(m2AvgDataFrameCON) <- columnNamesAll
+colnames(m2AvgDataFrameDS) <- columnNamesAll
+colnames(m2AvgDataDSvsCON) <- columnNamesAll
+m2AvgDataFrameCON
+m2AvgDataFrameDS
+m2AvgDataDSvsCON
 ```
 
 ```{r}
-matGroupDown <- read.csv("./output/NormAvgCountsDOWN.csv")
-rownames(matGroupDown) <- matGroupDown$X
-matGroupDown <- matGroupDown[,-1]
-matGroupDownMatrix <- data.matrix(matGroupDown)
-
-pl1 = pheatmap::pheatmap(matGroupDownMatrix, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE)
-
-save_pheatmap_pdf <- function(x, filename, width=10, height=7) {
-   stopifnot(!missing(x))
-   stopifnot(!missing(filename))
-   pdf(filename, width=width, height=height)
-   grid::grid.newpage()
-   grid::grid.draw(x$gtable)
-   dev.off()
+plot_heatmap = function(mat, genes = rownames(mat), 
+                        cluster_cols = FALSE, 
+                        cluster_rows = FALSE, 
+                        color = viridis_pal(option = "viridis")(250), 
+                        treeheight_row = 0, 
+                        annotation_names_row = FALSE, 
+                        breaks = seq(-5, 5, length.out = 250),
+                        filename = "specifyFilename.pdf", 
+                        width=15, 
+                        height=7
+                        ){
+  
+  m2 = mat[match(genes, rownames(mat), nomatch = 0),]
+  
+  pl1 = pheatmap(m2, show_rownames=TRUE, 
+                 cluster_cols = cluster_cols, 
+                 cluster_rows = cluster_rows, 
+                 color = color, 
+                 treeheight_row = treeheight_row, 
+                 annotation_names_row = annotation_names_row, 
+                 breaks = breaks
+  )
+  
+  stopifnot(!missing(pl1))
+  stopifnot(!missing(filename))
+  pdf(filename, width=width, height=height)
+  grid::grid.newpage()
+  grid::grid.draw(pl1$gtable)
+  dev.off()
+  
+  return(pl1)
+  
 }
-save_pheatmap_pdf(pl1, "./outputPDFs/DiffExpOut/normGroupedDownPheatmap.pdf")
 ```
 
 ```{r}
-normGroupVS <- read.csv("./output/NormDiffCountsCONvsDS.csv")
-rownames(normGroupVS) <- normGroupVS$X
-normGroupVS <- normGroupVS[,-1]
-normGroupVSMatrix <- data.matrix(normGroupVS)
+allHeatMap = plot_heatmap(m2, cluster_rows = TRUE, filename = "./outputPDFs/DiffExpOut/allDatasetPheatmap.pdf")
+pl_genes_clust =allHeatMap$tree_row$labels[allHeatMap$tree_row$order]
+```
 
-pl2 = pheatmap::pheatmap(normGroupVSMatrix, cluster_cols = FALSE, color=colorRampPalette(c("yellow", "black", "magenta"))(50), treeheight_row = 0, annotation_names_row = FALSE)
 
-save_pheatmap_pdf <- function(x, filename, width=10, height=7) {
-   stopifnot(!missing(x))
-   stopifnot(!missing(filename))
-   pdf(filename, width=width, height=height)
-   grid::grid.newpage()
-   grid::grid.draw(x$gtable)
-   dev.off()
-}
-save_pheatmap_pdf(pl2, "./outputPDFs/DiffExpOut/normVSPheatmap.pdf")
+```{r}
+CONHeatMap = plot_heatmap(m2, genes = c("CHCHD2", "RPS4Y1"), cluster_rows = FALSE, 
+                          filename = "./outputPDFs/DiffExpOut/TEST.pdf", 
+                          width=5,
+                          height=7
+                          )
+```
+
+
+```{r}
+normGroupControlMatrix <- data.matrix(m2AvgDataFrameCON)
+CONHeatMap = plot_heatmap(normGroupControlMatrix, genes = pl_genes_clust, cluster_rows = FALSE, 
+                          filename = "./outputPDFs/DiffExpOut/PheatmapCONTROL.pdf", 
+                          width=5,
+                          height=7
+                          )
+```
+
+```{r}
+normGroupDownlMatrix <- data.matrix(m2AvgDataFrameDS)
+DOWNHeatMap = plot_heatmap(normGroupDownlMatrix, genes = pl_genes_clust, cluster_rows = FALSE, 
+                           filename = "./outputPDFs/DiffExpOut/PheatmapDOWN.pdf", 
+                           width=5,
+                           height=7
+                           )
+```
+
+```{r}
+normGroupVS <- data.matrix(m2AvgDataDSvsCON)
+VSHeatMap = plot_heatmap(normGroupVS, genes = pl_genes_clust, cluster_rows = FALSE, 
+                          filename = "./outputPDFs/DiffExpOut/PheatmapVS.pdf", 
+                          color=colorRampPalette(c("yellow", "black", "magenta"))(50),
+                          breaks = seq(-2, 2, length.out = 50),
+                          width=5,
+                          height=7
+                          )
 ```
 
 
 
+```{r}
+# library(pheatmap)
+# library(viridis)
+# plotNorm = pheatmap::pheatmap(m2, cluster_cols = FALSE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE, breaks = seq(-5, 5, length.out = 250))
+# 
+# save_pheatmap_pdf <- function(x, filename, width=15, height=7) {
+#    stopifnot(!missing(x))
+#    stopifnot(!missing(filename))
+#    pdf(filename, width=width, height=height)
+#    grid::grid.newpage()
+#    grid::grid.draw(x$gtable)
+#    dev.off()
+# }
+# save_pheatmap_pdf(plotNorm, "./outputPDFs/DiffExpOut/FullDatasetPheatmapClusterColOFF.pdf")
+```
 
+```{r}
+# normGroupControl <- read.csv("./output/NormAvgCountsCONTROL.csv")
+# rownames(normGroupControl) <- normGroupControl$X
+# normGroupControl <- normGroupControl[,-1]
+# normGroupControlMatrix <- data.matrix(m2AvgDataFrameCON)
+# 
+# pl1 = pheatmap::pheatmap(normGroupControlMatrix, cluster_cols = FALSE, cluster_rows = TRUE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE, breaks = seq(-5, 5, length.out = 250))
+# 
+# save_pheatmap_pdf <- function(x, filename, width=5, height=7) {
+#    stopifnot(!missing(x))
+#    stopifnot(!missing(filename))
+#    pdf(filename, width=width, height=height)
+#    grid::grid.newpage()
+#    grid::grid.draw(x$gtable)
+#    dev.off()
+# }
+# save_pheatmap_pdf(pl1, "./outputPDFs/DiffExpOut/normGroupedControlPheatmap.pdf")
+```
 
+```{r}
+# matGroupDown <- read.csv("./output/NormAvgCountsDOWN.csv")
+# rownames(matGroupDown) <- matGroupDown$X
+# matGroupDown <- matGroupDown[,-1]
+# matGroupDownMatrix <- data.matrix(m2AvgDataFrameDS)
+# 
+# pl1 = pheatmap::pheatmap(matGroupDownMatrix, cluster_cols = FALSE, cluster_rows = TRUE, color = viridis_pal(option = "viridis")(250), treeheight_row = 0, annotation_names_row = FALSE, breaks = seq(-5, 5, length.out = 250))
+# 
+# save_pheatmap_pdf <- function(x, filename, width=5, height=7) {
+#    stopifnot(!missing(x))
+#    stopifnot(!missing(filename))
+#    pdf(filename, width=width, height=height)
+#    grid::grid.newpage()
+#    grid::grid.draw(x$gtable)
+#    dev.off()
+# }
+# save_pheatmap_pdf(pl1, "./outputPDFs/DiffExpOut/normGroupedDownPheatmap.pdf")
+```
 
-
-
-
-
-
-
-
-
-
-
+```{r}
+# normGroupVS <- read.csv("./output/NormDiffCountsCONvsDS.csv")
+# rownames(normGroupVS) <- normGroupVS$X
+# normGroupVS <- normGroupVS[,-1]
+# normGroupVSMatrix <- data.matrix(m2AvgDataDSvsCON)
+# 
+# pl2 = pheatmap::pheatmap(normGroupVSMatrix, cluster_cols = FALSE, cluster_rows = TRUE, color=colorRampPalette(c("yellow", "black", "magenta"))(50), treeheight_row = 0, annotation_names_row = FALSE, breaks = seq(-2, 2, length.out = 50))
+# 
+# save_pheatmap_pdf <- function(x, filename, width=5, height=7) {
+#    stopifnot(!missing(x))
+#    stopifnot(!missing(filename))
+#    pdf(filename, width=width, height=height)
+#    grid::grid.newpage()
+#    grid::grid.draw(x$gtable)
+#    dev.off()
+# }
+# save_pheatmap_pdf(pl2, "./outputPDFs/DiffExpOut/normVSPheatmap.pdf")
+```
