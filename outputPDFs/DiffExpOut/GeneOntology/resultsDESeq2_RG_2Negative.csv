@@ -1,0 +1,36 @@
+,GO,term,class,p,p_corr,n_genes,n_study,n_go,study_genes,per
+0,GO:0034605,cellular response to heat,biological_process,2.2008608711169162e-12,2.7512961749832572e-08,5,8,49,"['HSPA1A', 'HSPA1B', 'DNAJB1', 'HSPA6', 'BAG3']",0.10204081632653061
+1,GO:0042026,protein refolding,biological_process,9.87564223671408e-11,5.787955794806915e-07,4,8,25,"['HSPA1B', 'CRYAB', 'HSPA6', 'HSPA1A']",0.16
+2,GO:0034620,cellular response to unfolded protein,biological_process,1.3889982708919883e-10,5.787955794806915e-07,4,8,27,"['HSPA1B', 'BAG3', 'HSPA6', 'HSPA1A']",0.14814814814814814
+3,GO:0051085,chaperone cofactor-dependent protein refolding,biological_process,2.9211284016805986e-10,9.129256537352291e-07,4,8,32,"['HSPA1B', 'DNAJB1', 'HSPA6', 'HSPA1A']",0.125
+4,GO:0090084,negative regulation of inclusion body assembly,biological_process,4.603757619405134e-09,1.1510314800036717e-05,3,8,10,"['HSPA1B', 'DNAJB1', 'HSPA1A']",0.3
+5,GO:0050821,protein stabilization,biological_process,6.841924215443074e-07,0.0014255149102875644,4,8,214,"['HSPA1B', 'CRYAB', 'BAG3', 'HSPA1A']",0.018691588785046728
+6,GO:0006986,response to unfolded protein,biological_process,8.917175389918891e-07,0.001592480136419658,3,8,53,"['DNAJB1', 'HSPA6', 'HSPA1A']",0.05660377358490566
+7,GO:0070370,cellular heat acclimation,biological_process,1.318289791640529e-06,0.0018311045205886948,2,8,5,"['HSPA1B', 'HSPA1A']",0.4
+8,GO:0070434,positive regulation of nucleotide-binding oligomerization domain containing 2 signaling pathway,biological_process,1.318289791640529e-06,0.0018311045205886948,2,8,5,"['HSPA1B', 'HSPA1A']",0.4
+9,GO:0090063,positive regulation of microtubule nucleation,biological_process,3.6890618225930664e-06,0.004400612627700159,2,8,8,"['HSPA1B', 'HSPA1A']",0.25
+10,GO:0034599,cellular response to oxidative stress,biological_process,3.872229334029417e-06,0.004400612627700159,3,8,87,"['HSPA1B', 'CHCHD2', 'HSPA1A']",0.034482758620689655
+11,GO:1903265,positive regulation of tumor necrosis factor-mediated signaling pathway,biological_process,8.688894161380826e-06,0.009051655492618476,2,8,13,"['HSPA1B', 'HSPA1A']",0.15384615384615385
+12,GO:0030308,negative regulation of cell growth,biological_process,1.029824988864968e-05,0.009902955527539203,3,8,121,"['HSPA1B', 'CRYAB', 'HSPA1A']",0.024793388429752067
+13,GO:0071383,cellular response to steroid hormone stimulus,biological_process,1.5785722752047232e-05,0.014053930002867258,2,8,16,"['HSPA1B', 'HSPA1A']",0.125
+14,GO:0031396,regulation of protein ubiquitination,biological_process,1.7887011821760252e-05,0.014053930002867258,2,8,17,"['HSPA1B', 'HSPA1A']",0.11764705882352941
+15,GO:0043066,negative regulation of apoptotic process,biological_process,1.798759139635838e-05,0.014053930002867258,4,8,485,"['HSPA1B', 'CRYAB', 'BAG3', 'HSPA1A']",0.008247422680412371
+16,GO:1901673,regulation of mitotic spindle assembly,biological_process,3.0352128631876604e-05,0.022319527060417024,2,8,23,"['HSPA1B', 'HSPA1A']",0.08695652173913043
+17,GO:0016192,vesicle-mediated transport,biological_process,3.796031502133561e-05,0.026363438782317585,3,8,185,"['HSPA1B', 'HSPA6', 'HSPA1A']",0.016216216216216217
+18,GO:0046034,ATP metabolic process,biological_process,5.3273688738252956e-05,0.033298719145845014,2,8,29,"['HSPA1B', 'HSPA1A']",0.06896551724137931
+19,GO:0006402,mRNA catabolic process,biological_process,5.3273688738252956e-05,0.033298719145845014,2,8,29,"['HSPA1B', 'HSPA1A']",0.06896551724137931
+20,GO:0045648,positive regulation of erythrocyte differentiation,biological_process,6.099173424025308e-05,0.03630750808273351,2,8,34,"['HSPA1B', 'HSPA1A']",0.058823529411764705
+21,GO:2001240,negative regulation of extrinsic apoptotic signaling pathway in absence of ligand,biological_process,7.798257488943989e-05,0.04431182584967673,2,8,35,"['HSPA1B', 'HSPA1A']",0.05714285714285714
+22,GO:0016235,aggresome,cellular_component,2.726294947192592e-07,0.0004858257595897198,3,8,36,"['HSPA1B', 'BAG3', 'HSPA1A']",0.08333333333333333
+23,GO:0072562,blood microparticle,cellular_component,8.58296503937634e-06,0.006921896986920599,3,8,142,"['HSPA1B', 'HSPA6', 'HSPA1A']",0.02112676056338028
+24,GO:1904813,ficolin-1-rich granule lumen,cellular_component,1.165302523050606e-05,0.006921896986920599,3,8,124,"['HSPA1B', 'HSPA6', 'HSPA1A']",0.024193548387096774
+25,GO:0005814,centriole,cellular_component,2.2742395478585667e-05,0.008900966328602041,3,8,158,"['HSPA1B', 'HSPA6', 'HSPA1A']",0.0189873417721519
+26,GO:0016234,inclusion body,cellular_component,2.4974652998322226e-05,0.008900966328602041,2,8,20,"['HSPA1B', 'HSPA1A']",0.1
+27,GO:0051082,unfolded protein binding,molecular_function,2.5076686284052284e-10,1.137227722981771e-06,5,8,124,"['CRYAB', 'HSPA1A', 'HSPA1B', 'DNAJB1', 'HSPA6']",0.04032258064516129
+28,GO:0044183,protein folding chaperone,molecular_function,1.3802222271811722e-09,3.1296539001333077e-06,4,8,47,"['HSPA1B', 'DNAJB1', 'HSPA6', 'HSPA1A']",0.0851063829787234
+29,GO:0051787,misfolded protein binding,molecular_function,1.2527126561144216e-07,0.0001893683965159634,3,8,29,"['HSPA1B', 'HSPA6', 'HSPA1A']",0.10344827586206896
+30,GO:0140662,ATP-dependent protein folding chaperone,molecular_function,1.8952774387803906e-07,0.00021487707962172678,3,8,41,"['HSPA1B', 'HSPA6', 'HSPA1A']",0.07317073170731707
+31,GO:0031072,heat shock protein binding,molecular_function,1.054593035188067e-06,0.0009565158829155767,3,8,57,"['HSPA1B', 'HSPA6', 'HSPA1A']",0.05263157894736842
+32,GO:0055131,C3HC4-type RING finger domain binding,molecular_function,1.977050761504665e-06,0.0012808464576319508,2,8,6,"['HSPA1B', 'HSPA1A']",0.3333333333333333
+33,GO:0140545,ATP-dependent protein disaggregase activity,molecular_function,1.977050761504665e-06,0.0012808464576319508,2,8,6,"['HSPA1B', 'HSPA1A']",0.3333333333333333
+34,GO:0140416,transcription regulator inhibitor activity,molecular_function,3.6250797437909224e-05,0.02054967079761479,2,8,24,"['DNAJB1', 'HSPA1A']",0.08333333333333333

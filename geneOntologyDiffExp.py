@@ -39,6 +39,8 @@ for fileName in fileNames:
 
         resultsDF = results
         resultsDF['per'] = resultsDF.n_genes/resultsDF.n_go
+        if(len(resultsDF.index) != 0):
+            resultsDF.to_csv("./outputPDFs/DiffExpOut/GeneOntology/"+fileName+"Positive.csv")
         resultsDF = resultsDF[0:10]
 
         print(resultsDF)
@@ -61,6 +63,8 @@ for fileName in fileNames:
 
         resultsDF = results
         resultsDF['per'] = resultsDF.n_genes/resultsDF.n_go
+        if(len(resultsDF.index) != 0):
+            resultsDF.to_csv("./outputPDFs/DiffExpOut/GeneOntology/"+fileName+"Negative.csv")
         resultsDF = resultsDF[0:10]
 
         print(resultsDF)
