@@ -19,7 +19,7 @@ sc.settings.verbosity = 3  # verbosity: errors (0), warnings (1), info (2), hint
 
 inputData = "./dataSaveOriginal/rawDataset.h5ad" # ./dataSaveOriginal/rawDataset5000.h5ad
 
-adata = sc.read("./dataSaveOriginal/rawDataset.h5ad")
+adata = sc.read("./output/savedDataClustersFinal.h5ad")
 adata.var_names_make_unique()
 adata.X = adata.X.astype('float64')
 
@@ -58,7 +58,7 @@ adata.var['ribo'] = adata.var_names.isin(riboGenes[0].values)
 # Calculate QC Metrics
 sc.pp.calculate_qc_metrics(adata, qc_vars=['mt', "ribo"], percent_top=None, log1p=False, inplace=True)
 
-with PdfPages('./outputPDFs/Doublets Plots.pdf') as pdf:
+with PdfPages('./outputPDFs/Doublets Plots savedData.pdf') as pdf:
     dummyPlot = plt.plot([1, 2])
     figureNum = plt.gcf().number
 
@@ -78,8 +78,8 @@ with PdfPages('./outputPDFs/Doublets Plots.pdf') as pdf:
     sc.pp.scale(adata, max_value=10)
     sc.tl.pca(adata, svd_solver='arpack')
     sc.pp.neighbors(adata, n_neighbors=15, n_pcs=40) # n_neighbors=15 is default
+    sc.external.pp.bbknn(adata, batch_key='sample')
     sc.tl.umap(adata)
-    sc.tl.leiden(adata, resolution=0.3)
 
     # Pre-Filtering
     sc.pl.umap(adata, color='doublet_score', show=False)
@@ -92,8 +92,8 @@ with PdfPages('./outputPDFs/Doublets Plots.pdf') as pdf:
     adata = adata[adata.obs.n_genes_by_counts > 1000, :]
 
     # Post-filtering
+    sc.tl.umap(adata)
     sc.pl.umap(adata, color='doublet_score', show=False)
-    adata.obs['predicted_doublet'] = adata.obs['predicted_doublet'].astype(str).astype('category')
     sc.pl.umap(adata, color='predicted_doublet', show=False)
 
     for fig in range(figureNum+1,  plt.gcf().number+1):

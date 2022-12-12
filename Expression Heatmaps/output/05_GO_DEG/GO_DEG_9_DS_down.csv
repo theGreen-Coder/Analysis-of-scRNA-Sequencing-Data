@@ -1,0 +1,2 @@
+ID,Description,GeneRatio,BgRatio,pvalue,p.adjust,qvalue,geneID,Count
+GO:0099515,actin filament-based transport,2/6,21/18903,1.7584805074519507e-5,0.00427310763310824,0.0021471972512044873,SYNE2/MYO1E,2

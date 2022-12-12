@@ -18,6 +18,7 @@ library(ggplot2)
 library(RColorBrewer)
 library(circlize)
 library(ComplexHeatmap)
+library(pheatmap)
 options(scipen = 100)
 ```
 
@@ -78,9 +79,13 @@ clusters
 coldata <- data.frame(row.names = colnames(Counts), condition, clusters)
 coldata
 ```
+```{r}
+coldata$conditionCluster <- paste(coldata$condition, coldata$clusters, sep="_")
+coldata
+```
 
 ```{r}
-dds = DESeqDataSetFromMatrix(countData = Counts, colData = coldata, design = ~condition)
+dds = DESeqDataSetFromMatrix(countData = Counts, colData = coldata, design = ~conditionCluster)
 dds = DESeq(dds)
 ```
 
@@ -133,6 +138,21 @@ m2AvgDataFrameCON
 m2AvgDataFrameDS
 m2AvgDataDSvsCON
 ```
+```{r}
+clusts = unique(coldata$conditionCluster)
+clusts
+```
+
+```{r}
+# dds_res1 = as.data.frame(results(dds, contrast=c("conditionCluster", "C_IC", "D_IC")))
+res = results(dds)
+sigs = na.omit(res)
+sigs = sigs[sigs$padj < 0.05,]
+df = as.data.frame(sigs)
+df.top = df[(df$padj < 0.05) & (abs(df$log2FoldChange) > 0.3),]
+df.top
+rownames(df.top)
+```
 
 ```{r}
 plot_heatmap = function(mat, genes = rownames(mat), 
@@ -162,7 +182,7 @@ plot_heatmap = function(mat, genes = rownames(mat),
   stopifnot(!missing(filename))
   pdf(filename, width=width, height=height)
   grid::grid.newpage()
-  grid::grid.draw(pl1$gtable)
+  grid::grid.draw(pl1$gtable) # print(pl1) 
   dev.off()
   
   return(pl1)
@@ -171,7 +191,12 @@ plot_heatmap = function(mat, genes = rownames(mat),
 ```
 
 ```{r}
-allHeatMap = plot_heatmap(m2, cluster_rows = TRUE, filename = "./outputPDFs/DiffExpOut/allDatasetPheatmap.pdf")
+library(viridis)
+allHeatMap = plot_heatmap(m2, genes= rownames(df.top), cluster_rows = TRUE, cluster_cols = TRUE, filename = "./outputPDFs/DiffExpOut/allDatasetPheatmap.pdf")
+```
+
+
+```{r}
 pl_genes_clust =allHeatMap$tree_row$labels[allHeatMap$tree_row$order]
 ```
 
@@ -207,7 +232,7 @@ DOWNHeatMap = plot_heatmap(normGroupDownlMatrix, genes = pl_genes_clust, cluster
 normGroupVS <- data.matrix(m2AvgDataDSvsCON)
 VSHeatMap = plot_heatmap(normGroupVS, genes = pl_genes_clust, cluster_rows = FALSE, 
                           filename = "./outputPDFs/DiffExpOut/PheatmapVS.pdf", 
-                          color=colorRampPalette(c("yellow", "black", "magenta"))(50),
+                          color=colorRampPalette(c("magenta", "black", "yellow"))(50),
                           breaks = seq(-2, 2, length.out = 50),
                           width=5,
                           height=7
