@@ -24,7 +24,7 @@ def geneOntologyAnalysis(listOfGenes):
     # run one time to initialize
     # obo_fname = download_go_basic_obo()
     fin_gene2go = download_ncbi_associations()
-    obodag = GODag("./modules/GO/go-basic.obo")
+    obodag = GODag("/Users/greencode/Documents/Coding/Analysis-of-scRNA-Sequencing-Data/modules/GO/go-basic.obo")
 
     #run one time to initialize
     mapper = {}
