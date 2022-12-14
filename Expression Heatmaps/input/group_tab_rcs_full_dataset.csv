@@ -1,8 +1,0 @@
-id,sample,dataset_folder,group,Sample Name,cell_line,dev_stage,sex,disease,replicate
-CON1,CON_DS2U,/rds/general/user/mlattke/home/scRNA_seq/scRNA_21_11_30_Tang21_full_dataset_with_introns/,CON,sc_CONT_DS2U_D30,DS2U,D30,male,CON,R1
-CON2,CON_H9,/rds/general/user/mlattke/home/scRNA_seq/scRNA_21_11_30_Tang21_full_dataset_with_introns/,CON,sc_CONT_H9_D30,H9,D30,female,CON,R2
-CON3,CON_ihtc,/rds/general/user/mlattke/home/scRNA_seq/scRNA_21_11_30_Tang21_full_dataset_with_introns/,CON,sc_CONT_ihtc-03_D30,ihtc-03,D30,female,CON,R3
-CON4,CON_IMR,/rds/general/user/mlattke/home/scRNA_seq/scRNA_21_11_30_Tang21_full_dataset_with_introns/,CON,sc_CONT_IMR90-4_D30,IMR90-4,D30,female,CON,R4
-DS1,DS_2DS3,/rds/general/user/mlattke/home/scRNA_seq/scRNA_21_11_30_Tang21_full_dataset_with_introns/,DS,sc_DS_2DS3_D30,2DS3,D30,male,DS,R1
-DS2,DS_DS1,/rds/general/user/mlattke/home/scRNA_seq/scRNA_21_11_30_Tang21_full_dataset_with_introns/,DS,sc_DS_DS1_D30,DS1,D30,male,DS,R2
-DS4,DS_DSP,/rds/general/user/mlattke/home/scRNA_seq/scRNA_21_11_30_Tang21_full_dataset_with_introns/,DS,sc_DS_DSP_D30,DSP,D30,female,DS,R3

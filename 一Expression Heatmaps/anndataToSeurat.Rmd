@@ -1,0 +1,39 @@
+---
+title: "R Notebook"
+output:
+html_notebook: default
+---
+
+```{r}
+library(Seurat)
+```
+
+```{r}
+Raw_data = Read10X(data.dir = "matrix_files")
+```
+
+```{r}
+metadata = read.csv("metadata.csv")
+
+rownames(metadata) = metadata$X
+
+metadata
+```
+
+```{r}
+seur = CreateSeuratObject(counts=Raw_data, meta.data = metadata)
+```
+
+```{r}
+save(seur, file = "./rawDataset.rda")
+```
+
+
+
+
+
+
+
+
+
+

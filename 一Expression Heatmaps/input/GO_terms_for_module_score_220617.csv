@@ -1,0 +1,13 @@
+ID,Description
+GO:0002181,cytoplasmic translation
+GO:0051726,regulation of cell cycle
+GO:0061351,neural precursor cell proliferation
+GO:0022008,neurogenesis
+GO:0045664,regulation of neuron differentiation
+GO:0001764,neuron migration
+GO:0007409,axonogenesis
+GO:0050808,synapse organization
+GO:0050804,modulation of chemical synaptic transmission
+GO:0035249,"synaptic transmission, glutamatergic"
+GO:0051932,"synaptic transmission, GABAergic"
+GO:0015812,gamma-aminobutyric acid transport
