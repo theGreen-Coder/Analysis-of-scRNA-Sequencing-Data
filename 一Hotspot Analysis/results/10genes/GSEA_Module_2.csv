@@ -1,0 +1,3 @@
+,GO,term,class,p,p_corr,n_genes,n_study,n_go,study_genes
+0,GO:0072102,glomerulus morphogenesis,biological_process,1.4833159430856483e-06,0.01853403270885518,2,15,3,"['MTSS1', 'KIRREL3']"
+1,GO:0030424,axon,cellular_component,5.95595773265495e-08,0.00010577780933195191,6,15,320,"['DNM3', 'DSCAML1', 'KIRREL3', 'NMNAT2', 'GRIK3', 'CTNNA2']"

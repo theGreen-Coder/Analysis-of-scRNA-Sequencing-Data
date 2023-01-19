@@ -12,7 +12,7 @@ library(viridis)
 library(lmerTest)
 library(pheatmap)
 library(clusterProfiler)
-library(DOSE)
+# library(DOSE)
 library(org.Hs.eg.db)
 
 # define output folder
@@ -349,14 +349,14 @@ bulk_data$deseq_results = res_list
 
 genes_up = lapply(res_list, function(res){
   t1 = res[!is.na(res$padj),]
-  t1 = t1[t1$log2FoldChange<=-0.3 & t1$padj <=0.05, ]
+  t1 = t1[t1$log2FoldChange<=-0.3 & t1$padj <=0.1, ]
   return(rownames(t1))
 })
 names(genes_up) = paste0(names(genes_up) , "_DS_up")
 
 genes_down = lapply(res_list, function(res){
   t1 = res[!is.na(res$padj),]
-  t1 = t1[t1$log2FoldChange>=0.3 & t1$padj <=0.05, ]
+  t1 = t1[t1$log2FoldChange>=0.3 & t1$padj <=0.1, ]
   return(rownames(t1))
 })
 names(genes_down) = paste0(names(genes_down) , "_DS_down")
@@ -566,7 +566,7 @@ plot_cluster_diff_expr = function(bulk_data, pl_genes,
                       main = "Norm Expr by Sample")
     
     pl_genes_clust =p1$tree_row$labels[p1$tree_row$order]
-    write.csv(pl_genes_clust, "./thisIsATest.csv", row.names=FALSE)
+    write.csv(pl_genes_clust, "./significantGenes.csv", row.names=FALSE)
     
     plot_heatmap(l1$CON, genes = pl_genes_clust, cluster_rows = FALSE,
                  color = viridis_pal(option = "viridis")(250),
@@ -685,14 +685,13 @@ save(ego_list, file = paste0(out_dir2,"05_DEG_GO_analysis.rda"))
 
 #filter and save GO results as tables (only tables with sign GO terms)
 
-
 t1 = lapply(comp, function(comp){
   ego = ego_list[[comp]]
   
   if (!is.null(ego)){
-    ego = dropGO(ego, level = c(1,2))
-    ego = simplify(ego)
+    # ego = dropGO(ego, level = c(1,2))
     t1 = ego@result
+    t1 = t1[t1$Count > 2 & t1$p.adjust <= 0.05,]
     
     if (nrow(t1)>0){
       write_csv(t1, file = paste0(GO_dir,"/GO_DEG_",comp,".csv"))

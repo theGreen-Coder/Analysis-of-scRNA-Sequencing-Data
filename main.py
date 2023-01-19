@@ -71,10 +71,18 @@ adataDS_2DS3 =  adata[adata.obs["sample"] == "DS_2DS3"]
 adataDS_DS1 =  adata[adata.obs["sample"] == "DS_DS1"]
 adataDS_DSP =  adata[adata.obs["sample"] == "DS_DSP"]
 
-adata = adataCON_DS2U.concatenate(adataCON_H9)
-adata = adata.concatenate(adataCON_IMR)
-adata = adata.concatenate(adataDS_2DS3)
-adata = adata.concatenate(adataDS_DSP)
+if "-fullDataset" not in sysArgs:
+    adata = adataCON_DS2U.concatenate(adataCON_H9)
+    adata = adata.concatenate(adataCON_IMR)
+    adata = adata.concatenate(adataDS_2DS3)
+    adata = adata.concatenate(adataDS_DSP)
+else:
+    adata = adataCON_DS2U.concatenate(adataCON_H9)
+    adata = adata.concatenate(adataCON_IMR)
+    adata = adata.concatenate(adataCON_ihtc)
+    adata = adata.concatenate(adataDS_2DS3)
+    adata = adata.concatenate(adataDS_DSP)
+    adata = adata.concatenate(adataDS_DS1)
 
 # CON_DS2U CON_H9 CON_IMR CON_ihtc DS_2DS3 DS_DS1 DS_DSP
 
@@ -204,6 +212,8 @@ with PdfPages(outputDirectory+'Clustering Plots '+arg+'.pdf') as pdf:
     plt.suptitle("UMAP by Sample", y=1, fontsize=25)
     sc.pl.umap(adata, color='group', groups="DS", show=showPlots)
     plt.suptitle("UMAP of DS", y=1, fontsize=25)
+    sc.pl.umap(adata, color='group', groups="CON", show=showPlots)
+    plt.suptitle("UMAP of DS", y=1, fontsize=25)
     sc.pl.umap(adata, color='group', show=showPlots)
     plt.suptitle("UMAP by Group", y=1, fontsize=25)
     sc.pl.umap(adata, color='n_genes_by_counts', cmap=sns.blend_palette(["lightgray", "green"], as_cmap=True), show=showPlots)
@@ -228,6 +238,11 @@ with PdfPages(outputDirectory+'Clustering Plots '+arg+'.pdf') as pdf:
     plt.suptitle("UMAP for DS_2DS3", y=1, fontsize=25)
     sc.pl.umap(adata, color='sample', na_color="white",groups="DS_DSP", show=showPlots)
     plt.suptitle("UMAP for DS_DSP", y=1, fontsize=25)
+    if "-fullDataset" in sysArgs:
+        sc.pl.umap(adata, color='sample', na_color="white",groups="CON_ihtc", show=showPlots)
+        plt.suptitle("UMAP for CON_ihtc", y=1, fontsize=25)
+        sc.pl.umap(adata, color='sample', na_color="white",groups="DS_DS1", show=showPlots)
+        plt.suptitle("UMAP for DS_DS1", y=1, fontsize=25)
     sc.pl.umap(adata, color=geneNames, cmap=sns.blend_palette(["lightgray", "green"], as_cmap=True), show=showPlots)
     plt.suptitle("UMAP for Marker Genes", y=1, fontsize=25)
     sc.pl.umap(adata, color=["DLX2", "SOX2"], cmap=sns.blend_palette(["lightgray", "green"], as_cmap=True), palette="tab20", show=showPlots)

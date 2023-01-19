@@ -1,0 +1,2 @@
+,GO,term,class,p,p_corr,n_genes,n_study,n_go,study_genes
+0,GO:0004905,type I interferon receptor activity,molecular_function,2.8029980867535914e-06,0.012798489264116898,2,35,2,"['IFNAR1', 'IFNAR2']"

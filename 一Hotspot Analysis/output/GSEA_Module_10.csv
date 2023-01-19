@@ -1,0 +1,2 @@
+,GO,term,class,p,p_corr,n_genes,n_study,n_go,study_genes
+0,GO:0098632,cell-cell adhesion mediator activity,molecular_function,4.0518100212753406e-07,0.0018500564557143205,4,51,25,"['CD47', 'EMB', 'CNTN5', 'CNTN6']"

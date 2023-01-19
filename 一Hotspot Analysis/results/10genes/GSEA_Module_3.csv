@@ -1,0 +1,6 @@
+,GO,term,class,p,p_corr,n_genes,n_study,n_go,study_genes
+0,GO:0043025,neuronal cell body,cellular_component,2.391467876544744e-07,0.00042472469487434656,6,17,351,"['SEZ6L2', 'MAPT', 'SV2A', 'RTN1', 'CDK5R1', 'ATP1A3']"
+1,GO:0030426,growth cone,cellular_component,3.4829107617895725e-06,0.0030928247564691405,4,17,131,"['MAPT', 'CDK5R1', 'CXADR', 'KIF21B']"
+2,GO:0030425,dendrite,cellular_component,1.4925170442385071e-05,0.008835700901891962,5,17,407,"['KIF21B', 'MAPT', 'SV2A', 'RTN1', 'CDK5R1']"
+3,GO:0071565,nBAF complex,cellular_component,7.63615358937911e-05,0.03390452193684325,2,17,16,"['DPF1', 'ACTL6B']"
+4,GO:0043005,neuron projection,cellular_component,0.00012587965629747686,0.044712453916863786,4,17,328,"['MAPT', 'CDK5R1', 'RTN1', 'CXADR']"

@@ -76,15 +76,15 @@ hs_results = hs.compute_autocorrelations()
 
 print(hs.results)
 
-save_object(hs, 'hotspotObject2000genes.pkl')
-save_object(hs_results, 'hotspotResults2000genes.pkl')
+save_object(hs, 'hotspotObjectSignificantGenes.pkl')
+save_object(hs_results, 'hotspotResultsSignificantGenes.pkl')
 
 hs_genes = hs_results.loc[hs_results.FDR < 0.05].index # Select genes
 hs_genes = list(hs_genes)
 
 sampled_list = random.sample(hs_genes, 2000)
 
-allGenes = significantGenes + sampled_list
+allGenes = significantGenes
 
 hs.compute_local_correlations(allGenes) # jobs
 
@@ -97,7 +97,7 @@ modules = hs.create_modules(
 
 hs.plot_local_correlations()
 
-save_object(hs, 'hotspotObject2000genes.pkl')
-save_object(modules, 'hotspotModules2000genes.pkl')
+save_object(hs, 'hotspotObjectSignificantGenes.pkl')
+save_object(modules, 'hotspotModulesSignificantGenes.pkl')
 
 print(hs.plot_local_correlations())

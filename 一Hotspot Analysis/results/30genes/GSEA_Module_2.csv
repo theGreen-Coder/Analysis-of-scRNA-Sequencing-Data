@@ -1,0 +1,12 @@
+,GO,term,class,p,p_corr,n_genes,n_study,n_go,study_genes
+0,GO:0002181,cytoplasmic translation,biological_process,4.194478546931384e-14,5.241000944390765e-10,13,144,89,"['RPS2', 'RPS3', 'RPL5', 'RPL19', 'RPL18', 'RPL7A', 'RPL12', 'RPS7', 'RPS8', 'RPL17', 'RPL13', 'RPL18A', 'RPLP0']"
+1,GO:0006412,translation,biological_process,1.840821260496838e-10,1.1500530824953996e-06,13,144,179,"['RPS2', 'RPS3', 'RPL5', 'RPL19', 'RPL18', 'RPL7A', 'RPL12', 'RPS7', 'RPS8', 'RPL17', 'RPL13', 'RPL18A', 'RPLP0']"
+2,GO:0060710,chorio-allantoic fusion,biological_process,1.1462108373364085e-05,0.04773968137506141,3,144,7,"['LEF1', 'WNT7B', 'ZFP36L1']"
+3,GO:0022626,cytosolic ribosome,cellular_component,5.7290391795620834e-15,1.017477358290226e-11,13,144,76,"['RPS2', 'RPS3', 'RPL5', 'RPL19', 'RPL18', 'RPL7A', 'RPL12', 'RPS7', 'RPS8', 'RPL17', 'RPL13', 'RPL18A', 'RPLP0']"
+4,GO:0022625,cytosolic large ribosomal subunit,cellular_component,4.5313111644468365e-12,4.023804314028791e-09,10,144,58,"['RPL5', 'RPL19', 'RPL7A', 'RPL12', 'RPL13', 'RPL17', 'RPLP0', 'RPL18', 'RPL18A', 'RPL7L1']"
+5,GO:1990904,ribonucleoprotein complex,cellular_component,2.6283289528830503e-08,1.5559707401067656e-05,11,144,168,"['ZFP36L1', 'NPM1', 'RBMS3', 'VIM', 'RPS3', 'RPL5', 'RBMS1', 'SSB', 'RPS7', 'RPS8', 'RPLP0']"
+6,GO:0005925,focal adhesion,cellular_component,4.5373833676191004e-08,2.0145982152228806e-05,16,144,422,"['NPM1', 'VIM', 'RPS2', 'RPS3', 'RPL5', 'ITGA2', 'RRAS2', 'RPL7A', 'HMGA1', 'SYNE2', 'RPS7', 'RPS8', 'RPL19', 'RPL18', 'RPL12', 'RPLP0']"
+7,GO:0042788,polysomal ribosome,cellular_component,6.215906033083233e-05,0.022078898229511645,4,144,31,"['RPL7A', 'RPL18', 'RPL18A', 'RPL19']"
+8,GO:0005730,nucleolus,cellular_component,0.00010274072803184628,0.030411255497426497,17,144,1338,"['OARD1', 'NPM1', 'FILIP1', 'FBL', 'RPS3', 'ZNF16', 'RPL5', 'ABCC4', 'RPL7A', 'E2F5', 'RPL18', 'RPL12', 'RPS7', 'RPL19', 'REV3L', 'RPL13', 'RPL7L1']"
+9,GO:0022627,cytosolic small ribosomal subunit,cellular_component,0.0001719470618531557,0.043625425978743505,4,144,41,"['RPS7', 'RPS8', 'RPS2', 'RPS3']"
+10,GO:0003735,structural constituent of ribosome,molecular_function,6.72527514363456e-12,3.07076063058354e-08,14,144,177,"['RPL7L1', 'RPS2', 'RPS3', 'RPL5', 'RPL19', 'RPL18', 'RPL7A', 'RPL12', 'RPS7', 'RPS8', 'RPL17', 'RPL13', 'RPL18A', 'RPLP0']"
