@@ -4,7 +4,7 @@
 message("####### Start R05 (by cluster): ", Sys.time())
 
 # Open packages necessary for analysis.
-library(tidyverse)
+
 library(Seurat)
 library(DESeq2)
 library(colorRamps)
@@ -14,6 +14,7 @@ library(pheatmap)
 library(clusterProfiler)
 # library(DOSE)
 library(org.Hs.eg.db)
+library(tidyverse)
 
 # define output folder
 out_dir = "./output/"
@@ -345,18 +346,32 @@ names(res_list) = clusts
 
 bulk_data$deseq_results = res_list
 
+#names(res_list)
+#genesNames = rownames(res_list$IN_2)
+#df <- data.frame(genesNames, res_list$IN_2$log2FoldChange, res_list$IN_1$log2FoldChange, res_list$IN$log2FoldChange,
+#res_list$nIN_1$log2FoldChange, res_list$nIN$log2FoldChange, res_list$nEN_1$log2FoldChange,
+#res_list$nEN$log2FoldChange, res_list$IPC$log2FoldChange, res_list$MGE$log2FoldChange,
+#res_list$RG$log2FoldChange)
+#rownames(df) <- df$genesNames
+#drops <- c("genesNames")
+#df = df[ , !(names(df) %in% drops)]
+#df$RowMeans<-rowMeans(df,na.rm=TRUE)
+
+#df[df$RowMeans > 1,]
+
+
 # extract up/down genes for DS vs CON for each cluster
 
 genes_up = lapply(res_list, function(res){
   t1 = res[!is.na(res$padj),]
-  t1 = t1[t1$log2FoldChange<=-0.3 & t1$padj <=0.1, ]
+  t1 = t1[t1$log2FoldChange<=-0.3 & t1$pvalue <=0.01, ]
   return(rownames(t1))
 })
 names(genes_up) = paste0(names(genes_up) , "_DS_up")
 
 genes_down = lapply(res_list, function(res){
   t1 = res[!is.na(res$padj),]
-  t1 = t1[t1$log2FoldChange>=0.3 & t1$padj <=0.1, ]
+  t1 = t1[t1$log2FoldChange>=0.3 & t1$pvalue <=0.01, ]
   return(rownames(t1))
 })
 names(genes_down) = paste0(names(genes_down) , "_DS_down")
@@ -365,6 +380,12 @@ l1 = c(genes_up, genes_down)
 l1 = l1[order(names(l1))]
 
 bulk_data$DEG = l1
+
+someVariable = lapply(res_list, function(res){
+  t1 = res[!is.na(res$padj),]
+  t1 = t1[abs(t1$log2FoldChange)>=0.3 & t1$pvalue <=0.01, ]
+  return(t1)
+})
 
 
 #extract mean-centered log2 transformed expr data
@@ -566,7 +587,7 @@ plot_cluster_diff_expr = function(bulk_data, pl_genes,
                       main = "Norm Expr by Sample")
     
     pl_genes_clust =p1$tree_row$labels[p1$tree_row$order]
-    write.csv(pl_genes_clust, "./significantGenes.csv", row.names=FALSE)
+    write.csv(pl_genes_clust, "./superSignificantGenes.csv", row.names=FALSE)
     
     plot_heatmap(l1$CON, genes = pl_genes_clust, cluster_rows = FALSE,
                  color = viridis_pal(option = "viridis")(250),
@@ -584,7 +605,7 @@ plot_cluster_diff_expr = function(bulk_data, pl_genes,
                  main = "DS vs CON Expr by cluster")
     
     dataframePlot = l1$DELTA
-    write.csv(dataframePlot, "./geneOrderDataframe.csv", row.names=TRUE)
+    write.csv(dataframePlot, "./superGeneOrderDataframe-pval<0.01.csv", row.names=TRUE)
     plotDifferenceOrder = plotClusterDifference$tree_row$labels[plotClusterDifference$tree_row$order]
     # write.csv(plotDifferenceOrder, "./geneOrderDifference.csv", row.names=FALSE)
     

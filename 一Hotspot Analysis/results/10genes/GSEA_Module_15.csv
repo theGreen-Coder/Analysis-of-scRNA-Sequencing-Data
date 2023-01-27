@@ -1,0 +1,2 @@
+,GO,term,class,p,p_corr,n_genes,n_study,n_go,study_genes
+0,GO:0006468,protein phosphorylation,biological_process,2.4933858653536185e-06,0.031154856387593466,5,11,471,"['TNIK', 'SRPK2', 'TAOK3', 'GRK5', 'APP']"

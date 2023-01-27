@@ -130,8 +130,7 @@ for i in range(1, maximumModule+1):
     # out_df.to_csv("./output/GSEA_Module_"+str(i)+".csv")
 
 # Set List of Prefered GO Terms
-selectedTerms = [0,0,0,0,0,0,0]
-
+selectedTerms = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
 # Calculating Module Scores
 module_scores = hs.calculate_module_scores()

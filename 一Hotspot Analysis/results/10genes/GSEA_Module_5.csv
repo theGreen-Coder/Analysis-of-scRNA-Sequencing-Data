@@ -1,7 +1,7 @@
 ,GO,term,class,p,p_corr,n_genes,n_study,n_go,study_genes
 0,GO:0021782,glial cell development,biological_process,2.570165844577225e-06,0.02675146067058207,2,14,4,"['SOX11', 'SOX4']"
 1,GO:0003211,cardiac ventricle formation,biological_process,4.281946485887486e-06,0.02675146067058207,2,14,5,"['SOX11', 'SOX4']"
-2,GO:0001841,neural tube formation,biological_process,8.985106144691147e-06,0.028067225319478972,2,14,7,"['SOX11', 'SOX4']"
-3,GO:0003357,noradrenergic neuron differentiation,biological_process,8.985106144691147e-06,0.028067225319478972,2,14,7,"['SOX11', 'SOX4']"
+2,GO:0003357,noradrenergic neuron differentiation,biological_process,8.985106144691147e-06,0.028067225319478972,2,14,7,"['SOX11', 'SOX4']"
+3,GO:0001841,neural tube formation,biological_process,8.985106144691147e-06,0.028067225319478972,2,14,7,"['SOX11', 'SOX4']"
 4,GO:0060563,neuroepithelial cell differentiation,biological_process,2.3495895135181576e-05,0.04893020161901563,2,14,11,"['SOX11', 'SOX4']"
 5,GO:0060174,limb bud formation,biological_process,2.3495895135181576e-05,0.04893020161901563,2,14,11,"['SOX11', 'SOX4']"

@@ -1,0 +1,2 @@
+,GO,term,class,p,p_corr,n_genes,n_study,n_go,study_genes
+0,GO:0010970,transport along microtubule,biological_process,6.406852769722494e-07,0.008005362535768256,2,17,2,"['DYNC1I1', 'DYNC1I2']"
