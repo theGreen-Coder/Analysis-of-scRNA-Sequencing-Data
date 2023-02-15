@@ -155,6 +155,8 @@ sc.pp.normalize_total(adata, target_sum=10000)
 sc.pp.log1p(adata)
 sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5)
 
+adata.var.at["OLIG2", "highly_variable"] = True
+
 adata.raw = adata
 adata = adata[:, adata.var.highly_variable]
 
@@ -165,6 +167,9 @@ sc.pp.neighbors(adata, n_neighbors=15, n_pcs=40) # n_neighbors=15 is default
 sc.tl.umap(adata)
 sc.tl.leiden(adata, resolution=0.3)
 # adata.write(results_file)
+
+adataDS =  adata[adata.obs["group"] == "DS"]
+adataCON =  adata[adata.obs["group"] == "CON"]
 
 ####################################################################################################
 # Integration
@@ -238,6 +243,14 @@ with PdfPages(outputDirectory+'Clustering Plots '+arg+'.pdf') as pdf:
     plt.suptitle("UMAP for DS_2DS3", y=1, fontsize=25)
     sc.pl.umap(adata, color='sample', na_color="white",groups="DS_DSP", show=showPlots)
     plt.suptitle("UMAP for DS_DSP", y=1, fontsize=25)
+    # Specific Genes Related to Down Syndrome
+    sc.pl.umap(adata, color=["AUTS2", "OLIG2","DLX1", "DLX2"], show=showPlots)
+    plt.suptitle("UMAP All Cells", y=1, fontsize=25)
+    sc.pl.umap(adataCON, color=["AUTS2", "OLIG2","DLX1", "DLX2"], show=showPlots)
+    plt.suptitle("UMAP CON Cells", y=1, fontsize=25)
+    sc.pl.umap(adataDS, color=["AUTS2", "OLIG2","DLX1", "DLX2"], show=showPlots)
+    plt.suptitle("UMAP DS Cells", y=1, fontsize=25)
+
     if "-fullDataset" in sysArgs:
         sc.pl.umap(adata, color='sample', na_color="white",groups="CON_ihtc", show=showPlots)
         plt.suptitle("UMAP for CON_ihtc", y=1, fontsize=25)
