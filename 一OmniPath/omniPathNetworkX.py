@@ -4,89 +4,16 @@ import pandas as pd
 import json
 import matplotlib.pyplot as plt
 
-regGenes = ["SOX4", "DLX5", "DLX4", "DLX6", "DLX2", "RBFOX2", "CELF4", "CELF5", "EBF1", "SIX3", "PBX3", "HMGB2"]
+regulatorGenes = ["SOX4", "DLX5", "DLX4", "DLX6", "DLX2", "RBFOX2", "CELF4", "CELF5", "EBF1", "SIX3", "PBX3", "HMGB2"]
 regProts = ["Q06945", "P56178", "Q92988", "P56179", "Q07687", "O43251", "Q9BZC1", "Q8N6W0", "Q9UH73", "O95343", "P40426", "P26583"]
 
-FILTER_BY_SOURCES = False
-FILTER_NUM_SOURCES = 1
-FILTER_BY_SHORTEST_PATH_MAX = False
+FILTER_BY_SOURCES = True
+FILTER_NUM_SOURCES = 4
+FILTER_BY_SHORTEST_PATH_MAX = True
 FILTER_INHIBITION_STIMULATION = False
-FILTER_SHORTEST_PATH_MAX = 5
-DEV_GEN = regGenes[0]
-DEV_GEN_NAME = regProts[0]
-OUTPUT_NAME = DEV_GEN_NAME + f"_filterSOURCE{str(FILTER_BY_SOURCES)+str(FILTER_NUM_SOURCES)}" + f"_filterSHORTPATH{str(FILTER_BY_SHORTEST_PATH_MAX)+str(FILTER_SHORTEST_PATH_MAX)}"
-
-# Get list of all HSA21 genes
-HSA21genesDataframe = pd.read_csv("../一Network Visualization/data/HSA21_genes_biomaRt_conversion.csv")
-HSA21genes = [x for x in HSA21genesDataframe["hgnc_symbol"] if str(x) != 'nan']
-
-# Get All Interactions From OmniPath
-output = op.interactions.AllInteractions()
-allInteractions = output.get()
-
-# Get Dict from Protein to Genes
-proteinToGene = pd.read_csv('./proteinToGene.tsv', sep='\t')
-proteinToGene = proteinToGene.set_index("To")
-dictProteinToGene = proteinToGene.to_dict()["From"]
-
-# Get Dict from Protein to Genes
-geneToProtein = pd.read_csv('./proteinToGene.tsv', sep='\t')
-dictGeneToProtein = geneToProtein.groupby('From').apply(lambda dfg: dfg.drop('From', axis=1).to_dict(orient='list')).to_dict()
-
-####################################################################
-# Convert HSA21 Genes to Protein Accession Numbers
-####################################################################
-
-# Convert geneNames to Protein Accession Numbers
-proteinNames = []
-count = 0
-
-for gene in HSA21genes:
-    try:
-        proteinNames += dictGeneToProtein[gene]["To"]
-    except:
-        count +=1
-
-print(f"Total genes skipped: {count}")
-
-proteinNames = list(dict.fromkeys(proteinNames))
-print(proteinNames)
-
-####################################################################
-# Find All Shortest Paths
-####################################################################
-
-if FILTER_BY_SOURCES:
-    allInteractions = allInteractions[allInteractions["n_sources"] >= FILTER_NUM_SOURCES]
-
-if FILTER_INHIBITION_STIMULATION:
-    allInteractions = allInteractions[~((allInteractions["is_inhibition"] == False) & (allInteractions["is_stimulation"] == False))]
-
-G = nx.from_pandas_edgelist(allInteractions, source='source', target='target', create_using=nx.DiGraph())
-
-allShortestPathGenes = []
-count = 0
-##### ------ Implement All Protein Accession numbers from Gene ------
-for protein in proteinNames:
-    try:
-        tempShortPath = []
-        if FILTER_BY_SHORTEST_PATH_MAX:
-            tempShortPath = []
-            tempShortPaths = [p for p in nx.all_shortest_paths(G, source=protein, target=DEV_GEN)]
-            for path in tempShortPaths:
-                if len(path) <= FILTER_SHORTEST_PATH_MAX:
-                    tempShortPath += path
-            tempShortPath = list(dict.fromkeys(tempShortPath)) 
-        else:
-            tempShortPath = list(dict.fromkeys(sum([p for p in nx.all_shortest_paths(G, source=protein, target=DEV_GEN)], []))) 
-        allShortestPathGenes += tempShortPath
-    except:
-        count += 1
-
-allShortestPathGenes = list(dict.fromkeys(allShortestPathGenes))
-print("ALL SHORTEST PAHTS GENES:")
-print(f"Total Skipped Genes: {count}")
-print(allShortestPathGenes)
+FILTER_SHORTEST_PATH_MAX = 4
+DEV_GEN = "SOX4"
+OUTPUT_NAME = DEV_GEN + f"_filterSOURCE{str(FILTER_BY_SOURCES)+str(FILTER_NUM_SOURCES)}" + f"_filterSHORTPATH{str(FILTER_BY_SHORTEST_PATH_MAX)+str(FILTER_SHORTEST_PATH_MAX)}"
 
 ####################################################################
 # Transform Protein Dataframe to Gene Dataframe
@@ -114,14 +41,86 @@ def transformToGeneDF(proteinDF):
     proteinDF["target"] = targetNewNames
     return proteinDF
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'    
+
+print(bcolors.FAIL + "Importing Data..." + bcolors.ENDC)
+# Get list of all HSA21 genes
+HSA21genesDataframe = pd.read_csv("../一Network Visualization/data/HSA21_genes_biomaRt_conversion.csv")
+HSA21genes = [x for x in HSA21genesDataframe["hgnc_symbol"] if str(x) != 'nan']
+
+# Get Dict from Protein to Genes
+proteinToGene = pd.read_csv('./proteinToGene.tsv', sep='\t')
+proteinToGene = proteinToGene.set_index("To")
+dictProteinToGene = proteinToGene.to_dict()["From"]
+
+# Get Dict from Protein to Genes
+geneToProtein = pd.read_csv('./proteinToGene.tsv', sep='\t')
+dictGeneToProtein = geneToProtein.groupby('From').apply(lambda dfg: dfg.drop('From', axis=1).to_dict(orient='list')).to_dict()
+
+# Get All Interactions From OmniPath
+output = op.interactions.AllInteractions()
+allInteractions = output.get()
+allInteractions = transformToGeneDF(allInteractions)
+
+####################################################################
+# Find All Shortest Paths
+####################################################################
+proteinNames = HSA21genes
+
+if FILTER_BY_SOURCES:
+    print(bcolors.OKBLUE + f"Flitering by N_SOURCES >= {FILTER_NUM_SOURCES}..." + bcolors.ENDC)
+    allInteractions = allInteractions[allInteractions["n_sources"] >= FILTER_NUM_SOURCES]
+
+if FILTER_INHIBITION_STIMULATION:
+    print(bcolors.OKBLUE + f"Flitering non-INH/STIM undefined interactions..." + bcolors.ENDC)
+    allInteractions = allInteractions[~((allInteractions["is_inhibition"] == False) & (allInteractions["is_stimulation"] == False))]
+
+print(bcolors.FAIL + "Finding All Shortest Paths..." + bcolors.ENDC)
+
+G = nx.from_pandas_edgelist(allInteractions, source='source', target='target', create_using=nx.DiGraph())
+
+allShortestPathGenes = []
+count = 0
+for protein in proteinNames:
+    try:
+        tempShortPath = []
+        if FILTER_BY_SHORTEST_PATH_MAX:
+            tempShortPath = []
+            tempShortPaths = [p for p in nx.all_shortest_paths(G, source=protein, target=DEV_GEN)]
+            print(bcolors.OKCYAN + f"Nº of Paths: {str(len(tempShortPaths))}" + bcolors.ENDC)
+            for path in tempShortPaths:
+                if len(path) <= FILTER_SHORTEST_PATH_MAX:
+                    tempShortPath += path
+            tempShortPath = list(dict.fromkeys(tempShortPath)) 
+        else:
+            tempShortPath = list(dict.fromkeys(sum([p for p in nx.all_shortest_paths(G, source=protein, target=DEV_GEN)], []))) 
+        allShortestPathGenes += tempShortPath
+        print(bcolors.BOLD + f"Gene Path Found: {str(tempShortPath)}" + bcolors.ENDC)
+
+    except Exception as e:
+        print(e)
+        count += 1
+
+allShortestPathGenes = list(dict.fromkeys(allShortestPathGenes))
+print(bcolors.FAIL + f"Total Found Genes: {len(allShortestPathGenes)}" + bcolors.ENDC)
+print(bcolors.FAIL + f"Total Error Genes: {count}" + bcolors.ENDC)
+
 ####################################################################
 # Cytoscape List
 ####################################################################
+print(bcolors.FAIL + "Cytoscape Interactions Result..." + bcolors.ENDC)
 filterAllInteractions = allInteractions[
     (allInteractions["source"].isin(allShortestPathGenes)) &
     (allInteractions["target"].isin(allShortestPathGenes))]
-print(filterAllInteractions)
-filterAllInteractions = transformToGeneDF(filterAllInteractions)
 print(filterAllInteractions)
 
 filterAllInteractions.to_csv(f"./geneNetworks/{OUTPUT_NAME}_Protein.csv", index=False)

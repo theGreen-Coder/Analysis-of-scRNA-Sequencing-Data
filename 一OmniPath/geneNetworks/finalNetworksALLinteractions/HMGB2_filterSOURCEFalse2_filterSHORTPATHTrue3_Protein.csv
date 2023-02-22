@@ -1,0 +1,10 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+PRKCB,HMGB2,True,False,False,False,False,False,1,KEA:17570479,KEA;NetworKIN_KEA,post_translational,17570479,1,2,1
+GABPA,E2F4,True,False,False,False,False,False,0,,ENCODE-proximal,transcriptional,,,1,1
+E2F4,GABPA,True,False,False,False,False,False,0,,PAZAR_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA,transcriptional,,,3,0
+E2F4,HMGB2,True,False,False,False,False,False,1,HTRIdb:17531812,DoRothEA;ENCODE-proximal;HTRIdb;PAZAR_DoRothEA;ReMap_DoRothEA,transcriptional,17531812,1,5,3
+E2F4,RUNX1,True,False,False,False,False,False,1,HTRIdb:17531812,DoRothEA;HTRIdb;PAZAR_DoRothEA,transcriptional,17531812,1,3,2
+RUNX1,PRKCB,True,False,False,False,False,False,2,DoRothEA:14561740;HTRIdb:14561740,DoRothEA;HTRIdb;HTRIdb_DoRothEA;PAZAR_DoRothEA;ReMap_DoRothEA,transcriptional,14561740,1,5,2
+MIMAT0000078,HMGB2,True,False,False,False,False,False,1,miRTarBase:23986579,miRTarBase,post_transcriptional,23986579,1,1,1
+RUNX1,MIMAT0000078,True,False,True,True,False,True,1,TransmiR:19826043,TransmiR,mirna_transcriptional,19826043,1,1,1
+SON,MIMAT0000078,True,False,True,True,False,True,1,TransmiR:23322776,TransmiR,mirna_transcriptional,23322776,1,1,1

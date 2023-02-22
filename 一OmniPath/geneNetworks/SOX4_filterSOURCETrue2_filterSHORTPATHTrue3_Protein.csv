@@ -1,0 +1,16 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+CDK2,RUNX1,True,True,True,True,True,True,8,KEA:17570479;ProtMapper:16046550;ProtMapper:17015473;ProtMapper:25914884;SIGNOR:16046550;SIGNOR:17015473;iPTMnet:16046550;iPTMnet:17015473,HPRD_MIMP;KEA;MIMP;NetworKIN_KEA;PhosphoSite_MIMP;PhosphoSite_noref;ProtMapper;REACH_ProtMapper;SIGNOR;SIGNOR_ProtMapper;Sparser_ProtMapper;iPTMnet,post_translational,16046550;17015473;17570479;25914884,4,12,5
+CDK2,AR,True,False,False,False,False,False,5,PhosphoSite:15239671;PhosphoSite:28003546;PhosphoSite:34435708;ProtMapper:28408866;ProtMapper:29157894,PhosphoSite;PhosphoSite_ProtMapper;ProtMapper;RLIMS-P_ProtMapper;Sparser_ProtMapper,post_translational,15239671;28003546;28408866;29157894;34435708,5,5,2
+SUMO3,CEBPA,True,False,False,False,False,False,2,HPRD-phos:12511558;HPRD:12511558,HPRD;HPRD-phos,post_translational,12511558,1,2,2
+CDK2,SOX4,True,False,False,False,False,False,1,KEA:17570479,KEA;NetworKIN_KEA,post_translational,17570479,1,2,1
+NRIP1,AR,True,True,False,True,True,False,2,HPRD:9368054;NetPath:9368054,HPRD;NetPath;Wang,post_translational,9368054,1,3,3
+CDK2,CEBPA,True,False,False,False,False,False,1,HPRD:11684017,HPRD;PhosphoPoint,post_translational,11684017,1,2,2
+RUNX1,CEBPA,True,False,True,True,False,True,1,HPRD:17431401,HPRD;Wang,post_translational,17431401,1,2,2
+CBS,CDK2,True,False,False,False,False,False,1,ProtMapper:21372285,ProtMapper;REACH_ProtMapper,post_translational,21372285,1,2,1
+AR,ERG,True,False,False,False,False,False,1,HTRIdb:20610535,DoRothEA;HTRIdb;ReMap_DoRothEA,transcriptional,20610535,1,3,2
+ERG,AR,True,False,False,False,False,False,0,,IntAct_DoRothEA;ReMap_DoRothEA,transcriptional,,,2,0
+AR,RUNX1,True,False,False,False,False,False,1,HTRIdb:20610535,DoRothEA;HTRIdb;PAZAR_DoRothEA;ReMap_DoRothEA,transcriptional,20610535,1,4,2
+AR,SOX4,True,False,False,False,False,False,2,DoRothEA:17721441;HTRIdb:20610535,DoRothEA;DoRothEA-reviews_DoRothEA;HTRIdb,transcriptional,17721441;20610535,2,3,2
+CEBPA,CDK2,True,False,False,False,False,False,0,,PAZAR_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA,transcriptional,,,3,0
+CEBPA,RUNX1,True,False,False,False,False,False,0,,PAZAR_DoRothEA;ReMap_DoRothEA,transcriptional,,,2,0
+CEBPA,SOX4,True,False,True,True,False,True,1,SIGNOR:24183681,PAZAR_DoRothEA;SIGNOR,transcriptional,24183681,1,2,1

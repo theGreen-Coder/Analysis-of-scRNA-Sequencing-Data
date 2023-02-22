@@ -1,0 +1,16 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+PKNOX1,PAX6,True,True,False,True,True,False,1,SPIKE:20413611,SPIKE,post_translational,20413611,1,1,1
+SIX3,PAX6,True,True,False,False,False,False,2,HPRD:11069920;SPIKE:12072567,HPRD;SPIKE,post_translational,11069920;12072567,2,2,2
+PAX6,SIX3,True,True,False,True,True,False,3,HPRD:11069920;SPIKE:11069887;SPIKE:12072567,HPRD;SPIKE,post_translational,11069887;11069920;12072567,3,2,2
+SMAD3,PAX6,True,False,True,True,False,True,1,SIGNOR:17251190,SIGNOR;Wang,post_translational,17251190,1,2,2
+TLE1,SIX3,True,True,False,True,True,False,3,HPRD:12441302;Lit-BM-17:12441302;SIGNOR:12441302,HPRD;Lit-BM-17;SIGNOR,post_translational,12441302,1,3,3
+TLE5,SIX3,True,False,True,True,False,True,3,HPRD:12050133;Lit-BM-17:12441302;SIGNOR:12441302,HPRD;Lit-BM-17;SIGNOR,post_translational,12050133;12441302,2,3,3
+HDAC1,SMAD3,True,False,True,True,False,True,3,InnateDB:19049980;Lit-BM-17:10575014;Lit-BM-17:11306568,InnateDB;Lit-BM-17;Wang,post_translational,10575014;11306568;19049980,3,3,3
+TLE1,RUNX1,True,False,True,True,False,True,2,HPRD:9751710;Lit-BM-17:9751710,HPRD;Lit-BM-17;Wang,post_translational,9751710,1,3,3
+NRIP1,SMAD3,True,False,True,True,False,True,0,,Wang,post_translational,,,1,1
+WNT1,TLE5,True,True,False,False,False,False,0,,Wang,post_translational,,,1,1
+HDAC1,TLE5,True,True,False,True,True,False,0,,Wang,post_translational,,,1,1
+WNT1,TLE1,True,True,False,False,False,False,0,,Wang,post_translational,,,1,1
+HDAC1,TLE1,True,True,False,True,True,False,0,,Wang,post_translational,,,1,1
+RUNX1,HDAC1,True,True,False,True,True,False,0,,Wang,post_translational,,,1,1
+ERG,WNT1,True,True,False,True,True,False,1,SIGNOR:23913826,SIGNOR,transcriptional,23913826,1,1,1

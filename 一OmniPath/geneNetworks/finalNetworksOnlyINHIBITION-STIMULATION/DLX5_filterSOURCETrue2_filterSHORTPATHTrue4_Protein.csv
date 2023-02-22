@@ -1,0 +1,9 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+MAPK14,DLX5,True,True,False,True,True,False,3,ProtMapper:18056716;SIGNOR:18056716;iPTMnet:18056716,ProtMapper;SIGNOR;SIGNOR_ProtMapper;iPTMnet,post_translational,18056716,1,4,3
+SRC,TIAM1,True,True,False,True,True,False,4,Adhesome:12810717;HPRD:12810717;ProtMapper:19285946;SIGNOR:12810717,Adhesome;HPRD;NCI-PID_ProtMapper;PhosphoPoint;ProtMapper;REACH_ProtMapper;RLIMS-P_ProtMapper;SIGNOR;Sparser_ProtMapper;Wang,post_translational,12810717;19285946,2,10,6
+TIAM1,SRC,True,True,False,False,False,False,2,Adhesome:12810717;HPRD:12810717,Adhesome;HPRD,post_translational,12810717,1,2,2
+APP,MAPK8,True,True,False,False,False,False,1,InnateDB:12917434,InnateDB;Wang,post_translational,12917434,1,2,2
+MAPK8,APP,True,True,False,True,True,False,10,InnateDB:12917434;ProtMapper:12917434;ProtMapper:15936948;ProtMapper:20122754;ProtMapper:24610780;SIGNOR:12917434;SIGNOR:24610780;iPTMnet:12917434;iPTMnet:14970211;iPTMnet:24610780,HPRD_MIMP;InnateDB;MIMP;PhosphoSite_MIMP;ProtMapper;RLIMS-P_ProtMapper;SIGNOR;SIGNOR_ProtMapper;Sparser_ProtMapper;iPTMnet;phosphoELM_MIMP,post_translational,12917434;14970211;15936948;20122754;24610780,5,11,5
+MAPK8,SRC,True,True,False,True,True,False,1,KEA:17570479,KEA;NetworKIN_KEA,post_translational,17570479,1,2,1
+MAPK8,MAPK14,True,True,False,True,True,False,1,HPRD:15778365,HPRD;PhosphoPoint,post_translational,15778365,1,2,2
+SRC,MAPK14,True,True,False,True,True,False,0,,ProtMapper;Reactome_ProtMapper;Wang,post_translational,,,3,2

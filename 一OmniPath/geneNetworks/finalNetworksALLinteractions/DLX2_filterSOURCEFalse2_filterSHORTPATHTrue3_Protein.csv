@@ -1,0 +1,5 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+RUNX1,CTBP2,True,True,False,True,True,False,0,,Wang,post_translational,,,1,1
+RUNX1,TCF12,True,False,False,False,False,False,0,,PAZAR_DoRothEA;ReMap_DoRothEA,transcriptional,,,2,0
+TCF12,DLX2,True,False,False,False,False,False,0,,ENCODE-proximal,transcriptional,,,1,1
+CTBP2,DLX2,True,False,False,False,False,False,0,,ENCODE-proximal,transcriptional,,,1,1

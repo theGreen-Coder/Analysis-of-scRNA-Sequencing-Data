@@ -155,7 +155,7 @@ sc.pp.normalize_total(adata, target_sum=10000)
 sc.pp.log1p(adata)
 sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5)
 
-adata.var.at["OLIG2", "highly_variable"] = True
+# adata.var.at["OLIG2", "highly_variable"] = True
 
 adata.raw = adata
 adata = adata[:, adata.var.highly_variable]

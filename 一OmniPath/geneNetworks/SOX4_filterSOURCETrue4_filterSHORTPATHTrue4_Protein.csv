@@ -1,0 +1,4 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+UBE2I,SOX4,True,False,True,True,False,True,3,HPRD:16631117;Lit-BM-17:16631117;SPIKE:16631117,HPRD;Lit-BM-17;SPIKE;Wang,post_translational,16631117,1,4,4
+CDK1,UBE2I,True,False,False,False,False,False,4,PhosphoSite:22407595;PhosphoSite:22509284;PhosphoSite:29166606;ProtMapper:24953629,MIMP;PhosphoSite;PhosphoSite_MIMP;PhosphoSite_ProtMapper;ProtMapper;REACH_ProtMapper;RLIMS-P_ProtMapper,post_translational,22407595;22509284;24953629;29166606,4,7,3
+ETS2,CDK1,True,False,False,False,False,False,2,DoRothEA:7867724;PAZAR:12760745,DoRothEA;PAZAR;PAZAR_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA;TRRUST_DoRothEA,transcriptional,12760745;7867724,2,6,2
