@@ -1,0 +1,8 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+SMAD3,NOTCH1,True,True,False,True,True,False,6,HPRD:14638857;NetPath:14638857;SIGNOR:14638857;SignaLink3:14638857;SignaLink3:18988627;SignaLink3:23331499,HPRD;NetPath;SIGNOR;SignaLink3;Wang,post_translational,14638857;18988627;23331499,3,5,5
+APP,NOTCH1,True,True,False,True,True,False,1,BioGRID:16175584,BioGRID;Wang,post_translational,16175584,1,2,2
+NOTCH1,APP,True,True,False,True,True,False,1,BioGRID:16175584,BioGRID;Wang,post_translational,16175584,1,2,2
+SMAD3,HEY1,True,True,False,True,True,False,4,ACSN:11074002;ACSN:14976548;ACSN:9389648;HPRD:15231748,ACSN;HPRD,post_translational,11074002;14976548;15231748;9389648,4,2,2
+NOTCH1,HEY1,True,True,False,True,True,False,2,ACSN:14976548;ACSN:21828089,ACSN;Wang,post_translational,14976548;21828089,2,2,2
+RUNX1,SMAD3,True,False,False,False,False,False,0,,ARACNe-GTEx_DoRothEA;JASPAR_DoRothEA;PAZAR_DoRothEA;ReMap_DoRothEA,transcriptional,,,4,0
+NOTCH1,HEY1,True,True,False,True,True,False,1,SIGNOR:11486044,KEGG-MEDICUS;SIGNOR,transcriptional,11486044,1,2,2

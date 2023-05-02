@@ -1,0 +1,12 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+APP,GSK3B,True,True,False,False,False,False,5,HPRD:10936190;HPRD:15178331;HPRD:8764598;ProtMapper:29215943;SIGNOR:8764598,HPRD;ProtMapper;SIGNOR;Sparser_ProtMapper;Wang,post_translational,10936190;15178331;29215943;8764598,4,5,4
+GSK3B,APP,True,False,False,False,False,False,19,HPRD-phos:10936190;HPRD-phos:15178331;HPRD-phos:8764598;HPRD:10936190;HPRD:15178331;HPRD:8764598;KEA:10936190;KEA:15178331;KEA:8764598;ProtMapper:22184106;ProtMapper:22898493;ProtMapper:23402899;ProtMapper:26837733;ProtMapper:8764598;SIGNOR:8764598;iPTMnet:10936190;iPTMnet:15178331;iPTMnet:8764598;phosphoELM:8764598,HPRD;HPRD-phos;HPRD_KEA;HPRD_MIMP;KEA;MIMP;PhosphoPoint;PhosphoSite_KEA;PhosphoSite_MIMP;ProtMapper;REACH_ProtMapper;RLIMS-P_ProtMapper;SIGNOR;SIGNOR_ProtMapper;Sparser_ProtMapper;iPTMnet;phosphoELM;phosphoELM_KEA;phosphoELM_MIMP,post_translational,10936190;15178331;22184106;22898493;23402899;26837733;8764598,7,19,9
+CDK1,NEUROD1,True,False,False,False,False,False,1,KEA:17570479,KEA;NetworKIN_KEA,post_translational,17570479,1,2,1
+CDK2,ETS2,True,False,False,False,False,False,1,KEA:17570479,KEA;NetworKIN_KEA,post_translational,17570479,1,2,1
+CDK2,NEUROD1,True,False,False,False,False,False,1,KEA:17570479,KEA;NetworKIN_KEA,post_translational,17570479,1,2,1
+GSK3B,NEUROD1,True,True,False,True,True,False,1,KEA:17570479,KEA;NetworKIN_KEA;PhosphoNetworks;Wang,post_translational,17570479,1,4,3
+CDK1,APP,True,False,False,False,False,False,1,ProtMapper:22112898,HPRD_MIMP;MIMP;PhosphoSite_MIMP;PhosphoSite_ProtMapper;ProtMapper;Sparser_ProtMapper;phosphoELM_MIMP,post_translational,22112898,1,7,2
+DYRK1A,GSK3B,True,False,False,False,False,False,1,ProtMapper:29215943,ProtMapper;REACH_ProtMapper;Sparser_ProtMapper,post_translational,29215943,1,3,1
+CBS,CDK2,True,False,False,False,False,False,1,ProtMapper:21372285,ProtMapper;REACH_ProtMapper,post_translational,21372285,1,2,1
+DYRK1A,APP,True,False,False,False,False,False,5,ProtMapper:18005339;ProtMapper:18696092;ProtMapper:21156028;ProtMapper:21157379;ProtMapper:28775333,ProtMapper;Sparser_ProtMapper,post_translational,18005339;18696092;21156028;21157379;28775333,5,2,1
+ETS2,CDK1,True,False,False,False,False,False,2,DoRothEA:7867724;PAZAR:12760745,DoRothEA;PAZAR;PAZAR_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA;TRRUST_DoRothEA,transcriptional,12760745;7867724,2,6,2

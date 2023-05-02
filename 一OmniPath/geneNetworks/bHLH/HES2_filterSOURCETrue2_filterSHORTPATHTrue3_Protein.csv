@@ -1,0 +1,10 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+DYRK1A,TP53,True,True,False,True,True,False,4,ProtMapper:20696760;ProtMapper:24901999;SIGNOR:20696760;iPTMnet:20696760,HPRD_MIMP;MIMP;PhosphoSite_MIMP;PhosphoSite_ProtMapper;ProtMapper;RLIMS-P_ProtMapper;SIGNOR;SIGNOR_ProtMapper;Sparser_ProtMapper;iPTMnet;phosphoELM_MIMP,post_translational,20696760;24901999,2,11,4
+SUMO3,CEBPA,True,False,False,False,False,False,2,HPRD-phos:12511558;HPRD:12511558,HPRD;HPRD-phos,post_translational,12511558,1,2,2
+SIK1,TP53,True,True,False,True,True,False,2,ProtMapper:19622832;iPTMnet:19622832,NCI-PID_ProtMapper;ProtMapper;Wang;iPTMnet,post_translational,19622832,1,4,3
+RUNX1,CEBPA,True,False,True,True,False,True,1,HPRD:17431401,HPRD;Wang,post_translational,17431401,1,2,2
+CEBPA,HES2,True,False,False,False,False,False,1,PAZAR:20219941,DoRothEA;PAZAR;PAZAR_DoRothEA,transcriptional,20219941,1,3,2
+CEBPA,RUNX1,True,False,False,False,False,False,0,,PAZAR_DoRothEA;ReMap_DoRothEA,transcriptional,,,2,0
+ETS2,TP53,True,False,False,False,False,False,0,,FANTOM4_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA;TRRUST_DoRothEA,transcriptional,,,4,0
+TP53,HES2,True,False,False,False,False,False,1,PAZAR:21394211,DoRothEA;PAZAR;PAZAR_DoRothEA,transcriptional,21394211,1,3,2
+TP53,RUNX1,True,False,False,False,False,False,0,,PAZAR_DoRothEA;ReMap_DoRothEA,transcriptional,,,2,0

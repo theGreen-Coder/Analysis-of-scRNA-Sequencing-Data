@@ -1,0 +1,5 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+DYRK1A,MYC,True,False,False,False,False,False,2,ProtMapper:24901999;iPTMnet:24901999,ProtMapper;REACH_ProtMapper;RLIMS-P_ProtMapper;Sparser_ProtMapper;iPTMnet,post_translational,24901999,1,5,2
+MYC,ETS2,True,False,False,False,False,False,2,DoRothEA:12695333;HTRIdb:12695333,ARACNe-GTEx_DoRothEA;DoRothEA;HTRIdb;HTRIdb_DoRothEA;JASPAR_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA,transcriptional,12695333,1,7,2
+ETS2,MYC,True,False,False,False,False,False,1,,ARACNe-GTEx_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA;TRRUST_DoRothEA,transcriptional,,,4,0
+MYC,ASCL2,True,False,False,False,False,False,2,DoRothEA:12695333;HTRIdb:12695333,DoRothEA;HTRIdb;HTRIdb_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA,transcriptional,12695333,1,5,2

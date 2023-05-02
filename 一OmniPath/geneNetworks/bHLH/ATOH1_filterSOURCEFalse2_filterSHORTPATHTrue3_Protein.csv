@@ -1,0 +1,17 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+BACE2,APP,True,True,False,True,True,False,15,HPRD-phos:10936190;HPRD-phos:15178331;HPRD-phos:8764598;HPRD:10605825;HPRD:10931940;HPRD:10936190;HPRD:15178331;HPRD:8764598;KEA:10936190;KEA:15178331;KEA:8764598;SPIKE:20418918;iPTMnet:10936190;iPTMnet:15178331;iPTMnet:8764598,HPRD;HPRD-phos;HPRD_KEA;HPRD_MIMP;KEA;MIMP;PhosphoSite_KEA;PhosphoSite_MIMP;SPIKE;Wang;iPTMnet;phosphoELM_MIMP,post_translational,10605825;10931940;10936190;15178331;20418918;8764598,6,12,7
+ID2,ATOH1,True,False,True,True,False,True,1,SPIKE:16407553,SPIKE,post_translational,16407553,1,1,1
+NOTCH1,ATOH1,True,False,True,True,False,True,1,SPIKE:16283144,SPIKE,post_translational,16283144,1,1,1
+JAK2,IFNGR2,True,True,False,False,False,False,3,HPRD:7514165;Macrophage:7901766;SIGNOR:23898330,HPRD;Macrophage;PhosphoPoint;SIGNOR,post_translational,23898330;7514165;7901766,3,4,4
+IFNGR2,JAK2,True,True,False,True,True,False,5,HPRD:7514165;Macrophage:7901766;SIGNOR:23898330;SignaLink3:16381926;SignaLink3:23331499,HPRD;Macrophage;SIGNOR;SignaLink3;Wang,post_translational,16381926;23331499;23898330;7514165;7901766,5,5,5
+JAK2,ATOH1,True,True,False,True,True,False,1,SIGNOR:29168692,SIGNOR,post_translational,29168692,1,1,1
+DYRK1A,NOTCH1,True,False,True,True,False,True,1,SIGNOR:19383720,SIGNOR,post_translational,19383720,1,1,1
+IL10RB,IFNAR1,True,False,False,False,False,False,1,Cellinker:23769803,Cellinker,post_translational,23769803,1,1,1
+APP,NOTCH1,True,True,False,True,True,False,1,BioGRID:16175584,BioGRID;Wang,post_translational,16175584,1,2,2
+NOTCH1,APP,True,True,False,True,True,False,1,BioGRID:16175584,BioGRID;Wang,post_translational,16175584,1,2,2
+DYRK1A,ID2,True,False,False,False,False,False,1,ProtMapper:26735018,ProtMapper;REACH_ProtMapper;RLIMS-P_ProtMapper;Sparser_ProtMapper,post_translational,26735018,1,4,1
+DYRK1A,APP,True,False,False,False,False,False,5,ProtMapper:18005339;ProtMapper:18696092;ProtMapper:21156028;ProtMapper:21157379;ProtMapper:28775333,ProtMapper;Sparser_ProtMapper,post_translational,18005339;18696092;21156028;21157379;28775333,5,2,1
+IL10RB,JAK2,True,True,False,True,True,False,0,,Wang,post_translational,,,1,1
+BACE2,NOTCH1,True,True,False,True,True,False,0,,Wang,post_translational,,,1,1
+IFNAR1,JAK2,True,True,False,True,True,False,0,,Wang,post_translational,,,1,1
+IFNAR2,JAK2,True,True,False,True,True,False,0,,Wang,post_translational,,,1,1

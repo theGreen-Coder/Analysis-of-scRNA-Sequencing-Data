@@ -1,0 +1,3 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+BACH1,MAFK,True,True,False,True,True,False,2,HPRD:8887638;SIGNOR:19011633,HPRD;SIGNOR,post_translational,19011633;8887638,2,2,2
+MAFK,BHLHE23,True,False,False,False,False,False,0,,ENCODE-proximal,transcriptional,,,1,1

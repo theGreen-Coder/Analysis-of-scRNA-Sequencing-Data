@@ -1,4 +1,5 @@
 import networkx as nx
+import requests
 import omnipath as op
 import pandas as pd
 import json
@@ -6,13 +7,16 @@ import matplotlib.pyplot as plt
 
 regulatorGenes = ["SOX4", "DLX5", "DLX4", "DLX6", "DLX2", "RBFOX2", "CELF4", "CELF5", "EBF1", "SIX3", "PBX3", "HMGB2"]
 regProts = ["Q06945", "P56178", "Q92988", "P56179", "Q07687", "O43251", "Q9BZC1", "Q8N6W0", "Q9UH73", "O95343", "P40426", "P26583"]
+bHLHGenes = ["ID1", "ID2", "ID3", "ID4", "HES1", "HES2", "HES3", "HES5", "HES6", "HEY1", "HEY2", "TCF3", "TCF4", "TCF12", "ATOH7", "ATOH1", 
+             "NEUROD1", "NEUROD2", "NEUROD4", "NEUROD6", "NEUROG1", "NEUROG2", "NEUROG3", "OLIG1", "OLIG2", "OLIG3", "BHLHE22", "BHLHE23",
+             "ASCL1", "ASCL2", "ASCL3", "ASCL4", "NHLH1", "NHLH2"]
 
-FILTER_BY_SOURCES = True
-FILTER_NUM_SOURCES = 4
+FILTER_BY_SOURCES = False
+FILTER_NUM_SOURCES = 2
 FILTER_BY_SHORTEST_PATH_MAX = True
 FILTER_INHIBITION_STIMULATION = False
-FILTER_SHORTEST_PATH_MAX = 4
-DEV_GEN = "SOX4"
+FILTER_SHORTEST_PATH_MAX = 3
+DEV_GEN = "NHLH2"
 OUTPUT_NAME = DEV_GEN + f"_filterSOURCE{str(FILTER_BY_SOURCES)+str(FILTER_NUM_SOURCES)}" + f"_filterSHORTPATH{str(FILTER_BY_SHORTEST_PATH_MAX)+str(FILTER_SHORTEST_PATH_MAX)}"
 
 ####################################################################

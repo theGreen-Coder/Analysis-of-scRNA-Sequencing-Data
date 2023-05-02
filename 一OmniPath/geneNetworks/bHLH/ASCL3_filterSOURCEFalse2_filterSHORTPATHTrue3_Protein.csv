@@ -1,0 +1,4 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+GABPA,E2F4,True,False,False,False,False,False,0,,ENCODE-proximal,transcriptional,,,1,1
+E2F4,GABPA,True,False,False,False,False,False,0,,PAZAR_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA,transcriptional,,,3,0
+E2F4,ASCL3,True,False,False,False,False,False,1,HTRIdb:17531812,HTRIdb,transcriptional,17531812,1,1,1

@@ -1,0 +1,114 @@
+---
+title: "GO Analysis"
+output:
+html_notebook: default
+---
+```{r}
+# if (!require("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# BiocManager::install("clusterProfiler")
+# if (!require("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# BiocManager::install("AnnotationDbi")
+# if (!require("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# BiocManager::install("org.Hs.eg.db")
+```
+
+```{r}
+library(clusterProfiler)
+library(org.Hs.eg.db)
+library(AnnotationDbi)
+```
+
+```{r}
+fileName = "./significantGenes/significantGenes-padj<0.1Expression.csv"
+dataframeSignificantGenes <- read.csv(fileName)
+```
+
+```{r}
+dataframeSignificantGenes
+```
+
+```{r}
+upGenes = dataframeSignificantGenes[dataframeSignificantGenes$avgExpression < 0, ]
+upGenes
+```
+
+```{r}
+downGenes = dataframeSignificantGenes[dataframeSignificantGenes$avgExpression > 0, ]
+downGenes
+```
+
+
+```{r}
+positiveGenes <- upGenes$name
+negativeGenes <- downGenes$name
+
+file = fileName
+```
+
+```{r}
+if(!is.null(negativeGenes)){
+  if(length(negativeGenes) > 10){
+    csvFileName = (as.vector(strsplit(file, '[/]'))[[1]][3])
+    outputCSVFileName = paste0("./significantGenes/",
+                               paste0(as.vector(strsplit(csvFileName, '[.]'))[[1]][1], "Negative.csv"))
+    outputPDFFileName = paste0("./significantGenes/",
+                               paste0(as.vector(strsplit(csvFileName, '[.]'))[[1]][1], "Negative.pdf"))
+    print(negativeGenes)
+    GO_results <- enrichGO(gene = negativeGenes, OrgDb = "org.Hs.eg.db", keyType = "SYMBOL", ont = "BP")
+    print(GO_results)
+    if(!is.null(GO_results)){
+      negativeResults = as.data.frame(GO_results)
+      if(nrow(negativeResults)>0){
+        print(nrow(negativeResults))
+        write.csv(negativeResults,outputCSVFileName, row.names = FALSE)
+        
+        fit <- plot(barplot(GO_results, showCategory = 15))
+        pdf(outputPDFFileName)
+        print(fit)
+        dev.off()
+      }
+    }
+  }
+}
+```
+
+
+```{r}
+if(!is.null(positiveGenes)){
+  if(length(positiveGenes) > 10){
+    csvFileName = (as.vector(strsplit(file, '[/]'))[[1]][3])
+    outputCSVFileName = paste0("./significantGenes/",
+                               paste0(as.vector(strsplit(csvFileName, '[.]'))[[1]][1], "positive.csv"))
+    outputPDFFileName = paste0("./significantGenes/",
+                               paste0(as.vector(strsplit(csvFileName, '[.]'))[[1]][1], "positive.pdf"))
+    print(positiveGenes)
+    GO_results <- enrichGO(gene = positiveGenes, OrgDb = "org.Hs.eg.db", keyType = "SYMBOL", ont = "BP")
+    print(GO_results)
+    if(!is.null(GO_results)){
+      positiveResults = as.data.frame(GO_results)
+      if(nrow(positiveResults)>0){
+        write.csv(positiveResults,outputCSVFileName, row.names = FALSE)
+        
+        fit <- plot(barplot(GO_results, showCategory = 15))
+        pdf(outputPDFFileName) # width = 1400, height = 1800
+        print(fit)
+        dev.off()
+      }
+    }
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+

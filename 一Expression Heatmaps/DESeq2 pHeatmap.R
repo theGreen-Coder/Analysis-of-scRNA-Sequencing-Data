@@ -363,17 +363,15 @@ bulk_data$deseq_results = res_list
 # extract up/down genes for DS vs CON for each cluster
 
 genes_up = lapply(res_list, function(res){ # 0.58496
-  # t1 = res[!is.na(res$padj),]
-  t1 = res
-  t1 = t1[t1$log2FoldChange<0, ] # t1[t1$log2FoldChange<=-0.3 & t1$pvalue <=0.01, ]
+  t1 = res[!is.na(res$padj),]
+  t1[t1$log2FoldChange<=-0.3 & t1$padj <=0.05, ]
   return(rownames(t1))
 })
 names(genes_up) = paste0(names(genes_up) , "_DS_up")
 
 genes_down = lapply(res_list, function(res){
-  # t1 = res[!is.na(res$padj),]
-  t1 = res
-  t1 = t1[t1$log2FoldChange>0, ] # t1[t1$log2FoldChange>=0.3 & t1$pvalue <=0.01, ]
+  t1 = res[!is.na(res$padj),]
+  t1[t1$log2FoldChange>=0.3 & t1$padj <=0.05, ]
   return(rownames(t1))
 })
 names(genes_down) = paste0(names(genes_down) , "_DS_down")
@@ -390,48 +388,6 @@ ntd = normTransform(dds)
 m1 = assay(ntd)
 m2 = m1 - apply(m1, 1, mean)
 bulk_data$deseq_log_matrix = m2
-
-
-
-######### Save Expression to CSVs ######### 
-# Save Norm Transform
-dfNormTransform = as.data.frame(bulk_data$deseq_log_matrix)
-dfNormTransform$Mean<-rowMeans(dfNormTransform, na.rm=TRUE)
-write.csv(dfNormTransform, "./normTransformAllGenes.csv", row.names=TRUE)
-
-# Save log2FoldValues
-names(res_list)
-genesNames = rownames(res_list$IN_2)
-dfLog2Fold <- data.frame(genesNames, res_list$IN_2$log2FoldChange, res_list$IN_1$log2FoldChange, res_list$IN$log2FoldChange, res_list$nIN_1$log2FoldChange, res_list$nIN$log2FoldChange, res_list$nEN_1$log2FoldChange, res_list$nEN$log2FoldChange, res_list$IPC$log2FoldChange, res_list$MGE$log2FoldChange, res_list$RG$log2FoldChange)
-rownames(dfLog2Fold) <- dfLog2Fold$genesNames
-drops <- c("genesNames")
-dfLog2Fold = dfLog2Fold[ , !(names(dfLog2Fold) %in% drops)]
-dfLog2Fold$Mean<-rowMeans(dfLog2Fold,na.rm=TRUE)
-write.csv(dfLog2Fold, "./Log2FoldAllGenes.csv", row.names=TRUE)
-
-# Save pValues
-names(res_list)
-genesNames = rownames(res_list$IN_2)
-dfpValue <- data.frame(genesNames, res_list$IN_2$pvalue, res_list$IN_1$pvalue, res_list$IN$pvalue, res_list$nIN_1$pvalue, res_list$nIN$pvalue, res_list$nEN_1$pvalue, res_list$nEN$pvalue, res_list$IPC$pvalue, res_list$MGE$pvalue, res_list$RG$pvalue)
-rownames(dfpValue) <- dfpValue$genesNames
-drops <- c("genesNames")
-dfpValue = dfpValue[ , !(names(dfpValue) %in% drops)]
-dfpValue$Mean<-rowMeans(dfpValue,na.rm=TRUE)
-write.csv(dfpValue, "./pValuesAllGenes.csv", row.names=TRUE)
-
-# Save pAdj
-names(res_list)
-genesNames = rownames(res_list$IN_2)
-dfpAdj <- data.frame(genesNames, res_list$IN_2$padj, res_list$IN_1$padj, res_list$IN$padj, res_list$nIN_1$padj, res_list$nIN$padj, res_list$nEN_1$padj, res_list$nEN$padj, res_list$IPC$padj, res_list$MGE$padj, res_list$RG$padj)
-rownames(dfpAdj) <- dfpAdj$genesNames
-drops <- c("genesNames")
-dfpAdj = dfpAdj[ , !(names(dfpAdj) %in% drops)]
-dfpAdj$Mean<-rowMeans(dfpAdj,na.rm=TRUE)
-write.csv(dfpAdj, "./pAdjAllGenes.csv", row.names=TRUE)
-
-
-
-
 
 save(bulk_data, file = paste0(out_dir2,"R05_pseudobulk_dataset_cleaned.rda"))
 
@@ -641,8 +597,13 @@ plot_cluster_diff_expr = function(bulk_data, pl_genes,
                  fontsize = fontsize, cellheight = cellheight, cellwidth = 10, lim = c(-2,2),
                  main = "DS vs CON Expr by cluster")
     
+    plotClusterDifferenceFalse = plot_heatmap(l1$DELTA, genes = pl_genes_clust, cluster_rows = FALSE,
+                                         color = colorRampPalette(c("magenta", "black", "yellow"))(250),
+                                         fontsize = fontsize, cellheight = cellheight, cellwidth = 10, lim = c(-2,2),
+                                         main = "DS vs CON Expr by cluster Cluster FALSE")
+    
     dataframePlot = l1$DELTA
-    write.csv(dataframePlot, "./GeneOrderSignificantGenes-log2fold>0.58.csv", row.names=TRUE)
+    write.csv(dataframePlot, "./GeneOrderSignificantGenesFinal.csv", row.names=TRUE)
     plotDifferenceOrder = plotClusterDifference$tree_row$labels[plotClusterDifference$tree_row$order]
     # write.csv(plotDifferenceOrder, "./geneOrderDifference.csv", row.names=FALSE)
     

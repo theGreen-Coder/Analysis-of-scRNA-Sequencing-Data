@@ -1,0 +1,7 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+JAK2,IFNGR2,True,True,False,False,False,False,3,HPRD:7514165;Macrophage:7901766;SIGNOR:23898330,HPRD;Macrophage;PhosphoPoint;SIGNOR,post_translational,23898330;7514165;7901766,3,4,4
+IFNGR2,JAK2,True,True,False,True,True,False,5,HPRD:7514165;Macrophage:7901766;SIGNOR:23898330;SignaLink3:16381926;SignaLink3:23331499,HPRD;Macrophage;SIGNOR;SignaLink3;Wang,post_translational,16381926;23331499;23898330;7514165;7901766,5,5,5
+AKT1,TTC3,True,True,False,True,True,False,5,IntAct:20059950;ProtMapper:20059950;SIGNOR:20059950;dbPTM:20059950;iPTMnet:20059950,IntAct;MIMP;PhosphoSite_MIMP;PhosphoSite_ProtMapper;PhosphoSite_noref;ProtMapper;SIGNOR;SIGNOR_ProtMapper;dbPTM;iPTMnet,post_translational,20059950,1,10,6
+TTC3,AKT1,True,False,True,False,False,False,2,IntAct:20059950;SIGNOR:20059950,IntAct;SIGNOR,post_translational,20059950,1,2,2
+AKT1,HES5,True,False,False,False,False,False,1,PhosphoSite:32055024,PhosphoSite;PhosphoSite_noref,post_translational,32055024,1,2,1
+JAK2,HES5,True,False,False,False,False,False,2,HPRD:15156153;NetPath:15156153,HPRD;NetPath;PhosphoPoint;Wang,post_translational,15156153,1,4,4

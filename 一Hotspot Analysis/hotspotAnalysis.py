@@ -21,7 +21,7 @@ def save_object(obj, filename):
 inputDataAdata = "../output/savedDataClustersFinal.h5ad"
 # inputDataAdata = "../dataSaveOriginal/rawDataset1000.h5ad"
 
-significantGenes = list(pd.read_csv("./significantGenes.csv")["genes"])
+significantGenes = list(pd.read_csv("./significantGenes-padj<0.05.csv")["x"])
 
 adata = sc.read(inputDataAdata)
 adata.var_names_make_unique()
@@ -76,8 +76,8 @@ hs_results = hs.compute_autocorrelations()
 
 print(hs.results)
 
-save_object(hs, 'hotspotObjectSignificantGenes.pkl')
-save_object(hs_results, 'hotspotResultsSignificantGenes.pkl')
+save_object(hs, 'hotspotObjectSignificantGenes28Feb.pkl')
+save_object(hs_results, 'hotspotResultsSignificantGenes28Feb.pkl')
 
 hs_genes = hs_results.loc[hs_results.FDR < 0.05].index # Select genes
 hs_genes = list(hs_genes)
@@ -97,7 +97,7 @@ modules = hs.create_modules(
 
 hs.plot_local_correlations()
 
-save_object(hs, 'hotspotObjectSignificantGenes.pkl')
-save_object(modules, 'hotspotModulesSignificantGenes.pkl')
+save_object(hs, 'hotspotObjectSignificantGenes28Feb.pkl')
+save_object(modules, 'hotspotModulesSignificantGenes28Feb.pkl')
 
 print(hs.plot_local_correlations())

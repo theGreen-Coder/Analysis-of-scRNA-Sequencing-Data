@@ -1,0 +1,76 @@
+---
+title: "GO Analysis"
+output:
+html_notebook: default
+---
+```{r}
+# if (!require("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# BiocManager::install("clusterProfiler")
+# if (!require("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# BiocManager::install("AnnotationDbi")
+# if (!require("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# BiocManager::install("org.Hs.eg.db")
+```
+
+```{r}
+library(clusterProfiler)
+library(org.Hs.eg.db)
+library(AnnotationDbi)
+library("rjson")
+```
+
+```{r}
+myData <- fromJSON(file="./一Hotspot Analysis/significantResults/40genes/modulesSignificantGenesDictionary.json")
+```
+
+```{r}
+myData
+```
+
+```{r}
+i = 1
+for (module in myData) {
+  csvFileName = paste0("GOmodule", as.character(i))
+  outputCSVFileName = paste0("./一Hotspot Analysis/significantResults/40genes/",
+                             paste0(csvFileName, ".csv"))
+  outputPDFFileName = paste0("./一Hotspot Analysis/significantResults/40genes/",
+                             paste0(csvFileName, ".pdf"))
+  
+  GO_results <- enrichGO(gene = module, OrgDb = "org.Hs.eg.db", keyType = "SYMBOL", ont = "BP")
+
+  if(!is.null(GO_results)){
+    negativeResults = as.data.frame(GO_results)
+    if(nrow(negativeResults)>0){
+      print(nrow(negativeResults))
+      write.csv(negativeResults,outputCSVFileName, row.names = FALSE)
+      
+      fit <- plot(barplot(GO_results, showCategory = 15))
+      pdf(outputPDFFileName)
+      print(fit)
+      dev.off()
+    }
+  }
+  i = i + 1
+}
+```
+
+```{r}
+GO_results
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+

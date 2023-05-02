@@ -1,0 +1,11 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+ID2,TCF12,True,False,True,True,False,True,3,HPRD:9242638;NetPath:9242638;SIGNOR:9242638,HPRD;NetPath;SIGNOR;Wang,post_translational,9242638,1,4,4
+DYRK1A,MYC,True,False,False,False,False,False,2,ProtMapper:24901999;iPTMnet:24901999,ProtMapper;REACH_ProtMapper;RLIMS-P_ProtMapper;Sparser_ProtMapper;iPTMnet,post_translational,24901999,1,5,2
+NRIP1,AR,True,True,False,True,True,False,2,HPRD:9368054;NetPath:9368054,HPRD;NetPath;Wang,post_translational,9368054,1,3,3
+DYRK1A,ID2,True,False,False,False,False,False,1,ProtMapper:26735018,ProtMapper;REACH_ProtMapper;RLIMS-P_ProtMapper;Sparser_ProtMapper,post_translational,26735018,1,4,1
+AR,MYC,True,False,False,False,False,False,1,HTRIdb:20610535,DoRothEA;FANTOM4_DoRothEA;HTRIdb;RegNetwork_DoRothEA;TRED_DoRothEA;TRRUST_DoRothEA,transcriptional,20610535,1,6,2
+AR,TCF12,True,False,False,False,False,False,1,HTRIdb:20610535,DoRothEA;HTRIdb;ReMap_DoRothEA,transcriptional,20610535,1,3,2
+MYC,ETS2,True,False,False,False,False,False,2,DoRothEA:12695333;HTRIdb:12695333,ARACNe-GTEx_DoRothEA;DoRothEA;HTRIdb;HTRIdb_DoRothEA;JASPAR_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA,transcriptional,12695333,1,7,2
+ETS2,MYC,True,False,False,False,False,False,1,,ARACNe-GTEx_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA;TRRUST_DoRothEA,transcriptional,,,4,0
+MYC,ID2,True,False,False,False,False,False,1,HTRIdb:12695333,DoRothEA;HTRIdb;HTRIdb_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA;TRRUST_DoRothEA,transcriptional,12695333,1,6,2
+MYC,TCF12,True,False,False,False,False,False,2,DoRothEA:12695333;HTRIdb:12695333,DoRothEA;ENCODE-distal;HTRIdb;HTRIdb_DoRothEA;ReMap_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA,transcriptional,12695333,1,7,3

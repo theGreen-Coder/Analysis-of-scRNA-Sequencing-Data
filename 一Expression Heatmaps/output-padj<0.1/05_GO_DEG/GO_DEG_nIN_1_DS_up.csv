@@ -1,0 +1,2 @@
+ID,Description,GeneRatio,BgRatio,pvalue,p.adjust,qvalue,geneID,Count
+GO:0009266,response to temperature stimulus,3/16,186/18903,4.776715486657979e-4,0.04777524396733715,0.034064756281233476,SST/THRA/MAPT,3

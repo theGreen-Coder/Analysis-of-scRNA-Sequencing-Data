@@ -1,4 +1,3 @@
-
 import hotspot
 from itertools import groupby
 from json import load
@@ -20,10 +19,10 @@ import json
 from matplotlib.backends.backend_pdf import PdfPages
 pd.set_option('display.max_columns', None)
 
-minGenes = 10
-outputDirectory = "./results/"+str(minGenes)+"genes/"
+minGenes = 40
+outputDirectory = "./significantResults/"+str(minGenes)+"genes/"
 
-MYDIR = ("./results/"+str(minGenes)+"genes/")
+MYDIR = ("./significantResults/"+str(minGenes)+"genes/")
 CHECK_FOLDER = os.path.isdir(MYDIR)
 
 # If folder doesn't exist, then create it.
@@ -34,7 +33,7 @@ if not CHECK_FOLDER:
 else:
     print(MYDIR, "folder already exists.")
 
-significantGenes = list(pd.read_csv("./significantGenes.csv")["genes"])
+significantGenes = list(pd.read_csv("./significantGenes-padj<0.05.csv")["x"])
 HSA21genesDataframe = pd.read_csv("./HSA21_genes_biomaRt_conversion.csv")
 HSA21genes = [x for x in HSA21genesDataframe["hgnc_symbol"] if str(x) != 'nan']
 
@@ -54,7 +53,7 @@ for item in significantHSA21genes:
 file.close()
 
 
-with open('./hotspotObjectSignificantGenes.pkl', 'rb') as inp:
+with open('./hotspotObjectSignificantGenes28Feb.pkl', 'rb') as inp:
     hs = pickle.load(inp)
 
 hs.compute_local_correlations(significantGenes)
@@ -175,19 +174,21 @@ pdConcat = pdConcat.rename(columns=modulesDictionary)
 
 adata.obs = pdConcat
 
+cmapSeurat = sns.blend_palette(["lightgray", sns.xkcd_rgb["blue"]], as_cmap=True)
+
 with PdfPages(outputDirectory+'GO Analysis of Modules.pdf') as pdf:
     # I have too include this dummy plot everytime I want to export something into PDF. 
     dummyPlot = plt.plot([1, 2])
     figureNum = plt.gcf().number
 
-    sc.pl.umap(adata, color=list(modulesDictionary.values()), show=False)
+    sc.pl.umap(adata, color=list(modulesDictionary.values()),  show=False, cmap=cmapSeurat)
 
     adataCON = adata[adata.obs["group"] == "CON"]
-    sc.pl.umap(adataCON, color=list(modulesDictionary.values()), show=False)
+    sc.pl.umap(adataCON, color=list(modulesDictionary.values()), show=False, cmap=cmapSeurat)
 
 
     adataDS = adata[adata.obs["group"] == "DS"]
-    sc.pl.umap(adataDS, color=list(modulesDictionary.values()), show=False)
+    sc.pl.umap(adataDS, color=list(modulesDictionary.values()), show=False, cmap=cmapSeurat)
 
 
     goRenameDictionary = {}
@@ -204,7 +205,7 @@ with PdfPages(outputDirectory+'GO Analysis of Modules.pdf') as pdf:
 
     list(goRenameDictionary.values())
 
-    sc.pl.umap(renamedAdata, color=list(goRenameDictionary.values()), show=False)
+    sc.pl.umap(renamedAdata, color=list(goRenameDictionary.values()), show=False, cmap=cmapSeurat)
 
     for fig in range(figureNum+1,  plt.gcf().number+1):
         pdf.savefig(figure=fig, bbox_inches='tight')

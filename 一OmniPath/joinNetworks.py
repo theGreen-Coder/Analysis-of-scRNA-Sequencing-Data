@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from os import listdir
 from os.path import isfile, join
 
-PATH = "./geneNetworks/finalNetworksALLinteractions/"
+PATH = "./geneNetworks/bHLH/"
 
 # Get list of all HSA21 genes
 HSA21genesDataframe = pd.read_csv("../一Network Visualization/data/HSA21_genes_biomaRt_conversion.csv")

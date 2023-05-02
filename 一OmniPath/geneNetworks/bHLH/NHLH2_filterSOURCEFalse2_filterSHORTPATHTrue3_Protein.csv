@@ -1,0 +1,10 @@
+source,target,is_directed,is_stimulation,is_inhibition,consensus_direction,consensus_stimulation,consensus_inhibition,curation_effort,references,sources,type,references_stripped,n_references,n_sources,n_primary_sources
+SIRT1,TP53,True,False,True,True,False,True,18,ACSN:15989956;ACSN:19590512;ACSN:19960022;DIP:18235501;DIP:18235502;DIP:21245319;HPRD-phos:11672523;HPRD:11672523;IntAct:11672523;IntAct:12006491;IntAct:15205477;IntAct:17964266;IntAct:18235501;IntAct:18235502;IntAct:21245319;SIGNOR:19047049;SIGNOR:25280219;SPIKE:17964266,ACSN;DIP;HPRD;HPRD-phos;IntAct;SIGNOR;SPIKE;Wang,post_translational,11672523;12006491;15205477;15989956;17964266;18235501;18235502;19047049;19590512;19960022;21245319;25280219,12,8,8
+SIRT1,NHLH2,True,True,False,True,True,False,1,SIGNOR:22169038,SIGNOR,post_translational,22169038,1,1,1
+DYRK1A,TP53,True,True,False,True,True,False,4,ProtMapper:20696760;ProtMapper:24901999;SIGNOR:20696760;iPTMnet:20696760,HPRD_MIMP;MIMP;PhosphoSite_MIMP;PhosphoSite_ProtMapper;ProtMapper;RLIMS-P_ProtMapper;SIGNOR;SIGNOR_ProtMapper;Sparser_ProtMapper;iPTMnet;phosphoELM_MIMP,post_translational,20696760;24901999,2,11,4
+DYRK1A,SIRT1,True,False,False,False,False,False,8,ProtMapper:20167603;ProtMapper:22345758;ProtMapper:27308401;ProtMapper:28549174;dbPTM:19107194;dbPTM:19690332;dbPTM:20027304;iPTMnet:20167603,ProtMapper;REACH_ProtMapper;RLIMS-P_ProtMapper;Sparser_ProtMapper;dbPTM;iPTMnet,post_translational,19107194;19690332;20027304;20167603;22345758;27308401;28549174,7,6,3
+SIK1,TP53,True,True,False,True,True,False,2,ProtMapper:19622832;iPTMnet:19622832,NCI-PID_ProtMapper;ProtMapper;Wang;iPTMnet,post_translational,19622832,1,4,3
+BACE2,TP53,True,True,False,True,True,False,0,,Wang,post_translational,,,1,1
+MORC3,TP53,True,True,False,True,True,False,0,,Wang,post_translational,,,1,1
+ETS2,TP53,True,False,False,False,False,False,0,,FANTOM4_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA;TRRUST_DoRothEA,transcriptional,,,4,0
+TP53,NHLH2,True,False,False,False,False,False,1,PAZAR:21394211,DoRothEA;PAZAR;PAZAR_DoRothEA;RegNetwork_DoRothEA;TRED_DoRothEA,transcriptional,21394211,1,5,2

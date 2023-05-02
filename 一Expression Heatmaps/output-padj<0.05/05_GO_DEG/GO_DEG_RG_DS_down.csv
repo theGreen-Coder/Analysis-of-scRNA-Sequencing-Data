@@ -1,0 +1,2 @@
+ID,Description,GeneRatio,BgRatio,pvalue,p.adjust,qvalue,geneID,Count
+GO:0002181,cytoplasmic translation,4/24,161/18903,4.716263792119719e-5,0.024713222270707328,0.019758663044880508,RPL12/RPS3/RPL13/EIF3L,4
