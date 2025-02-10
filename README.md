@@ -52,5 +52,5 @@ This repository was primarily created for my own analysis rather than for public
 ## Citation
 If you use this code, please cite the original study:
 
-Tang et al. (2021) - [[Link to dataset](https://www.jci.org/articles/view/135763)]
-This repository - [[GitHub link](https://github.com/theGreen-Coder/Analysis-of-scRNA-Sequencing-Data)]
+- Tang et al. (2021) - [[Link to dataset](https://www.jci.org/articles/view/135763)]
+- This repository - [[GitHub link](https://github.com/theGreen-Coder/Analysis-of-scRNA-Sequencing-Data)]
